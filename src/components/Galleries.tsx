@@ -83,6 +83,8 @@ const Gallery = () => {
                   src={src}
                   alt={`Gallery image ${idx + 1}`}
                   className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}

@@ -10,6 +10,8 @@ const MainHeroImage = () => {
         className="h-48 w-full object-cover sm:h-64 md:h-80 lg:w-full lg:h-full"
         src={mainHero.img}
         alt="happy team image"
+        loading="lazy"
+        decoding="async"
       />
     </div>
   );

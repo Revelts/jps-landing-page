@@ -42,6 +42,8 @@ const Product = () => {
                 className="h-6/6 w-full object-contain"
                 src={firstItem?.img}
                 alt={firstItem?.title}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -53,6 +55,8 @@ const Product = () => {
                 className="h-6/6 w-full object-contain"
                 src={secondItem?.img}
                 alt={secondItem?.title}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

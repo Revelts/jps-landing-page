@@ -36,6 +36,8 @@ const Partners = () => {
                     src={partner.logo}
                     alt={partner.name}
                     className="max-h-full max-w-full object-contain logo-drop-strong filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <p className="mt-3 text-sm font-semibold text-gray-800">
