@@ -32,7 +32,11 @@ const Menu = () => {
               <div className="flex items-center justify-between w-full md:w-auto">
                 <a href="#">
                   <span className="sr-only">{companyName}</span>
-                  <img alt="logo" className="h-16 w-auto sm:h-16" src={logo} />
+                  <img
+                    alt="logo"
+                    className="h-16 w-auto sm:h-16 logo-drop"
+                    src={logo}
+                  />
                 </a>
                 <div className="-mr-2 flex items-center md:hidden">
                   <Popover.Button
@@ -59,10 +63,12 @@ const Menu = () => {
                 </Link>
               ))}
               <a
-                href="#"
+                href={callToAction.href}
                 className={`font-medium text-primary hover:text-secondary`}
+                target="_blank"
+                rel="noreferrer"
               >
-                Call to action
+                {callToAction.text}
               </a>
             </div>
           </nav>
@@ -115,6 +121,8 @@ const Menu = () => {
               <a
                 href={callToAction.href}
                 className={`block w-full px-5 py-3 text-center font-medium text-primary bg-gray-50 hover:bg-gray-100`}
+                target="_blank"
+                rel="noreferrer"
               >
                 {callToAction.text}
               </a>

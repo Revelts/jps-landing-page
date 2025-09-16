@@ -1,15 +1,16 @@
 import React from 'react';
 
 import About from '../components/About';
+import AboutUs from '../components/AboutUs';
 import Analytics from '../components/Analytics';
+import Benefits from '../components/Benefits';
 import Canvas from '../components/Canvas';
-import Features from '../components/Features';
+import Galleries from '../components/Galleries';
 import Header from '../components/Header';
 import LazyShow from '../components/LazyShow';
 import MainHero from '../components/MainHero';
 import MainHeroImage from '../components/MainHeroImage';
-import Pricing from '../components/Pricing';
-import Product from '../components/Product';
+import Partners from '../components/Partners';
 
 const App = () => {
   return (
@@ -28,18 +29,24 @@ const App = () => {
       <Canvas />
       <LazyShow>
         <>
-          <Product />
+          <AboutUs />
           <Canvas />
         </>
       </LazyShow>
       <LazyShow>
         <>
-          <Features />
+          <Partners />
           <Canvas />
         </>
       </LazyShow>
       <LazyShow>
-        <Pricing />
+        <>
+          <Benefits />
+          <Canvas />
+        </>
+      </LazyShow>
+      <LazyShow>
+        <Galleries />
       </LazyShow>
       <LazyShow>
         <>
