@@ -1,89 +1,110 @@
 {
   "company": {
-    "name": "React landing page 2021",
-    "logo": "/assets/images/logo.png"
+    "name": "Jakarta Party Squad",
+    "logo": "/assets/images/logo_2.png"
   },
   "navigation": [
     {
-      "name": "Product",
-      "href": "product"
+      "name": "About Us",
+      "href": "aboutus"
     },
     {
-      "name": "Features",
-      "href": "features"
+      "name": "Benefits",
+      "href": "benefits"
     },
 
     {
-      "name": "Pricing",
-      "href": "pricing"
-    },
-    {
-      "name": "About",
-      "href": "about"
+      "name": "Galleries",
+      "href": "gallery"
     }
   ],
   "callToAction": {
-    "text": "Get started",
-    "href": "#"
+    "text": "Event Schedule",
+    "href": "https://party-schedule.vercel.app"
   },
   "mainHero": {
-    "title": "Use me as your",
-    "subtitle": "landing page.",
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-    "img": "/assets/images/happyTeam.jpeg",
+    "title": "Jakarta Party Squad",
+    "subtitle": "Community • Media • Event Partner",
+    "description": "We connect people, stories, and experiences. From building vibrant communities, delivering engaging media, to powering unforgettable events — we are your trusted partner in creating impact and lasting connections.",
+    "img": "/assets/images/header.jpg",
     "primaryAction": {
-      "text": "Get started",
-      "href": "#"
+      "text": "Follow Us",
+      "href": "https://www.instagram.com/jakartapartysquad"
     },
     "secondaryAction": {
-      "text": "Email us",
-      "href": "mailto:issaafakattan@gmail.com?subject=I like react landing page!"
+      "text": "Join Us",
+      "href": "https://chat.whatsapp.com/INOwwV4aSCFCWISZtoTmGG?mode=ac_t"
     }
   },
-  "product": {
-    "title": "React landing page 2021",
+  "aboutus": {
+    "title": "Know Us Better",
     "items": [
       {
-        "title": "A plug n play template",
-        "description": "Just edit the config.json file with details about your company and voila your beautiful state of the art landing page is ready to go live! Remember to also update your assets, add any images you want to show to /assets/images and link them in the config.json",
-        "img": "/assets/images/product1.jpg"
+        "title": "✨ Party. Connect. Repeat. ✨",
+        "description": "Kami menyediakan wadah komunitas untuk kamu yang ingin menikmati dunia malam lebih jauh lagi. Di sini kamu bisa party bareng, membangun relasi baru, dan having fun bersama-sama tanpa dipungut biaya. Mari gabung, nikmati vibes terbaik, dan jadilah bagian dari perjalanan seru komunitas malam kami!",
+        "img": "/assets/images/party.png"
       },
       {
-        "title": "Make it your own!",
-        "description": "Play around with the theme.ts file and configure the color palette to match the branding of your company! If you're feeling wild, maybe change some tailwind css as well!",
-        "img": "/assets/images/product2.jpg"
+        "title": "🍹 Bangun Circle, Bikin Seru! 🍹",
+        "description": "Selain join komunitas, kamu juga bisa membangun circle sendiri bareng teman-teman. Kita bareng-bareng bisa meramaikan event, dapat info hosting gratis, sampai patungan buka table biar makin seru. Komunitas ini bukan cuma soal party, tapi juga soal kebersamaan, koneksi, dan pengalaman seru di dunia malam!",
+        "img": "/assets/images/party_2.png"
       }
     ]
   },
-  "features": {
-    "title": "Latest & greatest ",
-    "subtitle": "All the best technologies out there!",
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+  "benefits": {
+    "title": "Benefits",
+    "subtitle": "Lebih dari sekadar party, ini adalah komunitas!",
+    "description": "Dengan bergabung di komunitas ini, kamu bukan hanya sekadar ikut party, tapi juga membangun relasi, membuka peluang baru, dan menikmati berbagai benefit eksklusif yang sering kita adakan bersama. Mulai dari hosting crowd, party bareng, event privileges, hingga kesempatan menjalin hubungan atau relasi kerja.",
     "items": [
       {
-        "name": "React.js",
-        "description": "React is a free and open-source front-end JavaScript library for building user interfaces or UI components.",
-        "icon": "/assets/images/react.png"
+        "name": "Hosting Crowd",
+        "description": "Kamu tidak perlu bayar untuk clubbing, cukup ikut crowd hosting dan bisa mendapatkan botol gratis dengan beberapa persyaratan dan regulasi tertentu.",
+        "icon": "/assets/images/champagne-glass.png"
       },
       {
-        "name": "Tailwind",
-        "description": "Tailwind CSS is a highly customizable, low-level CSS framework for quickly creating beautiful designs without any annoying opinionated stylesheet nonsense.",
-        "icon": "/assets/images/tailwindcss.svg"
+        "name": "Party Bareng",
+        "description": "Tim admin dan beberapa tim lainnya kadang menyelenggarakan party bareng, jadi kamu bisa seru-seruan langsung bareng komunitas inti.",
+        "icon": "/assets/images/dance.png"
       },
       {
-        "name": "Next.js",
-        "description": "Next.js is a framework for server-rendered React applications using Next.js.",
-        "icon": "/assets/images/nextjs.svg"
+        "name": "Event Privillages",
+        "description": "Ketika ada event besar dengan guest star, komunitas ini memberikan kesempatan spesial untuk join tanpa dipungut biaya. Tidak hanya di party, tapi juga banyak event lainnya.",
+        "icon": "/assets/images/mirror-ball.png"
       },
       {
-        "name": "Typescript",
-        "description": "TypeScript is a programming language developed and maintained by Microsoft.",
-        "icon": "/assets/images/ts.png"
+        "name": "Relationship",
+        "description": "Selain bersenang-senang, kamu juga bisa menemukan pasangan idaman atau menjalin relasi baru—baik untuk pertemanan, kerja, maupun bisnis.",
+        "icon": "/assets/images/mediator.png"
       }
     ]
   },
-  "pricing": {
-    "title": "Pricing",
+  "partners": {
+    "title": "Our Partner",
+    "items": [
+      {
+        "name": "Wildout",
+        "logo": "/assets/images/wildout.png",
+        "url": "https://www.instagram.com/wildout.idn/"
+      },
+      {
+        "name": "Blackowl Jakarta",
+        "logo": "/assets/images/blackowl.png",
+        "url": "https://www.instagram.com/blackowl.jkt/"
+      },
+      {
+        "name": "Bengkel SCBD",
+        "logo": "/assets/images/bengkel.png",
+        "url": "https://www.instagram.com/bengkelscbd/"
+      },
+      {
+        "name": "Fyne Jakarta",
+        "logo": "/assets/images/fyne.png",
+        "url": "https://www.instagram.com/fynejakarta/"
+      }
+    ]
+  },
+  "gallery": {
+    "title": "Galleries",
     "items": [
       {
         "name": "Free",
@@ -145,9 +166,8 @@
       }
     ],
     "socialMedia": {
-      "github": "https://github.com/issaafalkattan",
-      "twitter": "https://twitter.com/issaafkattan",
-      "linkedin": "https://www.linkedin.com/in/issaaf-kattan/"
+      "instagram": "https://www.instagram.com/jakartapartysquad",
+      "tiktok": "https://www.tiktok.com/@jakarta_party_squad"
     }
   }
 }

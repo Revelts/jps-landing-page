@@ -26,3 +26,52 @@ a:hover {
 .content ul {
   @apply my-6;
 }
+
+/* Futuristic UI helpers */
+.gradient-text-bpp {
+  background-image: linear-gradient(90deg, #1e3a8a 0%, #6d28d9 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 30px rgba(31, 41, 55, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.neon-shadow {
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.25), 0 6px 12px rgba(30, 58, 138, 0.18);
+}
+
+.tilt-hover {
+  transform: translateY(-2px);
+}
+
+.gradient-border {
+  border: 1px solid transparent;
+  background: linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(90deg, #1e3a8a, #6d28d9, #ec4899) border-box;
+}
+
+.btn-glow {
+  box-shadow: 0 0 0 0 rgba(109, 40, 217, 0.5);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+.btn-glow:hover {
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.35), 0 4px 10px rgba(236, 72, 153, 0.28);
+  transform: translateY(-1px);
+}
+
+/* Logo-specific drop shadow that respects transparent PNG edges */
+.logo-drop {
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35))
+          drop-shadow(0 2px 6px rgba(31, 41, 55, 0.3));
+}
+
+.logo-drop-strong {
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45))
+          drop-shadow(0 4px 10px rgba(31, 41, 55, 0.4));
+}
