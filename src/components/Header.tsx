@@ -7,7 +7,14 @@ import { Link } from 'react-scroll';
 import config from '../config/index.json';
 
 const Menu = () => {
-  const { navigation, company, callToAction } = config;
+  const { navigation, company, callToAction, callToActions } = config as any;
+  type NavItem = { name: string; href: string };
+  type CtaItem = { text: string; href: string };
+  const ctaList: CtaItem[] = (
+    callToActions && Array.isArray(callToActions)
+      ? callToActions
+      : [callToAction]
+  ).filter(Boolean) as CtaItem[];
   const { name: companyName, logo } = company;
 
   return (
@@ -48,8 +55,8 @@ const Menu = () => {
                 </div>
               </div>
             </div>
-            <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-              {navigation.map((item) => (
+            <div className="hidden md:flex md:items-center md:ml-10 md:pr-4 md:space-x-8">
+              {navigation.map((item: NavItem) => (
                 <Link
                   spy={true}
                   active="active"
@@ -62,14 +69,26 @@ const Menu = () => {
                   {item.name}
                 </Link>
               ))}
-              <a
-                href={callToAction.href}
-                className={`font-medium text-primary hover:text-secondary`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {callToAction.text}
-              </a>
+              <div className="relative inline-block group">
+                <span className="font-medium text-gray-500 hover:text-gray-900 cursor-pointer inline-block px-2 py-2">
+                  Features
+                </span>
+                <div className="absolute left-0 top-full hidden group-hover:block w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20">
+                  <div className="py-1">
+                    {ctaList.map((cta) => (
+                      <a
+                        key={cta.text}
+                        href={cta.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {cta.text}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </nav>
         </div>
@@ -104,7 +123,7 @@ const Menu = () => {
                 </div>
               </div>
               <div className="px-2 pt-2 pb-3 space-y-1">
-                {navigation.map((item) => (
+                {navigation.map((item: NavItem) => (
                   <Link
                     spy={true}
                     active="active"
@@ -117,15 +136,24 @@ const Menu = () => {
                     {item.name}
                   </Link>
                 ))}
+                <div className="mt-2 pt-2 border-t border-gray-200">
+                  <p className="px-3 py-2 text-sm font-medium text-gray-500">
+                    Features
+                  </p>
+                  {ctaList.map((cta) => (
+                    <a
+                      key={cta.text}
+                      href={cta.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                    >
+                      {cta.text}
+                    </a>
+                  ))}
+                </div>
               </div>
-              <a
-                href={callToAction.href}
-                className={`block w-full px-5 py-3 text-center font-medium text-primary bg-gray-50 hover:bg-gray-100`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {callToAction.text}
-              </a>
+              {/* Removed bottom CTA buttons in favor of Features list above */}
             </div>
           </Popover.Panel>
         </Transition>
