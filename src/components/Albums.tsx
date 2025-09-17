@@ -3,8 +3,8 @@ import React from 'react';
 import config from '../config/index.json';
 
 const Albums = () => {
-  const { albums } = config;
-  const { title, items } = albums;
+  const { albums } = config as any;
+  const { title, description, items } = albums;
 
   return (
     <section id="albums" className="relative bg-background py-12">
@@ -15,6 +15,11 @@ const Albums = () => {
         <div className="w-full mb-8">
           <div className="h-1 mx-auto bg-gradient-to-r from-blue-800 via-purple-600 to-pink-500 w-64 opacity-40 my-0 py-0 rounded-t"></div>
         </div>
+        {description && (
+          <p className="mx-auto max-w-3xl text-center text-gray-700 mb-6">
+            {description}
+          </p>
+        )}
 
         <ul className="mx-auto max-w-5xl flex flex-wrap justify-center gap-6">
           {items.map(
