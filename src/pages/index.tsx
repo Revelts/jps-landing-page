@@ -2,6 +2,7 @@ import React from 'react';
 
 import About from '../components/About';
 import AboutUs from '../components/AboutUs';
+import Albums from '../components/Albums';
 import Analytics from '../components/Analytics';
 import Benefits from '../components/Benefits';
 import Canvas from '../components/Canvas';
@@ -42,6 +43,12 @@ const App = () => {
       <LazyShow>
         <>
           <Benefits />
+          <Canvas />
+        </>
+      </LazyShow>
+      <LazyShow>
+        <>
+          <Albums />
           <Canvas />
         </>
       </LazyShow>
