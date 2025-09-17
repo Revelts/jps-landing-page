@@ -20,13 +20,16 @@
   ],
   "callToAction": {
     "text": "Event Schedule",
-    "href": "https://party-schedule.vercel.app"
+    "href": "https://schedule.jakartapartysquad.com"
   },
   "callToActions": [
-    { "text": "Event Schedule", "href": "https://party-schedule.vercel.app" },
+    {
+      "text": "Event Schedule",
+      "href": "https://schedule.jakartapartysquad.com"
+    },
     {
       "text": "Party Calculator",
-      "href": "https://pt-pt-calculator.vercel.app"
+      "href": "https://calculator.jakartapartysquad.com"
     }
   ],
   "mainHero": {
@@ -172,8 +175,7 @@
       "instagram": "https://www.instagram.com/jakartapartysquad",
       "tiktok": "https://www.tiktok.com/@jakarta_party_squad"
     }
-  }
-  ,
+  },
   "founderSpeech": {
     "title": "Words from Our Founder",
     "name": "Alfin",

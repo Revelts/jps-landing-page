@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jakartapartysquad.com/sitemap.xml
+
+
