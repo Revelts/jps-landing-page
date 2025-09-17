@@ -38,7 +38,7 @@ const Wave: FC = () => {
     return () => {
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     };
-  }, [context, width]);
+  }, [context, width, waves]);
   return null;
 };
 
