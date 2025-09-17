@@ -25,7 +25,7 @@ const Partners = () => {
           </p>
         )}
         <ul className="mx-auto max-w-5xl flex flex-wrap justify-center gap-6">
-          {items.map((partner) => (
+          {items.map((partner: any) => (
             <li
               key={partner.name}
               className="group w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/5 flex flex-col items-center text-center"
