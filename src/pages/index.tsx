@@ -6,13 +6,13 @@ import Albums from '../components/Albums';
 import Analytics from '../components/Analytics';
 import Benefits from '../components/Benefits';
 import Canvas from '../components/Canvas';
+import FounderSpeech from '../components/FounderSpeech';
 import Galleries from '../components/Galleries';
 import Header from '../components/Header';
 import LazyShow from '../components/LazyShow';
 import MainHero from '../components/MainHero';
 import MainHeroImage from '../components/MainHeroImage';
 import Partners from '../components/Partners';
-import FounderSpeech from '../components/FounderSpeech';
 
 const App = () => {
   return (

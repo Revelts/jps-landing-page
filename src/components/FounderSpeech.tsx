@@ -30,8 +30,12 @@ const FounderSpeech = () => {
             loading="lazy"
             decoding="async"
           />
-          <p className="text-lg sm:text-xl font-semibold text-gray-800">{name}</p>
-          <p className="mt-3 text-base sm:text-lg text-gray-700 whitespace-pre-line">{speech}</p>
+          <p className="text-lg sm:text-xl font-semibold text-gray-800">
+            {name}
+          </p>
+          <p className="mt-3 text-base sm:text-lg text-gray-700 whitespace-pre-line">
+            {speech}
+          </p>
         </div>
       </div>
     </section>
@@ -39,5 +43,3 @@ const FounderSpeech = () => {
 };
 
 export default FounderSpeech;
-
-
