@@ -12,6 +12,7 @@ import LazyShow from '../components/LazyShow';
 import MainHero from '../components/MainHero';
 import MainHeroImage from '../components/MainHeroImage';
 import Partners from '../components/Partners';
+import FounderSpeech from '../components/FounderSpeech';
 
 const App = () => {
   return (
@@ -53,7 +54,13 @@ const App = () => {
         </>
       </LazyShow>
       <LazyShow>
-        <Galleries />
+        <>
+          <Galleries />
+          <Canvas />
+        </>
+      </LazyShow>
+      <LazyShow>
+        <FounderSpeech />
       </LazyShow>
       <LazyShow>
         <>

@@ -32,36 +32,36 @@
   "mainHero": {
     "title": "Jakarta Party Squad",
     "subtitle": "Community • Media • Event Partner",
-    "description": "We connect people, stories, and experiences. From building vibrant communities, delivering engaging media, to powering unforgettable events — we are your trusted partner in creating impact and lasting connections.",
+    "description": "Kami percaya bahwa dunia malam adalah lebih dari sekadar hiburan. Jakarta Party Squad hadir untuk menyatukan orang-orang, membagikan cerita, dan menciptakan pengalaman yang berkesan. Sejak berdiri pada 17 September 2023 melalui sebuah grup WhatsApp sederhana, kami telah tumbuh menjadi komunitas dengan lebih dari 5.000+ followers dan 2.000+ member aktif yang tersebar di Jakarta, Medan, dan kota-kota lainnya. Hari ini, Jakarta Party Squad menjadi ruang kolaborasi antara komunitas, media, dan brand untuk menghadirkan koneksi, pengalaman, serta momen yang berarti.",
     "img": "/assets/images/header.jpg",
     "primaryAction": {
-      "text": "Follow Us",
+      "text": "Partner with Us 🤝",
       "href": "https://www.instagram.com/jakartapartysquad"
     },
     "secondaryAction": {
-      "text": "Join Us",
+      "text": "Join the Squad 🚀",
       "href": "https://chat.whatsapp.com/INOwwV4aSCFCWISZtoTmGG?mode=ac_t"
     }
   },
   "aboutus": {
-    "title": "Know Us Better",
+    "title": "About Us – Know Us Better ✨",
     "items": [
       {
         "title": "✨ Party. Connect. Repeat. ✨",
-        "description": "Kami menyediakan wadah komunitas untuk kamu yang ingin menikmati dunia malam lebih jauh lagi. Di sini kamu bisa party bareng, membangun relasi baru, dan having fun bersama-sama tanpa dipungut biaya. Mari gabung, nikmati vibes terbaik, dan jadilah bagian dari perjalanan seru komunitas malam kami!",
+        "description": "Jakarta Party Squad adalah wadah komunitas bagi siapa saja yang ingin mengeksplorasi dunia malam lebih jauh. Kamu bisa party bersama dengan vibes terbaik. Membangun circle baru dengan orang-orang yang satu frekuensi. Menikmati momen tanpa dipungut biaya. Lebih dari sekadar bersenang-senang, kami hadir untuk menghadirkan rasa kebersamaan, membuka relasi baru, dan menciptakan peluang yang bermanfaat bagi semua anggota komunitas.",
         "img": "/assets/images/party.png"
       },
       {
-        "title": "🍹 Bangun Circle, Bikin Seru! 🍹",
-        "description": "Selain join komunitas, kamu juga bisa membangun circle sendiri bareng teman-teman. Kita bareng-bareng bisa meramaikan event, dapat info hosting gratis, sampai patungan buka table biar makin seru. Komunitas ini bukan cuma soal party, tapi juga soal kebersamaan, koneksi, dan pengalaman seru di dunia malam!",
+        "title": "🍹 Community - Bangun Circle, Bikin Seru!",
+        "description": "Di JPS, setiap orang punya kesempatan untuk menikmati nightlife dengan cara yang lebih bermakna. Ikut hosting gratis di event tertentu. Patungan table dengan circle baru biar lebih hemat & seru. Jadi bagian dari crowd yang membawa energi positif ke setiap event. Komunitas ini bukan hanya soal party, tapi juga tentang friendship, networking, dan pengalaman sosial.",
         "img": "/assets/images/party_2.png"
       }
     ]
   },
   "benefits": {
-    "title": "Benefits",
+    "title": "🎁 Benefits for Members",
     "subtitle": "Lebih dari sekadar party, ini adalah komunitas!",
-    "description": "Dengan bergabung di komunitas ini, kamu bukan hanya sekadar ikut party, tapi juga membangun relasi, membuka peluang baru, dan menikmati berbagai benefit eksklusif yang sering kita adakan bersama. Mulai dari hosting crowd, party bareng, event privileges, hingga kesempatan menjalin hubungan atau relasi kerja.",
+    "description": "Bergabung dengan Jakarta Party Squad berarti mendapatkan lebih dari sekadar hiburan.",
     "items": [
       {
         "name": "Hosting Crowd",
@@ -86,7 +86,8 @@
     ]
   },
   "partners": {
-    "title": "Our Partner",
+    "title": "Partners & Collaboration",
+    "description": "Sejak awal, JPS sudah dipercaya untuk bekerja sama dengan berbagai venue dan brand di dunia hiburan malam, antara lain:",
     "items": [
       {
         "name": "Wildout",
@@ -108,10 +109,12 @@
         "logo": "/assets/images/fyne.png",
         "url": "https://www.instagram.com/fynejakarta/"
       }
-    ]
+    ],
+    "closing": "Kami juga menghadirkan influencer lifestyle, party enthusiast, dan beragam talent mulai dari DJ, MC, hingga party host. Semua ini menjadikan Jakarta Party Squad sebagai event partner yang terpercaya untuk brand, club, maupun organizer yang ingin menghadirkan pengalaman berbeda bagi audiens mereka."
   },
   "albums": {
-    "title": "Photo Album Collection",
+    "title": "Photo Albums & Moments",
+    "description": "Setiap acara adalah cerita. Kami mendokumentasikan berbagai event seru bersama komunitas, seperti:",
     "items": [
       {
         "name": "The H | Sonar Event",
@@ -140,43 +143,7 @@
     ]
   },
   "gallery": {
-    "title": "Galleries",
-    "items": [
-      {
-        "name": "Free",
-        "price": "$0",
-        "priceDetails": "for one user",
-        "features": [
-          "1 user",
-          "Basic Support",
-          "1 GB of storage",
-          "Email support"
-        ]
-      },
-      {
-        "name": "Pro",
-        "price": "$15",
-        "priceDetails": "per user",
-
-        "features": [
-          "5 users",
-          "Priority Support",
-          "10 GB of storage",
-          "Phone and Email support"
-        ]
-      },
-      {
-        "name": "Enterprise",
-        "price": "$29",
-        "priceDetails": "per user",
-        "features": [
-          "50 users",
-          "24/7 Support",
-          "100 GB of storage",
-          "Phone and Email support"
-        ]
-      }
-    ]
+    "title": "Galleries"
   },
   "about": {
     "sections": [
@@ -205,5 +172,12 @@
       "instagram": "https://www.instagram.com/jakartapartysquad",
       "tiktok": "https://www.tiktok.com/@jakarta_party_squad"
     }
+  }
+  ,
+  "founderSpeech": {
+    "title": "Words from Our Founder",
+    "name": "Alfin",
+    "avatar": "/assets/images/founder.png",
+    "speech": "Jakarta Party Squad adalah komunitas, media, sekaligus partner event yang menghubungkan orang, brand, dan pengalaman. Kami terus berkembang, menghadirkan vibes terbaik untuk komunitas, sekaligus memberikan nilai tambah bagi setiap partner yang bekerja sama."
   }
 }
