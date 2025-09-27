@@ -45,6 +45,10 @@ const SEO: DefaultSeoProps = {
     },
     { name: 'author', content: 'Jakarta Party Squad' },
     { name: 'theme-color', content: '#0b1b3b' },
+    {
+      name: 'google-site-verification',
+      content: 'yubfUVzPbiFtQk0MFN-mly2pMvbX4AIqP5ppXzWvR9o',
+    },
   ],
 };
 
