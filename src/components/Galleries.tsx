@@ -4,6 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const images = [
+  '/assets/images/1.jpg',
   '/assets/images/2.jpg',
   '/assets/images/3.jpg',
   '/assets/images/4.jpg',
