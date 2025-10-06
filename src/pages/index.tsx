@@ -1,5 +1,7 @@
 import React from 'react';
 
+import type { GetStaticProps } from 'next';
+
 import About from '../components/About';
 import AboutUs from '../components/AboutUs';
 import Albums from '../components/Albums';
@@ -13,6 +15,7 @@ import LazyShow from '../components/LazyShow';
 import MainHero from '../components/MainHero';
 import MainHeroImage from '../components/MainHeroImage';
 import Partners from '../components/Partners';
+import VisitCounter from '../components/VisitCounter';
 
 const App = () => {
   return (
@@ -29,6 +32,9 @@ const App = () => {
         <MainHeroImage />
       </div>
       <Canvas />
+      <LazyShow>
+        <VisitCounter />
+      </LazyShow>
       <LazyShow>
         <>
           <AboutUs />
@@ -74,3 +80,12 @@ const App = () => {
 };
 
 export default App;
+
+export const getStaticProps: GetStaticProps = async () => {
+  // In case of external data fetching, do it here.
+  return {
+    props: {},
+    // Re-generate the page at most once every 60 minutes
+    revalidate: 3600,
+  };
+};
