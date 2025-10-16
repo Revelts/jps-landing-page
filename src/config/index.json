@@ -3,6 +3,107 @@
     "name": "Jakarta Party Squad",
     "logo": "/assets/images/logo_2.png"
   },
+  "team": {
+    "title": "Meet Our Team",
+    "members": [
+      {
+        "name": "Alfin",
+        "role": "Founder & Director",
+        "photo": "/assets/images/founder.png",
+        "links": {
+          "instagram": "https://www.instagram.com/alfeenn_nn/"
+        }
+      },
+      {
+        "name": "Ajie",
+        "role": "Head of Operations & Partnership",
+        "photo": "/assets/images/ajie.jpg",
+        "links": {
+          "instagram": "https://www.instagram.com/bingchilling420x/"
+        }
+      },
+      {
+        "name": "Ley",
+        "role": "Head of IT & Production",
+        "photo": "/assets/images/ley.png",
+        "links": {
+          "instagram": "https://www.instagram.com/leynardoyosef/"
+        }
+      },
+      {
+        "name": "Firman",
+        "role": "Head of Marketing Communication",
+        "photo": "/assets/images/firman.png",
+        "links": {
+          "instagram": "https://www.instagram.com/fireman.002"
+        }
+      },
+      {
+        "name": "Kevin",
+        "role": "Head of Talent & Community",
+        "photo": "/assets/images/kevin.png",
+        "links": {
+          "instagram": "hthttps://www.instagram.com/hartantofx/"
+        }
+      },
+      {
+        "name": "Wilhelmina",
+        "role": "Head of Finance & Administration",
+        "photo": "/assets/images/wilhelmina.png",
+        "links": {
+          "instagram": "https://www.instagram.com/wilhelminapuspalenna/"
+        }
+      },
+      {
+        "name": "Feri",
+        "role": "Head of Data & Field Technical",
+        "photo": "/assets/images/feri.png",
+        "links": {
+          "instagram": "https://www.instagram.com/feyiverse/"
+        }
+      },
+      {
+        "name": "Chacha",
+        "role": "Head of Social Media",
+        "photo": "/assets/images/chacha.png",
+        "links": {
+          "instagram": "https://www.instagram.com/saskiaasass"
+        }
+      },
+      {
+        "name": "Hafiz (Voy)",
+        "role": "Head of Photography & Documentation",
+        "photo": "/assets/images/voy.png",
+        "links": {
+          "instagram": "https://www.instagram.com/voy_66/"
+        }
+      },
+      {
+        "name": "Dafri",
+        "role": "-",
+        "photo": "/assets/images/dafri.png",
+        "links": {
+          "instagram": "https://www.instagram.com/daf.rii/"
+        }
+      },
+      {
+        "name": "TBA",
+        "role": "-",
+        "photo": "/assets/images/tba.png",
+        "links": {
+          "instagram": "https://instagram.com/"
+        }
+      },
+      {
+        "name": "TBA",
+        "role": "-",
+        "photo": "/assets/images/tba.png",
+        "links": {
+          "instagram": "https://instagram.com/"
+        }
+      }
+    ]
+  },
   "navigation": [
     {
       "name": "About Us",
