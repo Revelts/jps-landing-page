@@ -75,3 +75,15 @@ a:hover {
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45))
           drop-shadow(0 4px 10px rgba(31, 41, 55, 0.4));
 }
+
+/* Social icon links inside Team cards: keep size fixed on hover */
+.icon-link {
+  @apply border-0; /* override global anchor hover border to avoid layout shift */
+  line-height: 0; /* collapse inline height to the icon size only */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-link:hover {
+  @apply border-0; /* ensure no border is added on hover */
+}

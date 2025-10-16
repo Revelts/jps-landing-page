@@ -15,6 +15,7 @@ import LazyShow from '../components/LazyShow';
 import MainHero from '../components/MainHero';
 import MainHeroImage from '../components/MainHeroImage';
 import Partners from '../components/Partners';
+import Team from '../components/Team';
 import VisitCounter from '../components/VisitCounter';
 
 const App = () => {
@@ -56,6 +57,12 @@ const App = () => {
       <LazyShow>
         <>
           <Albums />
+          <Canvas />
+        </>
+      </LazyShow>
+      <LazyShow>
+        <>
+          <Team />
           <Canvas />
         </>
       </LazyShow>
