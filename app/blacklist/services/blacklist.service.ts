@@ -43,7 +43,7 @@ export async function getBlacklistCount(): Promise<number> {
  * @param data - Raw data to validate
  * @returns boolean
  */
-export function isValidBlacklistUser(data: any): data is BlacklistUser {
+export function isValidBlacklistUser(data: unknown): data is BlacklistUser {
   return (
     typeof data === 'object' &&
     data !== null &&

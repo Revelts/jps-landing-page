@@ -26,6 +26,7 @@ export function formatDate(date: string | Date): string {
  * Debounce function for performance optimization
  * Single Responsibility: Function debouncing
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number

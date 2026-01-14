@@ -77,9 +77,9 @@ export default async function BlacklistPage() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
           <Card className="text-center bg-gradient-to-br from-red-50 to-white border-red-100">
             <div className="space-y-2">
-              <Text size="3xl" className="font-bold text-red-600">
+              <div className="text-3xl sm:text-4xl font-bold text-red-600">
                 {stats.total}
-              </Text>
+              </div>
               <Text size="sm" color="secondary">
                 Total Blacklisted
               </Text>
@@ -87,9 +87,9 @@ export default async function BlacklistPage() {
           </Card>
           <Card className="text-center bg-gradient-to-br from-blue-50 to-white border-blue-100">
             <div className="space-y-2">
-              <Text size="3xl" className="font-bold text-blue-600">
+              <div className="text-3xl sm:text-4xl font-bold text-blue-600">
                 {stats.withPhone}
-              </Text>
+              </div>
               <Text size="sm" color="secondary">
                 With Phone
               </Text>
@@ -97,9 +97,9 @@ export default async function BlacklistPage() {
           </Card>
           <Card className="text-center bg-gradient-to-br from-purple-50 to-white border-purple-100">
             <div className="space-y-2">
-              <Text size="3xl" className="font-bold text-purple-600">
+              <div className="text-3xl sm:text-4xl font-bold text-purple-600">
                 {stats.withInstagram}
-              </Text>
+              </div>
               <Text size="sm" color="secondary">
                 With Instagram
               </Text>
@@ -107,9 +107,9 @@ export default async function BlacklistPage() {
           </Card>
           <Card className="text-center bg-gradient-to-br from-green-50 to-white border-green-100">
             <div className="space-y-2">
-              <Text size="3xl" className="font-bold text-green-600">
+              <div className="text-3xl sm:text-4xl font-bold text-green-600">
                 {stats.withBoth}
-              </Text>
+              </div>
               <Text size="sm" color="secondary">
                 Complete Data
               </Text>
