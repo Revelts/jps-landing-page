@@ -182,11 +182,13 @@ export default async function BlacklistPage() {
                     Alasan Blacklist
                   </Heading>
                   <ul className="list-disc list-inside space-y-2 text-gray-600">
-                    <li>Fraud atau penipuan (booking fee, payment scam)</li>
+                    <li>Hosting Telat</li>
+                    <li>Attitude tidak sopan di club</li>
+                    <li>Tidak ada kabar dan tidak bisa dihubungi setelah daftar hosting</li>
+                    <li>Cancel hosting dadakan</li>
+                    <li>Fraud atau penipuan</li>
                     <li>Kekerasan atau ancaman terhadap guest/staff</li>
-                    <li>Penggunaan identitas atau kartu kredit palsu</li>
                     <li>Perusakan properti venue</li>
-                    <li>Aktivitas ilegal (narkoba, perjudian, dll)</li>
                     <li>Harassment atau perilaku tidak pantas</li>
                   </ul>
                 </div>
