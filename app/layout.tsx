@@ -1,0 +1,87 @@
+/**
+ * Root Layout
+ * Single Responsibility: Provide app-wide layout structure
+ * Includes: HTML structure, global styles, header, footer
+ */
+import type { Metadata, Viewport } from 'next';
+import { Inter } from 'next/font/google';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+import { 
+  generateMetadata as genMeta, 
+  generateOrganizationSchema, 
+  generateWebSiteSchema,
+  generateLocalBusinessSchema 
+} from '@/lib/metadata';
+import '@/src/styles/main.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#ec4755',
+};
+
+export const metadata: Metadata = genMeta({
+  title: 'Jakarta Party Squad - Komunitas Nightlife & Clubbing Jakarta',
+  description:
+    'Komunitas nightlife terbesar di Jakarta. Event partner untuk nightclub, festival musik, dan party entertainment. Bergabung dengan 10,000+ party enthusiasts di Jakarta. Temukan event malam terbaik di Jakarta!',
+  keywords:
+    'jakarta party, jakarta nightlife, nightclub jakarta, club jakarta, party jakarta, jakarta clubbing, dugem jakarta, jakarta night club, event jakarta, festival jakarta, jakarta nightlife community, jakarta party community, club malam jakarta, tempat party jakarta, jakarta entertainment, jakarta electronic music, jakarta edm, jakarta bar, jakarta lounge, best nightclub jakarta',
+});
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const organizationSchema = generateOrganizationSchema();
+  const websiteSchema = generateWebSiteSchema();
+  const localBusinessSchema = generateLocalBusinessSchema();
+
+  return (
+    <html lang="id" className={inter.variable}>
+      <head>
+        {/* Geo-targeting Meta Tags */}
+        <meta name="geo.region" content="ID-JK" />
+        <meta name="geo.placename" content="Jakarta" />
+        <meta name="geo.position" content="-6.2088;106.8456" />
+        <meta name="ICBM" content="-6.2088, 106.8456" />
+        
+        {/* Structured Data - Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        {/* Structured Data - Website */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
+        {/* Structured Data - Local Business */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
+      </head>
+      <body className="antialiased bg-white text-gray-900">
+        <Header />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}

@@ -2,88 +2,142 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========================================
+   Global Variables & Base Styles
+   ======================================== */
 
 :root {
   --color-primary: #ec4755;
   --color-secondary: #a12c34;
-  --color-tertiaty: #99a0a3;
+  --color-tertiary: #99a0a3;
 }
 
-a { 
-  @apply text-red-700;
+/* ========================================
+   Typography Base - Mobile First
+   ======================================== */
+
+@layer base {
+  html {
+    @apply antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply text-gray-900 bg-white;
+    font-size: 16px; /* Base 16px for better mobile readability */
+    line-height: 1.6;
+  }
+
+  /* Headings - Mobile optimized sizes */
+  h1 {
+    @apply text-2xl font-bold leading-tight tracking-tight;
+    @apply sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-xl font-bold leading-tight tracking-tight;
+    @apply sm:text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-lg font-semibold leading-snug;
+    @apply sm:text-xl md:text-2xl;
+  }
+
+  h4 {
+    @apply text-base font-semibold leading-snug;
+    @apply sm:text-lg md:text-xl;
+  }
+
+  h5 {
+    @apply text-sm font-semibold leading-normal;
+    @apply sm:text-base md:text-lg;
+  }
+
+  h6 {
+    @apply text-sm font-semibold leading-normal;
+    @apply sm:text-base;
+  }
+
+  /* Paragraph - Comfortable reading */
+  p {
+    @apply text-sm leading-relaxed text-gray-700;
+    @apply sm:text-base;
+  }
+
+  /* Links */
+  a {
+    @apply text-primary transition-colors duration-200;
+  }
+
+  a:hover {
+    @apply text-primary-600;
+  }
+
+  /* Lists */
+  ul,
+  ol {
+    @apply text-sm leading-relaxed;
+    @apply sm:text-base;
+  }
 }
 
-a:hover {
-  @apply border-b-2 border-red-700;
-}
-
-
+/* ========================================
+   Content Spacing
+   ======================================== */
 
 .content p {
-  @apply my-6;
+  @apply my-4;
 }
 
 .content ul {
-  @apply my-6;
+  @apply my-4;
 }
 
-/* Futuristic UI helpers */
-.gradient-text-bpp {
-  background-image: linear-gradient(90deg, #1e3a8a 0%, #6d28d9 50%, #ec4899 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.content h2 {
+  @apply mt-8 mb-4;
 }
 
-.glass-panel {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 10px 30px rgba(31, 41, 55, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
+.content h3 {
+  @apply mt-6 mb-3;
 }
 
-.neon-shadow {
-  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.25), 0 6px 12px rgba(30, 58, 138, 0.18);
-}
+/* ========================================
+   Logo Styles
+   ======================================== */
 
-.tilt-hover {
-  transform: translateY(-2px);
-}
-
-.gradient-border {
-  border: 1px solid transparent;
-  background: linear-gradient(#ffffff, #ffffff) padding-box,
-    linear-gradient(90deg, #1e3a8a, #6d28d9, #ec4899) border-box;
-}
-
-.btn-glow {
-  box-shadow: 0 0 0 0 rgba(109, 40, 217, 0.5);
-  transition: box-shadow 200ms ease, transform 200ms ease;
-}
-.btn-glow:hover {
-  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.35), 0 4px 10px rgba(236, 72, 153, 0.28);
-  transform: translateY(-1px);
-}
-
-/* Logo-specific drop shadow that respects transparent PNG edges */
 .logo-drop {
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35))
-          drop-shadow(0 2px 6px rgba(31, 41, 55, 0.3));
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25)) drop-shadow(0 2px 4px rgba(31, 41, 55, 0.2));
 }
 
 .logo-drop-strong {
-  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45))
-          drop-shadow(0 4px 10px rgba(31, 41, 55, 0.4));
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3)) drop-shadow(0 4px 8px rgba(31, 41, 55, 0.25));
 }
 
-/* Social icon links inside Team cards: keep size fixed on hover */
+/* ========================================
+   Icon Link - No border on hover
+   ======================================== */
+
 .icon-link {
-  @apply border-0; /* override global anchor hover border to avoid layout shift */
-  line-height: 0; /* collapse inline height to the icon size only */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  @apply border-0 inline-flex items-center justify-center;
+  line-height: 0;
 }
+
 .icon-link:hover {
-  @apply border-0; /* ensure no border is added on hover */
+  @apply border-0;
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus visible - accessibility */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
 }

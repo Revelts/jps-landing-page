@@ -1,0 +1,122 @@
+[
+  {
+    "id": "bl001",
+    "name": "Lisa",
+    "phone": "085814417004",
+    "instagram": "@pristianalisa",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl002",
+    "name": "Fitri",
+    "phone": "085772462285",
+    "instagram": "@fitrihandda",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl003",
+    "name": "Lucky",
+    "phone": "0895411015860",
+    "instagram": "@meidylucky",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl004",
+    "name": "Salsa",
+    "phone": "085719269342",
+    "instagram": "@syfsals",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl005",
+    "name": "Jeje",
+    "phone": "081299298672",
+    "instagram": "@lattehurt",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl006",
+    "name": "-",
+    "phone": "089652859438",
+    "instagram": "-",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl007",
+    "name": "-",
+    "phone": "081264665917",
+    "instagram": "-",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl008",
+    "name": "Ashara",
+    "phone": "085730809975",
+    "instagram": "@asharasara",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl009",
+    "name": "Kilaa",
+    "phone": "089532751409",
+    "instagram": "@syaki_llaa09",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl010",
+    "name": "Sapna",
+    "phone": "081255439842",
+    "instagram": "@sbillahsvna",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl011",
+    "name": "Fael",
+    "phone": "088973383554",
+    "instagram": "@ayyeeeell",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl012",
+    "name": "Dafa",
+    "phone": "087787366474",
+    "instagram": "@davandw",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl013",
+    "name": "-",
+    "phone": "081222626217",
+    "instagram": "-",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl014",
+    "name": "-",
+    "phone": "08973434336",
+    "instagram": "-",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  },
+  {
+    "id": "bl015",
+    "name": "-",
+    "phone": "083854583856",
+    "instagram": "-",
+    "reason": "Blacklist Hosting",
+    "createdAt": "2025-01-14"
+  }
+]
