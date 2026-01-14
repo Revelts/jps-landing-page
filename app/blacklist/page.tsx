@@ -14,14 +14,23 @@ import { generateMetadata as genMeta, generateBreadcrumbSchema } from '@/lib/met
 import { getAllBlacklistUsers, getBlacklistStats } from './services/blacklist.service';
 import { BlacklistSearch } from './components/BlacklistSearch';
 
-export const metadata: Metadata = genMeta({
-  title: 'Blacklist Users - Daftar Pengguna Bermasalah Jakarta Party',
-  description:
-    'Database blacklist pengguna bermasalah untuk keamanan komunitas Jakarta Party Squad. Cari nomor penipu, Instagram penipu, dan pengguna bermasalah lainnya. Lindungi diri Anda dari fraud dan scam di nightlife Jakarta.',
-  keywords:
-    'blacklist user, nomor penipu, instagram penipu, daftar pengguna bermasalah, scam jakarta, fraud jakarta, blacklist nightclub, jakarta party blacklist, pengguna bermasalah jakarta, database penipu, cek nomor penipu, cek instagram penipu',
-  canonical: '/blacklist',
-});
+export const metadata: Metadata = {
+  ...genMeta({
+    title: 'Blacklist Users - Daftar Pengguna Bermasalah Jakarta Party',
+    description:
+      'Database blacklist pengguna bermasalah untuk keamanan komunitas Jakarta Party Squad. Cari nomor penipu, Instagram penipu, dan pengguna bermasalah lainnya. Lindungi diri Anda dari fraud dan scam di nightlife Jakarta.',
+    keywords:
+      'blacklist user, nomor penipu, instagram penipu, daftar pengguna bermasalah, scam jakarta, fraud jakarta, blacklist nightclub, jakarta party blacklist, pengguna bermasalah jakarta, database penipu, cek nomor penipu, cek instagram penipu',
+    canonical: '/blacklist',
+  }),
+  // Restricted page - no index by search engines
+  robots: {
+    index: false,
+    follow: false,
+    noarchive: true,
+    nosnippet: true,
+  },
+};
 
 export default async function BlacklistPage() {
   // Load data on server (serverless-compatible)
