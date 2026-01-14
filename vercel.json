@@ -1,9 +1,7 @@
 {
-  "version": 2,
   "framework": "nextjs",
-  "build": {
-    "env": {
-      "NODE_OPTIONS": "--openssl-legacy-provider"
-    }
-  }
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "npm install",
+  "outputDirectory": ".next"
 }

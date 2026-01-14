@@ -167,7 +167,7 @@ export default function ContactPage() {
                     <div className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                       ✓
                     </div>
-                    <Text size="base" color="default" className="font-medium text-left">
+                    <Text size="base" color="primary" className="font-medium text-left">
                       Event Partnership
                     </Text>
                   </div>
@@ -175,7 +175,7 @@ export default function ContactPage() {
                     <div className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                       ✓
                     </div>
-                    <Text size="base" color="default" className="font-medium text-left">
+                    <Text size="base" color="primary" className="font-medium text-left">
                       Media & Content
                     </Text>
                   </div>
@@ -183,7 +183,7 @@ export default function ContactPage() {
                     <div className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                       ✓
                     </div>
-                    <Text size="base" color="default" className="font-medium text-left">
+                    <Text size="base" color="primary" className="font-medium text-left">
                       Brand Activation
                     </Text>
                   </div>
@@ -191,7 +191,7 @@ export default function ContactPage() {
                     <div className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
                       ✓
                     </div>
-                    <Text size="base" color="default" className="font-medium text-left">
+                    <Text size="base" color="primary" className="font-medium text-left">
                       Talent Management
                     </Text>
                   </div>
