@@ -44,12 +44,12 @@ export async function getBlacklistCount(): Promise<number> {
  * @returns boolean
  */
 export function isValidBlacklistUser(data: unknown): data is BlacklistUser {
-  return (
-    typeof data === 'object' &&
-    data !== null &&
-    typeof data.id === 'string' &&
-    data.id.length > 0
-  );
+  if (typeof data !== 'object' || data === null) {
+    return false;
+  }
+  
+  const record = data as Record<string, unknown>;
+  return typeof record.id === 'string' && record.id.length > 0;
 }
 
 /**
