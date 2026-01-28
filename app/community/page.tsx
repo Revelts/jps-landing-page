@@ -47,7 +47,7 @@ export default function CommunityPage() {
       <Section>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
           {benefits.items.map((benefit, index) => (
-            <Card key={index} hover className="text-center">
+            <Card key={index} hoverable className="text-center">
               <div className="space-y-4">
                 {/* Icon */}
                 <div className="flex justify-center">

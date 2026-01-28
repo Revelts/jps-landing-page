@@ -39,7 +39,7 @@ export function BlacklistTable({ users }: BlacklistTableProps) {
               {/* Header */}
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <Text size="base" className="font-semibold text-gray-900">
+                  <Text size="base" className="font-semibold text-black">
                     {user.name || 'No Name'}
                   </Text>
                   <Text size="sm" color="muted">
@@ -47,7 +47,7 @@ export function BlacklistTable({ users }: BlacklistTableProps) {
                   </Text>
                 </div>
                 <div className="flex-shrink-0 ml-3">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-indigo-100 to-purple-100 text-black border border-indigo-200">
                     Blacklisted
                   </span>
                 </div>
@@ -137,10 +137,10 @@ export function BlacklistTable({ users }: BlacklistTableProps) {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {users.map((user) => (
-                  <tr key={user.id} className="hover:bg-gray-50 transition-colors">
+                  <tr key={user.id} className="hover:bg-indigo-50/30 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
-                        <Text size="sm" className="font-medium text-gray-900">
+                        <Text size="sm" className="font-medium text-black">
                           {user.name || 'No Name'}
                         </Text>
                         <Text size="xs" color="muted">
@@ -149,12 +149,12 @@ export function BlacklistTable({ users }: BlacklistTableProps) {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <Text size="sm" className="font-mono">
+                      <Text size="sm" className="font-mono text-black">
                         {user.phone || '-'}
                       </Text>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <Text size="sm" className="text-primary-600">
+                      <Text size="sm" className="text-indigo-700 font-medium">
                         {user.instagram || '-'}
                       </Text>
                     </td>

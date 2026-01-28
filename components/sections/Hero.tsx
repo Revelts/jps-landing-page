@@ -21,7 +21,7 @@ export function Hero() {
           {/* Content */}
           <div className="space-y-6 sm:space-y-8">
             <div className="space-y-4">
-              <Heading level={1} className="text-gray-900">
+              <Heading level={1} className="text-black">
                 {mainHero.title}
               </Heading>
               <Text

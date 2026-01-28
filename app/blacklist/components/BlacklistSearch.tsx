@@ -102,7 +102,7 @@ export function BlacklistSearch({ initialUsers }: BlacklistSearchProps) {
               value={query}
               onChange={handleSearchChange}
               placeholder="Cari nomor HP atau Instagram username..."
-              className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-base"
+              className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-base text-black"
               aria-label="Search blacklist"
             />
             {query && (
@@ -133,8 +133,8 @@ export function BlacklistSearch({ initialUsers }: BlacklistSearchProps) {
                 onClick={() => handleSearchByChange('all')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   searchBy === 'all'
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
+                    : 'bg-gray-100 text-black hover:bg-indigo-50 hover:text-indigo-700'
                 }`}
               >
                 Semua
@@ -143,8 +143,8 @@ export function BlacklistSearch({ initialUsers }: BlacklistSearchProps) {
                 onClick={() => handleSearchByChange('phone')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   searchBy === 'phone'
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
+                    : 'bg-gray-100 text-black hover:bg-indigo-50 hover:text-indigo-700'
                 }`}
               >
                 Phone
@@ -153,8 +153,8 @@ export function BlacklistSearch({ initialUsers }: BlacklistSearchProps) {
                 onClick={() => handleSearchByChange('instagram')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   searchBy === 'instagram'
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
+                    : 'bg-gray-100 text-black hover:bg-indigo-50 hover:text-indigo-700'
                 }`}
               >
                 Instagram
@@ -171,7 +171,7 @@ export function BlacklistSearch({ initialUsers }: BlacklistSearchProps) {
             {debouncedQuery && (
               <button
                 onClick={handleClearSearch}
-                className="text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors"
+                className="text-sm text-indigo-600 hover:text-purple-700 font-medium transition-colors"
               >
                 Reset
               </button>

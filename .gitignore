@@ -28,6 +28,11 @@ yarn-error.log*
 # dotenv local files
 .env*.local
 
+# password setup files (contains sensitive data)
+BLACKLIST_PASSWORD_SETUP.md
+SETUP_PASSWORD.md
+setup-blacklist-password.sh
+
 # local folder
 local
 

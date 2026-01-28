@@ -28,7 +28,7 @@ export function QuickAbout() {
         {/* Content Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {aboutus.items.slice(0, 2).map((item, index) => (
-            <Card key={index} hover className="overflow-hidden p-0">
+            <Card key={index} hoverable padding="none" className="overflow-hidden">
               <div className="flex flex-col h-full">
                 {/* Image Container - Full width, fixed aspect ratio */}
                 <div className="relative w-full aspect-[16/9] bg-gray-100">

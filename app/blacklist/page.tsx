@@ -54,10 +54,10 @@ export default async function BlacklistPage() {
       />
 
       {/* Page Hero */}
-      <Section className="bg-gradient-to-br from-red-50 via-white to-gray-50 pt-24 sm:pt-28 md:pt-32">
+      <Section className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 pt-24 sm:pt-28 md:pt-32">
         <div className="text-center space-y-5 sm:space-y-6 max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-medium">
+          <div className="inline-flex items-center px-4 py-2 bg-indigo-100 text-black rounded-full text-sm font-medium">
             <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
@@ -84,9 +84,9 @@ export default async function BlacklistPage() {
       {/* Stats Section */}
       <Section className="bg-white">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
-          <Card className="text-center bg-gradient-to-br from-red-50 to-white border-red-100">
+          <Card className="text-center bg-gradient-to-br from-indigo-50 to-white border-indigo-200 hover:border-indigo-300 transition-colors">
             <div className="space-y-2">
-              <div className="text-3xl sm:text-4xl font-bold text-red-600">
+              <div className="text-3xl sm:text-4xl font-bold text-black">
                 {stats.total}
               </div>
               <Text size="sm" color="secondary">
@@ -94,9 +94,9 @@ export default async function BlacklistPage() {
               </Text>
             </div>
           </Card>
-          <Card className="text-center bg-gradient-to-br from-blue-50 to-white border-blue-100">
+          <Card className="text-center bg-gradient-to-br from-purple-50 to-white border-purple-200 hover:border-purple-300 transition-colors">
             <div className="space-y-2">
-              <div className="text-3xl sm:text-4xl font-bold text-blue-600">
+              <div className="text-3xl sm:text-4xl font-bold text-black">
                 {stats.withPhone}
               </div>
               <Text size="sm" color="secondary">
@@ -104,9 +104,9 @@ export default async function BlacklistPage() {
               </Text>
             </div>
           </Card>
-          <Card className="text-center bg-gradient-to-br from-purple-50 to-white border-purple-100">
+          <Card className="text-center bg-gradient-to-br from-violet-50 to-white border-violet-200 hover:border-violet-300 transition-colors">
             <div className="space-y-2">
-              <div className="text-3xl sm:text-4xl font-bold text-purple-600">
+              <div className="text-3xl sm:text-4xl font-bold text-black">
                 {stats.withInstagram}
               </div>
               <Text size="sm" color="secondary">
@@ -114,9 +114,9 @@ export default async function BlacklistPage() {
               </Text>
             </div>
           </Card>
-          <Card className="text-center bg-gradient-to-br from-green-50 to-white border-green-100">
+          <Card className="text-center bg-gradient-to-br from-blue-50 to-white border-blue-200 hover:border-blue-300 transition-colors">
             <div className="space-y-2">
-              <div className="text-3xl sm:text-4xl font-bold text-green-600">
+              <div className="text-3xl sm:text-4xl font-bold text-black">
                 {stats.withBoth}
               </div>
               <Text size="sm" color="secondary">
