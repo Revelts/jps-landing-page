@@ -118,6 +118,34 @@
       "href": "/community"
     },
     {
+      "name": "Events",
+      "href": "/events"
+    },
+    {
+      "name": "Nightlife",
+      "href": "#",
+      "dropdown": [
+        {
+          "name": "Nightlife SCBD",
+          "href": "/nightlife-scbd",
+          "description": "Premium clubs SCBD",
+          "icon": "🏙️"
+        },
+        {
+          "name": "Nightlife Kemang",
+          "href": "/nightlife-kemang",
+          "description": "Casual vibes Kemang",
+          "icon": "🎭"
+        },
+        {
+          "name": "Nightlife PIK",
+          "href": "/nightlife-pik",
+          "description": "Beach vibes PIK",
+          "icon": "🌊"
+        }
+      ]
+    },
+    {
       "name": "Partners",
       "href": "/partners"
     },
@@ -126,13 +154,17 @@
       "href": "/gallery"
     },
     {
+      "name": "Blog",
+      "href": "/blog"
+    },
+    {
       "name": "Contact",
       "href": "/contact"
     }
   ],
   "callToAction": {
-    "text": "Event Schedule",
-    "href": "https://schedule.jakartapartysquad.com"
+    "text": "🎊 Hosting Gratis",
+    "href": "/hosting/gratis"
   },
   "callToActions": [
     {

@@ -41,7 +41,7 @@ export function FeaturedPartners() {
               <div className="relative w-full h-full">
                 <Image
                   src={partner.logo}
-                  alt={partner.name}
+                  alt={`${partner.name} - Partner nightclub Jakarta Party Squad`}
                   fill
                   className="object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"

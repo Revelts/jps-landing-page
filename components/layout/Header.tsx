@@ -8,7 +8,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Bars3Icon } from '@heroicons/react/24/outline';
+import { Bars3Icon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { MobileNav } from './MobileNav';
 import { Container } from '../ui/Container';
 import { siteConfig } from '@/lib/config';
@@ -17,7 +17,8 @@ import { cn } from '@/lib/utils';
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { navigation, company } = siteConfig;
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const { navigation, company, callToAction } = siteConfig;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,23 +55,61 @@ export function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center space-x-6">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-sm font-medium text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1"
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name} className="relative">
+                  {item.dropdown ? (
+                    <div
+                      className="relative"
+                      onMouseEnter={() => setOpenDropdown(item.name)}
+                      onMouseLeave={() => setOpenDropdown(null)}
+                    >
+                      <button
+                        className="inline-flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1"
+                      >
+                        {item.name}
+                        <ChevronDownIcon className="h-4 w-4" />
+                      </button>
+                      {openDropdown === item.name && (
+                        <div className="absolute top-full left-0 pt-2 z-50">
+                          <div className="w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2">
+                            {item.dropdown.map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                href={subItem.href}
+                                className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
+                                onClick={() => setOpenDropdown(null)}
+                              >
+                                <span className="text-2xl">{subItem.icon}</span>
+                                <div>
+                                  <div className="text-sm font-medium text-gray-900">
+                                    {subItem.name}
+                                  </div>
+                                  <div className="text-xs text-gray-500">
+                                    {subItem.description}
+                                  </div>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="text-sm font-medium text-gray-700 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-2 py-1"
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
               ))}
               <Link
-                href="https://schedule.jakartapartysquad.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary min-h-[40px]"
+                href={callToAction.href}
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full hover:shadow-lg transition-all min-h-[40px]"
               >
-                Event Schedule
+                {callToAction.text}
               </Link>
             </nav>
 

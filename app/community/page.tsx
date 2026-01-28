@@ -17,7 +17,7 @@ import { siteConfig } from '@/lib/config';
 export const metadata: Metadata = genMeta({
   title: 'Join Jakarta Party Community - Free Hosting & Exclusive Benefits',
   description:
-    'Bergabung dengan 10,000+ members Jakarta Party Squad! Dapatkan free hosting di nightclub, akses eksklusif ke party events, diskon spesial, dan networking dengan party enthusiasts. Join komunitas nightlife terbaik di Jakarta sekarang!',
+    'Bergabung dengan 1,000+ members Jakarta Party Squad! Dapatkan free hosting di nightclub, akses eksklusif ke party events, diskon spesial, dan networking dengan party enthusiasts. Join komunitas nightlife terbaik di Jakarta sekarang!',
   keywords:
     'join jakarta party, jakarta party community, jakarta nightlife community, free hosting jakarta, jakarta club membership, join party jakarta, jakarta clubbing community, jakarta party group, jakarta nightlife benefits, jakarta party networking, clubbing friends jakarta, jakarta party enthusiasts',
   canonical: '/community',
