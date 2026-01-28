@@ -49,6 +49,12 @@ export function generateMetadata(config: MetadataConfig): Metadata {
           height: 630,
           alt: title,
         },
+        {
+          url: `${siteUrl}/assets/images/logo_2_512.png`,
+          width: 512,
+          height: 512,
+          alt: `${siteName} Logo`,
+        },
       ],
       locale: 'id_ID',
       type: 'website',
@@ -91,11 +97,17 @@ export function generateOrganizationSchema() {
     url: siteUrl,
     logo: {
       '@type': 'ImageObject',
-      url: `${siteUrl}/assets/images/logo_2.png`,
+      '@id': `${siteUrl}/#logo`,
+      url: `${siteUrl}/assets/images/logo_2_512.png`,
+      contentUrl: `${siteUrl}/assets/images/logo_2_512.png`,
       width: 512,
       height: 512,
+      caption: 'Jakarta Party Squad Logo',
     },
-    image: `${siteUrl}/assets/images/header.jpg`,
+    image: [
+      `${siteUrl}/assets/images/logo_2_512.png`,
+      `${siteUrl}/assets/images/header.jpg`,
+    ],
     description:
       'Jakarta Party Squad - Komunitas clubbing terbesar di Jakarta. Media dan partner event untuk nightlife, nightclub, festival musik elektronik, dan brand activation di Jakarta.',
     slogan: 'Jakarta\'s Premier Nightlife Community',
