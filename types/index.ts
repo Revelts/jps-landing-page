@@ -9,9 +9,17 @@ export interface TeamMember {
   };
 }
 
+export interface DropdownItem {
+  name: string;
+  href: string;
+  description: string;
+  icon: string;
+}
+
 export interface NavigationItem {
   name: string;
   href: string;
+  dropdown?: DropdownItem[];
 }
 
 export interface CallToAction {

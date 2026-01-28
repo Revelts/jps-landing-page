@@ -13,7 +13,8 @@ import {
   generateMetadata as genMeta, 
   generateOrganizationSchema, 
   generateWebSiteSchema,
-  generateLocalBusinessSchema 
+  generateLocalBusinessSchema,
+  generateSiteNavigationSchema
 } from '@/lib/metadata';
 import '@/src/styles/main.css';
 
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   ...genMeta({
     title: 'Jakarta Party Squad - Komunitas Nightlife & Clubbing Jakarta',
     description:
-      'Komunitas nightlife terbesar di Jakarta. Event partner untuk nightclub, festival musik, dan party entertainment. Bergabung dengan 10,000+ party enthusiasts di Jakarta. Temukan event malam terbaik di Jakarta!',
+      'Komunitas nightlife terbesar di Jakarta. Event partner untuk nightclub, festival musik, dan party entertainment. Bergabung dengan 1,000+ party enthusiasts di Jakarta. Temukan event malam terbaik di Jakarta!',
     keywords:
       'jakarta party, jakarta nightlife, nightclub jakarta, club jakarta, party jakarta, jakarta clubbing, dugem jakarta, jakarta night club, event jakarta, festival jakarta, jakarta nightlife community, jakarta party community, club malam jakarta, tempat party jakarta, jakarta entertainment, jakarta electronic music, jakarta edm, jakarta bar, jakarta lounge, best nightclub jakarta',
   }),
@@ -63,6 +64,7 @@ export default function RootLayout({
   const organizationSchema = generateOrganizationSchema();
   const websiteSchema = generateWebSiteSchema();
   const localBusinessSchema = generateLocalBusinessSchema();
+  const siteNavigationSchema = generateSiteNavigationSchema();
 
   return (
     <html lang="id" className={inter.variable}>
@@ -92,6 +94,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
+        {/* Structured Data - Site Navigation (for Google Sitelinks) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(siteNavigationSchema),
           }}
         />
       </head>

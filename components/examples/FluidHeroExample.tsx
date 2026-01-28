@@ -45,7 +45,7 @@ export function FluidHeroExample() {
       {/* Stats Grid - auto-fit responsive */}
       <div className="grid-auto-fit mt-[var(--space-3xl)]">
         {[
-          { label: 'Members', value: '10,000+' },
+          { label: 'Members', value: '1,000+' },
           { label: 'Events', value: '500+' },
           { label: 'Partners', value: '50+' },
         ].map((stat) => (

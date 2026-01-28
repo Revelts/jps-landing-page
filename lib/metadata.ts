@@ -272,3 +272,79 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url: strin
     })),
   };
 }
+
+/**
+ * Generate SiteNavigationElement for Google Sitelinks
+ * This helps Google understand your key pages for search results
+ */
+export function generateSiteNavigationSchema() {
+  const mainNavigation = [
+    { name: 'Hosting Party Gratis', url: '/hosting/gratis', description: 'Program hosting crowd gratis di nightclub Jakarta' },
+    { name: 'Event Party Jakarta', url: '/events', description: 'Jadwal event party dan nightclub Jakarta' },
+    { name: 'Komunitas Nightlife', url: '/community', description: 'Join komunitas party terbesar Jakarta' },
+    { name: 'Blog Nightlife', url: '/blog', description: 'Tips, review, dan panduan nightlife Jakarta' },
+    { name: 'Nightclub SCBD', url: '/nightlife-scbd', description: 'Panduan nightclub di SCBD Jakarta' },
+    { name: 'Nightclub Kemang', url: '/nightlife-kemang', description: 'Panduan nightclub di Kemang Jakarta' },
+  ];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${siteUrl}/#navigation`,
+    name: 'Jakarta Party Squad Main Navigation',
+    description: 'Key pages for nightlife and party community in Jakarta',
+    itemListElement: mainNavigation.map((item, index) => ({
+      '@type': 'SiteNavigationElement',
+      '@id': `${siteUrl}${item.url}`,
+      position: index + 1,
+      name: item.name,
+      description: item.description,
+      url: `${siteUrl}${item.url}`,
+    })),
+  };
+}
+
+/**
+ * Generate CollectionPage schema for listing pages
+ */
+export function generateCollectionPageSchema(config: {
+  name: string;
+  description: string;
+  url: string;
+  numberOfItems: number;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${siteUrl}${config.url}#collection`,
+    name: config.name,
+    description: config.description,
+    url: `${siteUrl}${config.url}`,
+    about: {
+      '@type': 'Thing',
+      name: 'Jakarta Nightlife',
+    },
+    numberOfItems: config.numberOfItems,
+    isPartOf: {
+      '@id': `${siteUrl}/#website`,
+    },
+  };
+}
+
+/**
+ * Generate FAQPage schema for rich results in Google Search
+ */
+export function generateFAQSchema(faqs: Array<{ question: string; answer: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}

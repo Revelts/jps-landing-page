@@ -22,31 +22,27 @@ export function Hero() {
           <div className="space-y-6 sm:space-y-8">
             <div className="space-y-4">
               <Heading level={1} className="text-black">
-                {mainHero.title}
+                Komunitas Nightlife & Party Terbesar Jakarta
               </Heading>
               <Text
                 size="xl"
-                color="tertiary"
-                className="font-medium text-primary"
+                className="font-semibold text-indigo-600"
               >
-                {mainHero.subtitle}
+                Event Gratis • Networking • Entertainment
               </Text>
             </div>
 
-            <Text size="base" color="secondary" className="leading-relaxed">
-              {mainHero.description}
+            <Text size="base" className="leading-relaxed text-gray-700">
+              <strong className="text-black">Jakarta Party Squad</strong> adalah komunitas nightlife dan party terbesar di Jakarta dengan 1,000+ members aktif. 
+              Nikmati <strong className="text-black">hosting party gratis</strong> di nightclub SCBD, Kemang, dan PIK setiap weekend. 
+              Akses event eksklusif, networking premium, dan rasakan <strong className="text-black">nightlife Jakarta</strong> yang berbeda!
             </Text>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href={mainHero.primaryAction.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 sm:flex-none"
-              >
+              <Link href="/hosting/gratis" className="flex-1 sm:flex-none">
                 <Button variant="primary" size="lg" fullWidth className="sm:w-auto">
-                  {mainHero.primaryAction.text}
+                  🎊 Ikut Party Gratis
                 </Button>
               </Link>
               <Link
@@ -56,27 +52,43 @@ export function Hero() {
                 className="flex-1 sm:flex-none"
               >
                 <Button variant="outline" size="lg" fullWidth className="sm:w-auto">
-                  {mainHero.secondaryAction.text}
+                  Join Komunitas 🚀
                 </Button>
               </Link>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-4">
+            {/* Stats - Trust Signals */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-4">
               <div className="space-y-1">
-                <div className="text-3xl sm:text-4xl font-bold text-primary">
-                  5,000+
+                <div className="text-2xl sm:text-3xl font-bold text-indigo-600">
+                  1,000+
                 </div>
-                <Text size="sm" color="muted">
-                  Followers
+                <Text size="sm" className="text-gray-600">
+                  Members
                 </Text>
               </div>
               <div className="space-y-1">
-                <div className="text-3xl sm:text-4xl font-bold text-primary">
-                  2,000+
+                <div className="text-2xl sm:text-3xl font-bold text-indigo-600">
+                  50+
                 </div>
-                <Text size="sm" color="muted">
-                  Active Members
+                <Text size="sm" className="text-gray-600">
+                  Events/Bulan
+                </Text>
+              </div>
+              <div className="space-y-1">
+                <div className="text-2xl sm:text-3xl font-bold text-indigo-600">
+                  20+
+                </div>
+                <Text size="sm" className="text-gray-600">
+                  Nightclub Partner
+                </Text>
+              </div>
+              <div className="space-y-1">
+                <div className="text-2xl sm:text-3xl font-bold text-indigo-600">
+                  2023
+                </div>
+                <Text size="sm" className="text-gray-600">
+                  Sejak
                 </Text>
               </div>
             </div>
@@ -86,7 +98,7 @@ export function Hero() {
           <div className="relative h-64 sm:h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src={mainHero.img}
-              alt="Jakarta Party Squad"
+              alt="Jakarta Party Squad - Komunitas nightlife dan party terbesar Jakarta di event nightclub"
               fill
               className="object-cover"
               priority

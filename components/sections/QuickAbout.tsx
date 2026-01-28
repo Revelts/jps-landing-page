@@ -32,13 +32,13 @@ export function QuickAbout() {
               <div className="flex flex-col h-full">
                 {/* Image Container - Full width, fixed aspect ratio */}
                 <div className="relative w-full aspect-[16/9] bg-gray-100">
-                  <Image
-                    src={item.img}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
-                  />
+                <Image
+                  src={item.img}
+                  alt={`Jakarta Party Squad - ${item.title} - Komunitas nightlife dan party terbesar Jakarta`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                />
                 </div>
                 
                 {/* Content Container - With padding */}

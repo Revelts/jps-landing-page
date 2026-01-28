@@ -5,23 +5,66 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date();
 
   return [
+    // Homepage - Highest Priority
     {
       url: baseUrl,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 1.0,
     },
+
+    // High-Value Pages - SEO Priority
     {
-      url: `${baseUrl}/about`,
+      url: `${baseUrl}/hosting/gratis`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.95,
     },
+    {
+      url: `${baseUrl}/events`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+
+    // Location Pages - Local SEO
+    {
+      url: `${baseUrl}/nightlife-scbd`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/nightlife-kemang`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/nightlife-pik`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+
+    // Main Pages
     {
       url: `${baseUrl}/community`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/partners`,
@@ -41,6 +84,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+
+    // Legal Pages
     {
       url: `${baseUrl}/privacy`,
       lastModified: currentDate,

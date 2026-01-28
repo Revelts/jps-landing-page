@@ -87,30 +87,42 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Features */}
+            {/* Nightlife Locations */}
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">
-                Features
+                Nightlife Jakarta
               </h3>
               <ul className="space-y-3">
                 <li>
                   <Link
-                    href="https://schedule.jakartapartysquad.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/nightlife-scbd"
                     className="text-sm text-gray-400 hover:text-primary transition-colors block py-1"
                   >
-                    Event Schedule
+                    🏙️ Nightclub SCBD
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="https://calculator.jakartapartysquad.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/nightlife-kemang"
                     className="text-sm text-gray-400 hover:text-primary transition-colors block py-1"
                   >
-                    Party Calculator
+                    🎭 Nightclub Kemang
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/nightlife-pik"
+                    className="text-sm text-gray-400 hover:text-primary transition-colors block py-1"
+                  >
+                    🌊 Nightclub PIK
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/hosting/gratis"
+                    className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors block py-1 font-semibold"
+                  >
+                    🎊 Hosting Gratis
                   </Link>
                 </li>
               </ul>
