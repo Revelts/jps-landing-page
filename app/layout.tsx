@@ -40,17 +40,25 @@ export const metadata: Metadata = {
     keywords:
       'jakarta party, jakarta nightlife, nightclub jakarta, club jakarta, party jakarta, jakarta clubbing, dugem jakarta, jakarta night club, event jakarta, festival jakarta, jakarta nightlife community, jakarta party community, club malam jakarta, tempat party jakarta, jakarta entertainment, jakarta electronic music, jakarta edm, jakarta bar, jakarta lounge, best nightclub jakarta',
   }),
-  // Icons - using logo_2.png as temporary favicon
+  // Icons - Jakarta Party Squad Logo
   icons: {
     icon: [
       { url: '/assets/images/logo_2.png', sizes: '32x32', type: 'image/png' },
       { url: '/assets/images/logo_2.png', sizes: '16x16', type: 'image/png' },
+      { url: '/assets/images/logo_2_512.png', sizes: '512x512', type: 'image/png' },
     ],
-    apple: '/assets/images/logo_2.png',
+    apple: [
+      { url: '/assets/images/logo_2.png', sizes: '180x180', type: 'image/png' },
+      { url: '/assets/images/logo_2_512.png', sizes: '512x512', type: 'image/png' },
+    ],
     other: [
       {
         rel: 'apple-touch-icon-precomposed',
-        url: '/assets/images/logo_2.png',
+        url: '/assets/images/logo_2_512.png',
+      },
+      {
+        rel: 'mask-icon',
+        url: '/assets/images/logo_2_512.png',
       },
     ],
   },
