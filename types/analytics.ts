@@ -36,12 +36,17 @@ export interface PageViewEvent extends BaseDataLayerEvent {
  * Generic click tracking for CTAs and navigation
  */
 export interface ClickEvent extends BaseDataLayerEvent {
-  event: 'button_click' | 'link_click';
-  click_text: string;
+  event: 'button_click' | 'link_click' | 'click';
+  click_text?: string;
   click_url?: string;
   click_id?: string;
   click_classes?: string;
-  element_type: 'button' | 'link' | 'card' | 'icon';
+  element_type?: string | 'button' | 'link' | 'card' | 'icon';
+  element_text?: string;
+  element_id?: string;
+  element_classes?: string;
+  link_url?: string;
+  link_domain?: string;
   section_name?: string;
   position?: number;
 }
@@ -88,6 +93,8 @@ export interface SocialClickEvent extends BaseDataLayerEvent {
   platform: 'instagram' | 'whatsapp' | 'email' | 'twitter' | 'facebook' | 'other';
   action: 'follow' | 'share' | 'contact' | 'view';
   content_name?: string;
+  link_url?: string;
+  link_text?: string;
 }
 
 /**
@@ -95,9 +102,13 @@ export interface SocialClickEvent extends BaseDataLayerEvent {
  */
 export interface NavigationClickEvent extends BaseDataLayerEvent {
   event: 'navigation_click';
-  nav_type: 'header' | 'footer' | 'mobile_menu' | 'sidebar';
-  nav_item: string;
-  nav_destination: string;
+  nav_type?: 'header' | 'footer' | 'mobile_menu' | 'sidebar';
+  nav_item?: string;
+  nav_destination?: string;
+  link_text?: string;
+  link_url?: string;
+  link_domain?: string;
+  element_type?: string;
 }
 
 /**

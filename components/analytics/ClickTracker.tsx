@@ -25,28 +25,25 @@ export function ClickTracker() {
       const href = 'href' in element ? element.href : '';
       const className = element.className || '';
       
-      // Get element type and name
+      // Get element type
       const elementType = element.tagName.toLowerCase();
-      const elementName = element.getAttribute('aria-label') || 
-                         element.getAttribute('title') || 
-                         text ||
-                         'Unknown';
 
       // Track social media clicks
       if (href && (
         href.includes('instagram.com') ||
+        href.includes('whatsapp.com') || href.includes('wa.me') ||
+        href.includes('facebook.com') || href.includes('fb.com') ||
+        href.includes('twitter.com') || href.includes('x.com') ||
         href.includes('tiktok.com') ||
         href.includes('discord.com') ||
-        href.includes('whatsapp.com') ||
-        href.includes('facebook.com') ||
-        href.includes('twitter.com') ||
-        href.includes('linkedin.com')
+        href.includes('linkedin.com') ||
+        href.includes('youtube.com') || href.includes('youtu.be')
       )) {
         const platform = getSocialPlatform(href);
         
         trackSocialClick({
           platform,
-          action: 'click',
+          action: 'view',
           link_url: href,
           link_text: text,
         });
@@ -104,14 +101,11 @@ export function ClickTracker() {
 /**
  * Get social media platform from URL
  */
-function getSocialPlatform(url: string): string {
+function getSocialPlatform(url: string): 'instagram' | 'whatsapp' | 'email' | 'twitter' | 'facebook' | 'other' {
   if (url.includes('instagram.com')) return 'instagram';
-  if (url.includes('tiktok.com')) return 'tiktok';
-  if (url.includes('discord.com') || url.includes('discord.gg')) return 'discord';
   if (url.includes('whatsapp.com') || url.includes('wa.me')) return 'whatsapp';
   if (url.includes('facebook.com') || url.includes('fb.com')) return 'facebook';
   if (url.includes('twitter.com') || url.includes('x.com')) return 'twitter';
-  if (url.includes('linkedin.com')) return 'linkedin';
-  if (url.includes('youtube.com') || url.includes('youtu.be')) return 'youtube';
+  // Map other social platforms to 'other'
   return 'other';
 }
