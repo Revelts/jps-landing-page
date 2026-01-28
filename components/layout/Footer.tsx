@@ -25,7 +25,7 @@ export function Footer() {
                 alt={company.name}
                 width={48}
                 height={48}
-                className="h-12 w-auto"
+                className="h-12 w-auto drop-shadow-lg"
               />
               <p className="text-sm text-gray-400 leading-relaxed">
                 Komunitas, Media, dan Event Partner untuk dunia malam Jakarta
@@ -145,13 +145,13 @@ export function Footer() {
             <div className="flex space-x-6">
               <Link
                 href="/privacy"
-                className="text-sm text-gray-400 hover:text-primary transition-colors"
+                className="text-sm text-gray-400 hover:text-cyan-400 transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-sm text-gray-400 hover:text-primary transition-colors"
+                className="text-sm text-gray-400 hover:text-cyan-400 transition-colors"
               >
                 Terms of Service
               </Link>

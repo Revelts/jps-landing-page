@@ -7,6 +7,8 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { GoogleTagManager } from '@/components/analytics/GoogleTagManager';
+import { ClickTracker } from '@/components/analytics/ClickTracker';
 import { 
   generateMetadata as genMeta, 
   generateOrganizationSchema, 
@@ -26,16 +28,32 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: '#ec4755',
+  themeColor: '#6366f1',
 };
 
-export const metadata: Metadata = genMeta({
-  title: 'Jakarta Party Squad - Komunitas Nightlife & Clubbing Jakarta',
-  description:
-    'Komunitas nightlife terbesar di Jakarta. Event partner untuk nightclub, festival musik, dan party entertainment. Bergabung dengan 10,000+ party enthusiasts di Jakarta. Temukan event malam terbaik di Jakarta!',
-  keywords:
-    'jakarta party, jakarta nightlife, nightclub jakarta, club jakarta, party jakarta, jakarta clubbing, dugem jakarta, jakarta night club, event jakarta, festival jakarta, jakarta nightlife community, jakarta party community, club malam jakarta, tempat party jakarta, jakarta entertainment, jakarta electronic music, jakarta edm, jakarta bar, jakarta lounge, best nightclub jakarta',
-});
+export const metadata: Metadata = {
+  ...genMeta({
+    title: 'Jakarta Party Squad - Komunitas Nightlife & Clubbing Jakarta',
+    description:
+      'Komunitas nightlife terbesar di Jakarta. Event partner untuk nightclub, festival musik, dan party entertainment. Bergabung dengan 10,000+ party enthusiasts di Jakarta. Temukan event malam terbaik di Jakarta!',
+    keywords:
+      'jakarta party, jakarta nightlife, nightclub jakarta, club jakarta, party jakarta, jakarta clubbing, dugem jakarta, jakarta night club, event jakarta, festival jakarta, jakarta nightlife community, jakarta party community, club malam jakarta, tempat party jakarta, jakarta entertainment, jakarta electronic music, jakarta edm, jakarta bar, jakarta lounge, best nightclub jakarta',
+  }),
+  // Icons - using logo_2.png as temporary favicon
+  icons: {
+    icon: [
+      { url: '/assets/images/logo_2.png', sizes: '32x32', type: 'image/png' },
+      { url: '/assets/images/logo_2.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/assets/images/logo_2.png',
+    other: [
+      {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/assets/images/logo_2.png',
+      },
+    ],
+  },
+};
 
 export default function RootLayout({
   children,
@@ -77,7 +95,13 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased bg-white text-gray-900">
+      <body className="antialiased bg-white text-black">
+        {/* Google Tag Manager */}
+        <GoogleTagManager />
+        
+        {/* Click Tracker - Auto-track all clicks */}
+        <ClickTracker />
+        
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

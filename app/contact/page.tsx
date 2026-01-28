@@ -10,6 +10,7 @@ import { Section } from '@/components/ui/Section';
 import { Heading } from '@/components/ui/Heading';
 import { Text } from '@/components/ui/Text';
 import { Card } from '@/components/ui/Card';
+import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { generateMetadata as genMeta } from '@/lib/metadata';
 import { siteConfig } from '@/lib/config';
 
@@ -23,6 +24,15 @@ export const metadata: Metadata = genMeta({
 });
 
 export default function ContactPage() {
+  return (
+    <>
+      <PageViewTracker pageType="contact" pageName="Contact" pageCategory="information" />
+      <ContactPageContent />
+    </>
+  );
+}
+
+function ContactPageContent() {
   const { about, mainHero, company } = siteConfig;
 
   const contactMethods = [
@@ -46,7 +56,7 @@ export default function ContactPage() {
           <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
         </svg>
       ),
-      color: 'text-gray-900',
+      color: 'text-black',
     },
     {
       title: 'Discord',
@@ -110,7 +120,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="group"
               >
-                <Card hover clickable className="h-full border-2 border-gray-100 group-hover:border-primary-200">
+                <Card hoverable className="h-full border-2 border-gray-100 group-hover:border-primary-200">
                   <div className="flex flex-col items-center text-center space-y-5">
                     {/* Icon */}
                     <div className={`${method.color} p-4 bg-gray-50 rounded-2xl group-hover:scale-110 transition-transform duration-200`}>
@@ -136,11 +146,11 @@ export default function ContactPage() {
       {/* Partnership Inquiry */}
       <Section className="bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-4xl mx-auto">
-          <Card className="text-center border-2 border-gray-100">
-            <div className="space-y-8 sm:space-y-10">
+          <Card className="text-center border-2 border-indigo-100">
+            <div className="space-y-6 sm:space-y-7">
               {/* Logo */}
               <div className="flex justify-center">
-                <div className="relative w-20 h-20 sm:w-24 sm:h-24">
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 drop-shadow-2xl" style={{ filter: 'drop-shadow(0 10px 25px rgba(99, 102, 241, 0.3))' }}>
                   <Image
                     src={company.logo}
                     alt={company.name}
@@ -151,47 +161,47 @@ export default function ContactPage() {
               </div>
 
               {/* Header */}
-              <div className="space-y-4">
-                <Heading level={2} align="center">
+              <div className="space-y-3">
+                <Heading level={2} align="center" className="text-2xl sm:text-3xl">
                   Partnership Opportunities
                 </Heading>
-                <Text size="lg" color="secondary" align="center" className="max-w-2xl mx-auto">
+                <Text size="base" color="secondary" align="center" className="max-w-2xl mx-auto">
                   We collaborate with venues, brands, influencers, and content creators to bring exceptional nightlife experiences to Jakarta.
                 </Text>
               </div>
 
               {/* Benefits List */}
-              <div className="py-6 sm:py-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
-                  <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-gray-100 hover:border-primary-200 transition-colors">
-                    <div className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
+              <div className="py-4 sm:py-6">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">
+                  <div className="flex items-start space-x-2.5 p-3 bg-gradient-to-br from-indigo-50 to-white rounded-lg border border-indigo-100 hover:border-indigo-300 transition-colors">
+                    <div className="flex-shrink-0 w-6 h-6 mt-0.5 bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md">
                       ✓
                     </div>
-                    <Text size="base" color="primary" className="font-medium text-left">
+                    <Text size="sm" className="font-medium text-left text-black leading-6">
                       Event Partnership
                     </Text>
                   </div>
-                  <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-gray-100 hover:border-primary-200 transition-colors">
-                    <div className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  <div className="flex items-start space-x-2.5 p-3 bg-gradient-to-br from-purple-50 to-white rounded-lg border border-purple-100 hover:border-purple-300 transition-colors">
+                    <div className="flex-shrink-0 w-6 h-6 mt-0.5 bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md">
                       ✓
                     </div>
-                    <Text size="base" color="primary" className="font-medium text-left">
+                    <Text size="sm" className="font-medium text-left text-black leading-6">
                       Media & Content
                     </Text>
                   </div>
-                  <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-gray-100 hover:border-primary-200 transition-colors">
-                    <div className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  <div className="flex items-start space-x-2.5 p-3 bg-gradient-to-br from-violet-50 to-white rounded-lg border border-violet-100 hover:border-violet-300 transition-colors">
+                    <div className="flex-shrink-0 w-6 h-6 mt-0.5 bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md">
                       ✓
                     </div>
-                    <Text size="base" color="primary" className="font-medium text-left">
+                    <Text size="sm" className="font-medium text-left text-black leading-6">
                       Brand Activation
                     </Text>
                   </div>
-                  <div className="flex items-center space-x-3 p-4 bg-white rounded-lg border border-gray-100 hover:border-primary-200 transition-colors">
-                    <div className="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
+                  <div className="flex items-start space-x-2.5 p-3 bg-gradient-to-br from-blue-50 to-white rounded-lg border border-blue-100 hover:border-blue-300 transition-colors">
+                    <div className="flex-shrink-0 w-6 h-6 mt-0.5 bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md">
                       ✓
                     </div>
-                    <Text size="base" color="primary" className="font-medium text-left">
+                    <Text size="sm" className="font-medium text-left text-black leading-6">
                       Talent Management
                     </Text>
                   </div>
@@ -199,16 +209,16 @@ export default function ContactPage() {
               </div>
 
               {/* CTA Button - dengan spacing yang cukup dari elemen di atasnya */}
-              <div className="pt-4 sm:pt-6">
+              <div className="pt-3 sm:pt-4">
                 <Link
                   href={mainHero.primaryAction.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block"
                 >
-                  <button className="inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-600 active:bg-primary-700 transition-all duration-200 min-h-[48px] text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                  <button className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 active:from-indigo-800 active:to-purple-800 transition-all duration-200 min-h-[48px] text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                     <span>Start a Partnership</span>
-                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </button>

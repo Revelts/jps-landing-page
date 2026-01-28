@@ -70,9 +70,9 @@ export function Pagination({
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4">
       {/* Info Text */}
       <Text size="sm" color="secondary">
-        Menampilkan <span className="font-semibold text-gray-900">{startItem}</span> -{' '}
-        <span className="font-semibold text-gray-900">{endItem}</span> dari{' '}
-        <span className="font-semibold text-gray-900">{totalItems}</span> data
+        Menampilkan <span className="font-semibold text-black">{startItem}</span> -{' '}
+        <span className="font-semibold text-black">{endItem}</span> dari{' '}
+        <span className="font-semibold text-black">{totalItems}</span> data
       </Text>
 
       {/* Pagination Controls */}
@@ -86,7 +86,7 @@ export function Pagination({
             ${
               currentPage === 1
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 active:bg-gray-100'
+                : 'bg-white text-black border border-gray-300 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 active:bg-indigo-100'
             }
           `}
           aria-label="Previous page"
@@ -118,8 +118,8 @@ export function Pagination({
                   min-w-[44px] min-h-[44px] px-3 py-2 rounded-lg text-sm font-medium transition-all
                   ${
                     isActive
-                      ? 'bg-primary text-white shadow-md'
-                      : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 active:bg-gray-100'
+                      ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
+                      : 'bg-white text-black border border-gray-300 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 active:bg-indigo-100'
                   }
                 `}
                 aria-label={`Page ${pageNum}`}
@@ -147,7 +147,7 @@ export function Pagination({
             ${
               currentPage === totalPages
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 active:bg-gray-100'
+                : 'bg-white text-black border border-gray-300 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 active:bg-indigo-100'
             }
           `}
           aria-label="Next page"

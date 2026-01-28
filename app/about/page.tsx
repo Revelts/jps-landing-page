@@ -80,7 +80,7 @@ export default function AboutPage() {
                 {founderSpeech.title}
               </Heading>
               <div className="flex justify-center">
-                <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-primary shadow-xl">
+                <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-primary shadow-xl drop-shadow-2xl">
                   <Image
                     src={founderSpeech.avatar}
                     alt={founderSpeech.name}
@@ -94,7 +94,7 @@ export default function AboutPage() {
                 "{founderSpeech.speech}"
               </blockquote>
               <div>
-                <p className="font-bold text-lg text-gray-900">{founderSpeech.name}</p>
+                <p className="font-bold text-lg text-black">{founderSpeech.name}</p>
                 <p className="text-sm text-gray-500">Founder & Director</p>
               </div>
             </div>
@@ -117,7 +117,7 @@ export default function AboutPage() {
           {/* Team Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {team.members.map((member, index) => (
-              <Card key={index} hover clickable>
+              <Card key={index} hoverable padding="sm">
                 <Link
                   href={member.links.instagram}
                   target="_blank"
@@ -134,7 +134,7 @@ export default function AboutPage() {
                     />
                   </div>
                   <div className="text-center space-y-1">
-                    <h3 className="font-semibold text-gray-900 text-sm sm:text-base">
+                    <h3 className="font-semibold text-black text-sm sm:text-base">
                       {member.name}
                     </h3>
                     <p className="text-xs sm:text-sm text-gray-500 line-clamp-2">

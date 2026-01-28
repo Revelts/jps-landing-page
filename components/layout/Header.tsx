@@ -47,7 +47,7 @@ export function Header() {
                 alt={company.name}
                 width={48}
                 height={48}
-                className="h-10 w-auto sm:h-12 logo-drop"
+                className="h-10 w-auto sm:h-12 drop-shadow-lg shadow-indigo-500/50"
                 priority
               />
               <span className="sr-only">{company.name}</span>

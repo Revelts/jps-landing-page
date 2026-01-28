@@ -43,7 +43,7 @@ export default function GalleryPage() {
       <Section>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {albums.items.map((album, index) => (
-            <Card key={index} hover clickable className="overflow-hidden p-0">
+            <Card key={index} hoverable padding="none" className="overflow-hidden">
               <Link
                 href={album.url === '#' ? '/gallery' : album.url}
                 className="block"
@@ -62,7 +62,7 @@ export default function GalleryPage() {
                   
                   {/* Album Info */}
                   <div className="p-4 sm:p-6">
-                    <h3 className="font-semibold text-gray-900 text-lg sm:text-xl mb-2">
+                    <h3 className="font-semibold text-black text-lg sm:text-xl mb-2">
                       {album.name}
                     </h3>
                     {album.date && (
@@ -90,7 +90,7 @@ export default function GalleryPage() {
 
           {/* Masonry-style Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {Array.from({ length: 11 }, (_, i) => i + 1).map((num) => (
+            {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
               <div
                 key={num}
                 className="relative aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group"

@@ -1,41 +1,98 @@
 /**
- * Heading Component
- * Single Responsibility: Render semantic headings with consistent styling
- * Mobile-first: Refined responsive font sizes for better readability
+ * Fluid Heading Component
+ * 
+ * Fully responsive headings using CSS custom properties with clamp()
+ * Typography scales automatically across all screen sizes
+ * 
+ * Props:
+ * - level: 1 | 2 | 3 | 4 | 5 | 6 | 'display'
+ * - align: 'left' | 'center' | 'right'
+ * - weight: 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
+ * - className: Additional Tailwind classes
  */
-import { ReactNode } from 'react';
+
+import { ReactNode, ElementType } from 'react';
 import { cn } from '@/lib/utils';
 
 interface HeadingProps {
-  level: 1 | 2 | 3 | 4 | 5 | 6;
+  level?: 1 | 2 | 3 | 4 | 5 | 6 | 'display';
   children: ReactNode;
-  className?: string;
   align?: 'left' | 'center' | 'right';
+  weight?: 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold';
+  className?: string;
+  id?: string;
 }
 
-export function Heading({ level, children, className, align = 'left' }: HeadingProps) {
-  const Tag = `h${level}` as keyof JSX.IntrinsicElements;
-  
-  const baseStyles = 'font-bold leading-tight tracking-tight';
-  
+export function Heading({
+  level = 2,
+  children,
+  align = 'left',
+  weight,
+  className,
+  ...props
+}: HeadingProps) {
+  // Determine HTML tag
+  const Tag: ElementType = level === 'display' ? 'h1' : `h${level}`;
+
+  // Fluid typography styles using CSS variables
+  const levelStyles = {
+    display: 'text-[var(--text-7xl)] leading-[1.1] -tracking-[0.03em]',  // 56px → 72px
+    1: 'text-[var(--text-5xl)] leading-[1.15] -tracking-[0.02em]',       // 40px → 48px
+    2: 'text-[var(--text-4xl)] leading-[1.2] -tracking-[0.01em]',        // 32px → 36px
+    3: 'text-[var(--text-3xl)] leading-[1.3]',                           // 28px → 30px
+    4: 'text-[var(--text-2xl)] leading-[1.3]',                           // 22px → 24px
+    5: 'text-[var(--text-xl)] leading-[1.4]',                            // 18px → 20px
+    6: 'text-[var(--text-lg)] leading-[1.5]',                            // 17px → 18px
+  };
+
+  // Default font weights per level
+  const defaultWeights = {
+    display: 'font-bold',
+    1: 'font-bold',
+    2: 'font-bold',
+    3: 'font-semibold',
+    4: 'font-semibold',
+    5: 'font-semibold',
+    6: 'font-semibold',
+  };
+
+  const weightStyles = {
+    normal: 'font-normal',
+    medium: 'font-medium',
+    semibold: 'font-semibold',
+    bold: 'font-bold',
+    extrabold: 'font-extrabold',
+  };
+
   const alignStyles = {
     left: 'text-left',
     center: 'text-center',
     right: 'text-right',
   };
-  
-  // Mobile-first responsive font sizes - refined for better proportions
-  const levelStyles = {
-    1: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-900',
-    2: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-900',
-    3: 'text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-900',
-    4: 'text-base sm:text-lg md:text-xl lg:text-2xl text-gray-800',
-    5: 'text-sm sm:text-base md:text-lg text-gray-800',
-    6: 'text-sm sm:text-base text-gray-800',
-  };
-  
+
   return (
-    <Tag className={cn(baseStyles, levelStyles[level], alignStyles[align], className)}>
+    <Tag
+      className={cn(
+        // Fluid typography from CSS var
+        levelStyles[level],
+        
+        // Weight (use default if not specified)
+        weight ? weightStyles[weight] : defaultWeights[level],
+        
+        // Alignment
+        alignStyles[align],
+        
+        // Color
+        'text-black',
+        
+        // Spacing below (fluid)
+        'mb-[var(--space-md)]',
+        
+        // Custom className
+        className
+      )}
+      {...props}
+    >
       {children}
     </Tag>
   );

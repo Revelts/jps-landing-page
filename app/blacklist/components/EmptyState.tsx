@@ -35,7 +35,7 @@ export function EmptyState({ type, query }: EmptyStateProps) {
 
           {/* Content */}
           <div className="space-y-2">
-            <Text size="lg" className="font-semibold text-gray-900">
+            <Text size="lg" className="font-semibold text-black">
               Tidak Ada Data
             </Text>
             <Text size="base" color="secondary">
@@ -70,7 +70,7 @@ export function EmptyState({ type, query }: EmptyStateProps) {
 
         {/* Content */}
         <div className="space-y-2">
-          <Text size="lg" className="font-semibold text-gray-900">
+          <Text size="lg" className="font-semibold text-black">
             Tidak Ditemukan
           </Text>
           <Text size="base" color="secondary">

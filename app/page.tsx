@@ -7,6 +7,7 @@ import { Metadata } from 'next';
 import { Hero } from '@/components/sections/Hero';
 import { QuickAbout } from '@/components/sections/QuickAbout';
 import { FeaturedPartners } from '@/components/sections/FeaturedPartners';
+import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { generateMetadata as genMeta } from '@/lib/metadata';
 
 export const metadata: Metadata = genMeta({
@@ -21,6 +22,7 @@ export const metadata: Metadata = genMeta({
 export default function HomePage() {
   return (
     <>
+      <PageViewTracker pageType="home" pageName="Home" pageCategory="main" />
       <Hero />
       <QuickAbout />
       <FeaturedPartners />

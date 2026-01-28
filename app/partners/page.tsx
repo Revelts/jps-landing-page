@@ -50,7 +50,7 @@ export default function PartnersPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Card hover clickable className="h-full">
+              <Card hoverable className="h-full">
                 <div className="space-y-4">
                   {/* Logo */}
                   <div className="relative aspect-square bg-gray-50 rounded-xl overflow-hidden flex items-center justify-center p-4">
@@ -67,7 +67,7 @@ export default function PartnersPage() {
                   
                   {/* Name */}
                   <div className="text-center">
-                    <h3 className="font-semibold text-gray-900 text-sm sm:text-base">
+                    <h3 className="font-semibold text-black text-sm sm:text-base">
                       {partner.name}
                     </h3>
                   </div>
