@@ -83,7 +83,7 @@ export function Heading({
         alignStyles[align],
         
         // Color
-        'text-black',
+        'text-text-primary',
         
         // Spacing below (fluid)
         'mb-[var(--space-md)]',

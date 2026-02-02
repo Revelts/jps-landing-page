@@ -16,11 +16,14 @@ export function QuickAbout() {
   const { aboutus } = siteConfig;
 
   return (
-    <Section className="bg-gray-50">
-      <div className="space-y-8 sm:space-y-12">
+    <Section className="relative overflow-hidden">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-bg-secondary/50 to-bg-primary" />
+      
+      <div className="relative z-10 space-y-8 sm:space-y-12">
         {/* Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <Heading level={2} align="center">
+          <Heading level={2} align="center" className="gradient-text">
             {aboutus.title}
           </Heading>
         </div>

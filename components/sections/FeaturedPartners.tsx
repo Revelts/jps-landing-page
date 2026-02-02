@@ -16,14 +16,17 @@ export function FeaturedPartners() {
   const featuredPartners = partners.items.slice(0, 6);
 
   return (
-    <Section>
-      <div className="space-y-8 sm:space-y-12">
+    <Section className="relative overflow-hidden">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-bg-secondary/50 to-bg-primary" />
+      
+      <div className="relative z-10 space-y-8 sm:space-y-12">
         {/* Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <Heading level={2} align="center">
+          <Heading level={2} align="center" className="gradient-text tracking-wide">
             {partners.title}
           </Heading>
-          <Text size="base" color="secondary" align="center">
+          <Text size="base" color="secondary" align="center" className="text-text-secondary">
             {partners.description}
           </Text>
         </div>
@@ -36,14 +39,14 @@ export function FeaturedPartners() {
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative aspect-square bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-4 flex items-center justify-center"
+              className="group relative aspect-square bg-surface/30 backdrop-blur-sm rounded-xl border border-secondary/10 hover:border-secondary/40 hover:shadow-glow-sm transition-all duration-500 hover:-translate-y-2 p-4 flex items-center justify-center"
             >
               <div className="relative w-full h-full">
                 <Image
                   src={partner.logo}
                   alt={`${partner.name} - Partner nightclub Jakarta Party Squad`}
                   fill
-                  className="object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="object-contain grayscale group-hover:grayscale-0 transition-all duration-500 brightness-75 group-hover:brightness-100"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"
                 />
               </div>

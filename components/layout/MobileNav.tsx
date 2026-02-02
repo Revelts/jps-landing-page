@@ -8,9 +8,17 @@
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { Building2, Music, Waves, LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import { NavigationItem } from '@/types';
 import { siteConfig } from '@/lib/config';
+
+// Icon mapping
+const iconMap: Record<string, LucideIcon> = {
+  'building': Building2,
+  'music': Music,
+  'waves': Waves,
+};
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -33,7 +41,7 @@ export function MobileNav({ isOpen, onClose, navigation }: MobileNavProps) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-900/80 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-bg-primary/90 backdrop-blur-md" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
@@ -49,15 +57,15 @@ export function MobileNav({ isOpen, onClose, navigation }: MobileNavProps) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-sm">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                  <div className="flex h-full flex-col overflow-y-scroll bg-surface/95 backdrop-blur-xl shadow-glass border-l border-secondary/20">
                     {/* Header */}
-                    <div className="flex items-center justify-between px-4 py-6 border-b border-gray-200">
-                      <Dialog.Title className="text-lg font-semibold text-gray-900">
+                    <div className="flex items-center justify-between px-4 py-6 border-b border-secondary/20">
+                      <Dialog.Title className="text-lg font-semibold text-text-primary tracking-wide">
                         Menu
                       </Dialog.Title>
                       <button
                         type="button"
-                        className="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"
+                        className="rounded-md text-text-tertiary hover:text-secondary focus:outline-none focus:ring-2 focus:ring-secondary/50 p-2 min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors duration-300"
                         onClick={onClose}
                       >
                         <span className="sr-only">Close menu</span>
@@ -73,31 +81,34 @@ export function MobileNav({ isOpen, onClose, navigation }: MobileNavProps) {
                             <div>
                               <button
                                 onClick={() => setExpandedItem(expandedItem === item.name ? null : item.name)}
-                                className="w-full flex items-center justify-between px-4 py-3 text-base font-medium text-gray-700 hover:bg-primary-50 hover:text-primary rounded-lg transition-colors min-h-[44px]"
+                                className="w-full flex items-center justify-between px-4 py-3 text-base font-medium text-text-secondary hover:bg-secondary/10 hover:text-secondary rounded-lg transition-all duration-300 min-h-[44px]"
                               >
                                 <span>{item.name}</span>
                                 <ChevronDownIcon
-                                  className={`h-5 w-5 transition-transform ${
+                                  className={`h-5 w-5 transition-transform duration-300 ${
                                     expandedItem === item.name ? 'rotate-180' : ''
                                   }`}
                                 />
                               </button>
                               {expandedItem === item.name && (
-                                <div className="mt-1 ml-4 space-y-1">
-                                  {item.dropdown.map((subItem) => (
-                                    <Link
-                                      key={subItem.name}
-                                      href={subItem.href}
-                                      onClick={onClose}
-                                      className="flex items-center gap-3 px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                                    >
-                                      <span className="text-xl">{subItem.icon}</span>
-                                      <div>
-                                        <div className="font-medium">{subItem.name}</div>
-                                        <div className="text-xs text-gray-500">{subItem.description}</div>
-                                      </div>
-                                    </Link>
-                                  ))}
+                                <div className="mt-1 ml-4 space-y-1 animate-fade-in">
+                                  {item.dropdown.map((subItem) => {
+                                    const IconComponent = iconMap[subItem.icon] || Building2;
+                                    return (
+                                      <Link
+                                        key={subItem.name}
+                                        href={subItem.href}
+                                        onClick={onClose}
+                                        className="flex items-center gap-3 px-4 py-3 text-sm text-text-tertiary hover:bg-secondary/10 hover:text-secondary rounded-lg transition-all duration-300"
+                                      >
+                                        <IconComponent className="w-5 h-5 text-secondary" />
+                                        <div>
+                                          <div className="font-medium">{subItem.name}</div>
+                                          <div className="text-xs text-text-muted">{subItem.description}</div>
+                                        </div>
+                                      </Link>
+                                    );
+                                  })}
                                 </div>
                               )}
                             </div>
@@ -105,7 +116,7 @@ export function MobileNav({ isOpen, onClose, navigation }: MobileNavProps) {
                             <Link
                               href={item.href}
                               onClick={onClose}
-                              className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-primary-50 hover:text-primary rounded-lg transition-colors min-h-[44px] flex items-center"
+                              className="block px-4 py-3 text-base font-medium text-text-secondary hover:bg-secondary/10 hover:text-secondary rounded-lg transition-all duration-300 min-h-[44px] flex items-center"
                             >
                               {item.name}
                             </Link>
@@ -115,10 +126,10 @@ export function MobileNav({ isOpen, onClose, navigation }: MobileNavProps) {
                     </nav>
 
                     {/* Footer CTA */}
-                    <div className="border-t border-gray-200 p-4 space-y-3">
+                    <div className="border-t border-secondary/20 p-4 space-y-3">
                       <Link
                         href={callToAction.href}
-                        className="block w-full text-center px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-full hover:shadow-lg transition-all min-h-[44px] flex items-center justify-center"
+                        className="block w-full text-center px-4 py-3 bg-gradient-to-r from-secondary to-accent text-bg-primary font-semibold rounded-full hover:shadow-glow-lg transition-all duration-400 min-h-[44px] flex items-center justify-center"
                         onClick={onClose}
                       >
                         {callToAction.text}
@@ -127,7 +138,7 @@ export function MobileNav({ isOpen, onClose, navigation }: MobileNavProps) {
                         href="https://calculator.jakartapartysquad.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full text-center px-4 py-3 border-2 border-indigo-600 text-indigo-600 font-medium rounded-full hover:bg-indigo-50 transition-colors min-h-[44px] flex items-center justify-center"
+                        className="block w-full text-center px-4 py-3 border-2 border-secondary text-secondary font-medium rounded-full hover:bg-secondary/10 transition-all duration-300 min-h-[44px] flex items-center justify-center"
                         onClick={onClose}
                       >
                         Party Calculator

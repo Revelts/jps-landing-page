@@ -129,19 +129,19 @@
           "name": "Nightlife SCBD",
           "href": "/nightlife-scbd",
           "description": "Premium clubs SCBD",
-          "icon": "🏙️"
+          "icon": "building"
         },
         {
           "name": "Nightlife Kemang",
           "href": "/nightlife-kemang",
           "description": "Casual vibes Kemang",
-          "icon": "🎭"
+          "icon": "music"
         },
         {
           "name": "Nightlife PIK",
           "href": "/nightlife-pik",
           "description": "Beach vibes PIK",
-          "icon": "🌊"
+          "icon": "waves"
         }
       ]
     },
@@ -163,7 +163,7 @@
     }
   ],
   "callToAction": {
-    "text": "🎊 Hosting Gratis",
+    "text": "Hosting Gratis",
     "href": "/hosting/gratis"
   },
   "callToActions": [

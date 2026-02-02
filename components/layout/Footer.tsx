@@ -7,13 +7,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Container } from '../ui/Container';
 import { siteConfig } from '@/lib/config';
+import { PartyPopper, Building2, Music, Waves } from 'lucide-react';
 
 export function Footer() {
   const { company, about, navigation } = siteConfig;
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="relative bg-bg-secondary border-t border-secondary/10">
+      {/* Subtle glow effect */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
+      
       <Container>
         {/* Main Footer Content */}
         <div className="py-12 sm:py-16 lg:py-20">
@@ -27,7 +31,7 @@ export function Footer() {
                 height={48}
                 className="h-12 w-auto drop-shadow-lg"
               />
-              <p className="text-sm text-gray-400 leading-relaxed">
+              <p className="text-sm text-text-tertiary leading-relaxed">
                 Komunitas, Media, dan Event Partner untuk dunia malam Jakarta
               </p>
               {/* Social Links */}
@@ -36,7 +40,7 @@ export function Footer() {
                   href={about.socialMedia.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-primary transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  className="text-text-tertiary hover:text-secondary transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center hover:scale-110"
                   aria-label="Instagram"
                 >
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -47,7 +51,7 @@ export function Footer() {
                   href={about.socialMedia.tiktok}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-primary transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  className="text-text-tertiary hover:text-secondary transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center hover:scale-110"
                   aria-label="TikTok"
                 >
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -58,7 +62,7 @@ export function Footer() {
                   href={about.socialMedia.discord}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-primary transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  className="text-text-tertiary hover:text-secondary transition-all duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center hover:scale-110"
                   aria-label="Discord"
                 >
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -70,7 +74,7 @@ export function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-text-primary">
                 Quick Links
               </h3>
               <ul className="space-y-3">
@@ -78,7 +82,7 @@ export function Footer() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-sm text-gray-400 hover:text-primary transition-colors block py-1"
+                      className="text-sm text-text-tertiary hover:text-secondary transition-all duration-300 block py-1 hover:translate-x-1"
                     >
                       {item.name}
                     </Link>
@@ -89,40 +93,44 @@ export function Footer() {
 
             {/* Nightlife Locations */}
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-text-primary">
                 Nightlife Jakarta
               </h3>
               <ul className="space-y-3">
                 <li>
                   <Link
                     href="/nightlife-scbd"
-                    className="text-sm text-gray-400 hover:text-primary transition-colors block py-1"
+                    className="text-sm text-text-tertiary hover:text-secondary transition-all duration-300 py-1 hover:translate-x-1 inline-flex items-center gap-1.5"
                   >
-                    🏙️ Nightclub SCBD
+                    <Building2 className="w-3.5 h-3.5" />
+                    Nightclub SCBD
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/nightlife-kemang"
-                    className="text-sm text-gray-400 hover:text-primary transition-colors block py-1"
+                    className="text-sm text-text-tertiary hover:text-secondary transition-all duration-300 py-1 hover:translate-x-1 inline-flex items-center gap-1.5"
                   >
-                    🎭 Nightclub Kemang
+                    <Music className="w-3.5 h-3.5" />
+                    Nightclub Kemang
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/nightlife-pik"
-                    className="text-sm text-gray-400 hover:text-primary transition-colors block py-1"
+                    className="text-sm text-text-tertiary hover:text-secondary transition-all duration-300 py-1 hover:translate-x-1 inline-flex items-center gap-1.5"
                   >
-                    🌊 Nightclub PIK
+                    <Waves className="w-3.5 h-3.5" />
+                    Nightclub PIK
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="/hosting/gratis"
-                    className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors block py-1 font-semibold"
+                    className="text-sm text-secondary hover:text-accent transition-all duration-300 block py-1 font-semibold hover:translate-x-1 inline-flex items-center gap-1.5"
                   >
-                    🎊 Hosting Gratis
+                    <PartyPopper className="w-4 h-4" />
+                    Hosting Gratis
                   </Link>
                 </li>
               </ul>
@@ -130,17 +138,17 @@ export function Footer() {
 
             {/* Contact */}
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-text-primary">
                 Get in Touch
               </h3>
-              <p className="text-sm text-gray-400 mb-4">
+              <p className="text-sm text-text-tertiary mb-4">
                 Join our community and stay updated with the latest events!
               </p>
               <Link
                 href="https://chat.whatsapp.com/INOwwV4aSCFCWISZtoTmGG?mode=ac_t"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary-600 transition-colors min-h-[40px] flex items-center justify-center"
+                className="inline-flex px-4 py-2 text-sm font-semibold text-bg-primary bg-gradient-to-r from-secondary to-accent rounded-lg hover:shadow-glow transition-all duration-400 min-h-[40px] items-center justify-center hover:-translate-y-0.5"
               >
                 Join WhatsApp
               </Link>
@@ -149,21 +157,24 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 py-6">
+        <div className="relative border-t border-secondary/10 py-6">
+          {/* Subtle glow line */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/30 to-transparent" />
+          
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <p className="text-sm text-gray-400 text-center sm:text-left">
+            <p className="text-sm text-text-tertiary text-center sm:text-left">
               © {currentYear} {company.name}. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <Link
                 href="/privacy"
-                className="text-sm text-gray-400 hover:text-cyan-400 transition-colors"
+                className="text-sm text-text-tertiary hover:text-secondary transition-all duration-300"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-sm text-gray-400 hover:text-cyan-400 transition-colors"
+                className="text-sm text-text-tertiary hover:text-secondary transition-all duration-300"
               >
                 Terms of Service
               </Link>

@@ -44,90 +44,114 @@ module.exports = {
     
     extend: {
       colors: {
-        // Brand colors - Blue-Purple theme
+        // Premium Cyber-Punk Color Palette
+        // Primary: Deep Blue (main brand color)
         primary: {
-          DEFAULT: '#6366f1', // Indigo-500
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
+          DEFAULT: '#0A2463', // Deep Navy Blue
+          50: '#E6EBF5',
+          100: '#C2D0E8',
+          200: '#9DB4DA',
+          300: '#7897CD',
+          400: '#537BC0',
+          500: '#2E5FB3',
+          600: '#1E4A8F',
+          700: '#14356B',
+          800: '#0A2463', // Main
+          900: '#061740',
+          950: '#030B20',
         },
+        
+        // Secondary: Light Blue (cyber accents)
         secondary: {
-          DEFAULT: '#8b5cf6', // Purple-500
-          50: '#faf5ff',
-          100: '#f3e8ff',
-          200: '#e9d5ff',
-          300: '#d8b4fe',
-          400: '#c084fc',
-          500: '#a855f7',
-          600: '#9333ea',
-          700: '#7e22ce',
-          800: '#6b21a8',
-          900: '#581c87',
+          DEFAULT: '#3BCEEF', // Bright Cyan Blue
+          50: '#EDFBFE',
+          100: '#D4F4FC',
+          200: '#AEEDFA',
+          300: '#88E6F8',
+          400: '#62DFF6',
+          500: '#3BCEEF', // Main
+          600: '#1FB5E0',
+          700: '#1790B5',
+          800: '#106B8A',
+          900: '#0A465F',
+          950: '#052334',
         },
         
-        // Modern Cyan (Primary Action Color)
+        // Accent: Soft Purple/Violet (premium accents)
+        accent: {
+          DEFAULT: '#A78BFA', // Soft Purple
+          50: '#F5F3FF',
+          100: '#EDE9FE',
+          200: '#DDD6FE',
+          300: '#C4B5FD',
+          400: '#A78BFA', // Main
+          500: '#8B5CF6',
+          600: '#7C3AED',
+          700: '#6D28D9',
+          800: '#5B21B6',
+          900: '#4C1D95',
+          950: '#2E1065',
+        },
+        
+        // Background: Dark Navy & Near-Black
+        'bg-primary': '#030712',     // Near-black (Deepest)
+        'bg-secondary': '#0F172A',   // Dark Navy
+        'bg-tertiary': '#1E293B',    // Card backgrounds
+        'bg-elevated': '#334155',    // Elevated elements
+        
+        // Surface colors for cards/panels
+        surface: {
+          DEFAULT: '#1E293B',
+          dark: '#0F172A',
+          light: '#334155',
+        },
+        
+        // Glow colors (low opacity usage)
+        glow: {
+          blue: '#3BCEEF',
+          purple: '#A78BFA',
+          'blue-soft': 'rgba(59, 206, 239, 0.15)',
+          'purple-soft': 'rgba(167, 139, 250, 0.15)',
+        },
+        
+        // Text colors for dark mode
+        'text-primary': '#F8FAFC',
+        'text-secondary': '#CBD5E1',
+        'text-tertiary': '#94A3B8',
+        'text-muted': '#64748B',
+        
+        // Border colors
+        'border-primary': '#1E293B',
+        'border-secondary': '#334155',
+        'border-glow': '#3BCEEF',
+        
+        // Legacy support (keeping for backwards compatibility)
         cyan: {
-          50: '#ecfeff',
-          100: '#cffafe',
-          200: '#a5f3fc',
-          300: '#67e8f9',
-          400: '#22d3ee',
-          500: '#06b6d4',
-          600: '#0891b2',
-          700: '#0e7490',
-          800: '#155e75',
-          900: '#164e63',
-          950: '#083344',
-          DEFAULT: '#06b6d4',
+          DEFAULT: '#3BCEEF',
+          50: '#EDFBFE',
+          100: '#D4F4FC',
+          200: '#AEEDFA',
+          300: '#88E6F8',
+          400: '#62DFF6',
+          500: '#3BCEEF',
+          600: '#1FB5E0',
+          700: '#1790B5',
+          800: '#106B8A',
+          900: '#0A465F',
         },
-        
-        // Vibrant Purple (Secondary Accent)
         purple: {
-          50: '#faf5ff',
-          100: '#f3e8ff',
-          200: '#e9d5ff',
-          300: '#d8b4fe',
-          400: '#c084fc',
-          500: '#a855f7',
-          600: '#9333ea',
-          700: '#7e22ce',
-          800: '#6b21a8',
-          900: '#581c87',
-          950: '#3b0764',
+          DEFAULT: '#A78BFA',
+          50: '#F5F3FF',
+          100: '#EDE9FE',
+          200: '#DDD6FE',
+          300: '#C4B5FD',
+          400: '#A78BFA',
+          500: '#8B5CF6',
+          600: '#7C3AED',
+          700: '#6D28D9',
+          800: '#5B21B6',
+          900: '#4C1D95',
         },
-        
-        // Semantic Button Colors
-        'btn-primary': '#06b6d4',        // Bright cyan
-        'btn-primary-hover': '#0891b2',  // Darker cyan
-        'btn-primary-active': '#0e7490', // Even darker
-        'btn-secondary': 'transparent',   // Transparent background
-        'btn-disabled': '#737373',       // Neutral gray
-        'btn-ring': '#22d3ee',           // Bright cyan ring
-        
-        // Dark Mode Backgrounds (Modern Charcoal/Slate)
-        'dark-bg': {
-          primary: '#0a0a0a',   // Deep charcoal
-          secondary: '#1a1a1a', // Dark slate
-          tertiary: '#262626',  // Card backgrounds
-          elevated: '#333333',  // Elevated elements
-        },
-        
-        // Light Mode Backgrounds
-        'light-bg': {
-          primary: '#ffffff',
-          secondary: '#f8fafc',
-          tertiary: '#f1f5f9',
-        },
-        
-        border: '#1a2e35',
-        background: '#ffffff',
       },
       
       // Fluid spacing system using clamp()
@@ -206,9 +230,13 @@ module.exports = {
       },
       
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.5s ease-out',
-        'slide-down': 'slideDown 0.5s ease-out',
+        'fade-in': 'fadeIn 0.6s ease-in-out',
+        'slide-up': 'slideUp 0.6s ease-out',
+        'slide-down': 'slideDown 0.6s ease-out',
+        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+        'gradient-shift': 'gradientShift 8s ease infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'shimmer': 'shimmer 2.5s linear infinite',
       },
       
       keyframes: {
@@ -224,6 +252,22 @@ module.exports = {
           '0%': { transform: 'translateY(-20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        glowPulse: {
+          '0%, 100%': { opacity: '0.5', filter: 'blur(20px)' },
+          '50%': { opacity: '0.8', filter: 'blur(25px)' },
+        },
+        gradientShift: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
       },
       
       // Button transition durations
@@ -232,10 +276,38 @@ module.exports = {
         '200': '200ms',
       },
       
-      // Box shadow for elevated buttons (only on capable devices)
+      // Premium Box Shadows & Glows
       boxShadow: {
-        'btn-hover': '0 4px 12px rgba(2, 132, 199, 0.3)',
-        'btn-active': '0 2px 6px rgba(2, 132, 199, 0.3)',
+        // Button shadows
+        'btn-hover': '0 4px 12px rgba(59, 206, 239, 0.3)',
+        'btn-active': '0 2px 6px rgba(59, 206, 239, 0.3)',
+        
+        // Glow effects (cyber-punk accents)
+        'glow-sm': '0 0 10px rgba(59, 206, 239, 0.3)',
+        'glow': '0 0 20px rgba(59, 206, 239, 0.4)',
+        'glow-lg': '0 0 30px rgba(59, 206, 239, 0.5)',
+        'glow-purple-sm': '0 0 10px rgba(167, 139, 250, 0.3)',
+        'glow-purple': '0 0 20px rgba(167, 139, 250, 0.4)',
+        'glow-purple-lg': '0 0 30px rgba(167, 139, 250, 0.5)',
+        
+        // Premium card shadows
+        'card-premium': '0 8px 32px rgba(0, 0, 0, 0.4)',
+        'card-hover': '0 12px 48px rgba(59, 206, 239, 0.2)',
+        
+        // Glassmorphism depth
+        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+      },
+      
+      // Backdrop blur for glassmorphism
+      backdropBlur: {
+        xs: '2px',
+        sm: '4px',
+        DEFAULT: '8px',
+        md: '12px',
+        lg: '16px',
+        xl: '24px',
+        '2xl': '40px',
+        '3xl': '64px',
       },
     },
   },

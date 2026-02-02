@@ -43,8 +43,8 @@ export function Section({
 
   const backgroundStyles = {
     none: '',
-    gray: 'bg-gray-50',
-    gradient: 'bg-gradient-to-b from-white to-gray-50',
+    gray: 'bg-bg-secondary',
+    gradient: 'bg-gradient-to-b from-bg-primary to-bg-secondary',
   };
 
   const content = container ? (

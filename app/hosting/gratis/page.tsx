@@ -11,6 +11,7 @@ import { HowToJoin } from './components/HowToJoin';
 import { FAQ } from './components/FAQ';
 import { TestimonialCards } from './components/TestimonialCards';
 import { CTABox } from './components/CTABox';
+import { Sparkles, Ticket, Camera, PartyPopper, Users, Clipboard, Smartphone, CheckCircle2 } from 'lucide-react';
 
 // SEO Metadata - Optimized for conversion
 export const metadata: Metadata = genMeta({
@@ -90,39 +91,41 @@ export default function HostingGratisPage() {
         <HeroSection />
 
         {/* What is Hosting Crowd */}
-        <section className="py-16 bg-gradient-to-b from-white to-gray-50">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-black">
+        <section className="py-16 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-bg-secondary to-bg-primary" />
+          
+          <div className="relative z-10 container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 gradient-text tracking-wide">
               Apa Itu Hosting Crowd?
             </h2>
             <div className="prose prose-lg max-w-none">
-              <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                <strong className="text-black">Hosting crowd</strong> adalah konsep di mana kamu dan teman-teman 
-                datang ke event nightclub sebagai <strong className="text-black">crowd</strong> yang membawa energi 
+              <p className="text-text-secondary text-lg leading-relaxed mb-6">
+                <strong className="text-secondary">Hosting crowd</strong> adalah konsep di mana kamu dan teman-teman 
+                datang ke event nightclub sebagai <strong className="text-accent">crowd</strong> yang membawa energi 
                 dan vibes seru. Sebagai timbal balik, nightclub dan Jakarta Party Squad 
                 memberikan benefit seperti:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
-                <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-indigo-100">
-                  <span className="text-3xl">🍾</span>
-                  <span className="text-black"><strong>Botol gratis</strong> (biasanya 1 botol per 5-8 orang)</span>
+                <div className="flex items-start gap-3 p-4 glass rounded-lg border border-secondary/20 hover:border-secondary/40 hover:shadow-glow-sm transition-all duration-500">
+                  <Sparkles className="w-8 h-8 text-secondary flex-shrink-0" />
+                  <span className="text-text-primary"><strong className="text-secondary">Botol gratis</strong> (biasanya 1 botol per 5-8 orang)</span>
                 </div>
-                <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-indigo-100">
-                  <span className="text-3xl">🎟️</span>
-                  <span className="text-black"><strong>Free entry</strong> atau priority access</span>
+                <div className="flex items-start gap-3 p-4 glass rounded-lg border border-secondary/20 hover:border-secondary/40 hover:shadow-glow-sm transition-all duration-500">
+                  <Ticket className="w-8 h-8 text-secondary flex-shrink-0" />
+                  <span className="text-text-primary"><strong className="text-secondary">Free entry</strong> atau priority access</span>
                 </div>
-                <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-indigo-100">
-                  <span className="text-3xl">📸</span>
-                  <span className="text-black"><strong>Dokumentasi profesional</strong> foto & video</span>
+                <div className="flex items-start gap-3 p-4 glass rounded-lg border border-accent/20 hover:border-accent/40 hover:shadow-glow-purple-sm transition-all duration-500">
+                  <Camera className="w-8 h-8 text-accent flex-shrink-0" />
+                  <span className="text-text-primary"><strong className="text-accent">Dokumentasi profesional</strong> foto & video</span>
                 </div>
-                <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-indigo-100">
-                  <span className="text-3xl">🎉</span>
-                  <span className="text-black"><strong>Event exclusive</strong> dengan guest DJ internasional</span>
+                <div className="flex items-start gap-3 p-4 glass rounded-lg border border-accent/20 hover:border-accent/40 hover:shadow-glow-purple-sm transition-all duration-500">
+                  <PartyPopper className="w-8 h-8 text-accent flex-shrink-0" />
+                  <span className="text-text-primary"><strong className="text-accent">Event exclusive</strong> dengan guest DJ internasional</span>
                 </div>
               </div>
-              <p className="text-gray-700 text-lg leading-relaxed">
+              <p className="text-text-secondary text-lg leading-relaxed">
                 Cocok banget buat kamu yang suka party bareng circle, cari pengalaman baru, 
-                atau pengen explore <strong className="text-black">nightlife Jakarta</strong> tanpa biaya mahal!
+                atau pengen explore <strong className="gradient-text">nightlife Jakarta</strong> tanpa biaya mahal!
               </p>
             </div>
           </div>
@@ -135,57 +138,67 @@ export default function HostingGratisPage() {
         <HowToJoin />
 
         {/* Requirements */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-black">
+        <section className="py-16 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-bg-primary to-bg-secondary" />
+          
+          <div className="relative z-10 container mx-auto px-4 max-w-4xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text tracking-wide">
               Syarat Hosting Party Gratis Jakarta
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="p-6 border border-gray-200 rounded-xl hover:border-indigo-300 transition bg-gradient-to-br from-white to-indigo-50">
-                <div className="text-4xl mb-4">👥</div>
-                <h3 className="text-xl font-semibold mb-3 text-black">
+              <div className="p-6 glass rounded-xl border-2 border-secondary/20 hover:border-secondary/40 hover:shadow-glow-sm transition-all duration-500 hover:-translate-y-1">
+                <div className="mb-4">
+                  <Users className="w-10 h-10 text-secondary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-secondary">
                   1. Join Komunitas (Free!)
                 </h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li>✅ Follow IG @jakartapartysquad</li>
-                  <li>✅ Join WhatsApp group</li>
-                  <li>✅ Isi form member (5 menit)</li>
+                <ul className="space-y-2 text-text-tertiary">
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" /> Follow IG @jakartapartysquad</li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" /> Join WhatsApp group</li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" /> Isi form member (5 menit)</li>
                 </ul>
               </div>
 
-              <div className="p-6 border border-gray-200 rounded-xl hover:border-indigo-300 transition bg-gradient-to-br from-white to-purple-50">
-                <div className="text-4xl mb-4">🎭</div>
-                <h3 className="text-xl font-semibold mb-3 text-black">
+              <div className="p-6 glass rounded-xl border-2 border-accent/20 hover:border-accent/40 hover:shadow-glow-purple-sm transition-all duration-500 hover:-translate-y-1">
+                <div className="mb-4">
+                  <PartyPopper className="w-10 h-10 text-accent" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-accent">
                   2. Ajak Minimal 5-8 Orang
                 </h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li>✅ Crowd minimal 5-8 orang</li>
-                  <li>✅ Semua wajib 18+ (bawa KTP)</li>
-                  <li>✅ Dress code: Smart casual</li>
+                <ul className="space-y-2 text-text-tertiary">
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" /> Crowd minimal 5-8 orang</li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" /> Semua wajib 18+ (bawa KTP)</li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" /> Dress code: Smart casual</li>
                 </ul>
               </div>
 
-              <div className="p-6 border border-gray-200 rounded-xl hover:border-indigo-300 transition bg-gradient-to-br from-white to-violet-50">
-                <div className="text-4xl mb-4">📋</div>
-                <h3 className="text-xl font-semibold mb-3 text-black">
+              <div className="p-6 glass rounded-xl border-2 border-secondary/20 hover:border-secondary/40 hover:shadow-glow-sm transition-all duration-500 hover:-translate-y-1">
+                <div className="mb-4">
+                  <Clipboard className="w-10 h-10 text-secondary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-secondary">
                   3. Ikuti Regulasi Event
                 </h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li>✅ Datang on-time (21:00-22:00)</li>
-                  <li>✅ Bawa energi & vibes positif</li>
-                  <li>✅ Patuhi aturan venue</li>
+                <ul className="space-y-2 text-text-tertiary">
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" /> Datang on-time (21:00-22:00)</li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" /> Bawa energi & vibes positif</li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" /> Patuhi aturan venue</li>
                 </ul>
               </div>
 
-              <div className="p-6 border border-gray-200 rounded-xl hover:border-indigo-300 transition bg-gradient-to-br from-white to-blue-50">
-                <div className="text-4xl mb-4">📱</div>
-                <h3 className="text-xl font-semibold mb-3 text-black">
+              <div className="p-6 glass rounded-xl border-2 border-accent/20 hover:border-accent/40 hover:shadow-glow-purple-sm transition-all duration-500 hover:-translate-y-1">
+                <div className="mb-4">
+                  <Smartphone className="w-10 h-10 text-accent" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-accent">
                   4. RSVP via Admin JPS
                 </h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li>✅ Konfirmasi H-3</li>
-                  <li>✅ Kirim data crowd</li>
-                  <li>✅ Tunggu approval</li>
+                <ul className="space-y-2 text-text-tertiary">
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" /> Konfirmasi H-3</li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" /> Kirim data crowd</li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" /> Tunggu approval</li>
                 </ul>
               </div>
             </div>
@@ -202,13 +215,16 @@ export default function HostingGratisPage() {
         <CTABox />
 
         {/* Disclaimer */}
-        <section className="py-8 bg-gray-50 border-t border-gray-200">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <p className="text-sm text-gray-600 text-center leading-relaxed">
-              <strong>Disclaimer:</strong> Program hosting gratis tersedia sesuai availability 
+        <section className="py-8 relative overflow-hidden border-t border-secondary/20">
+          <div className="absolute inset-0 bg-bg-secondary" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
+          
+          <div className="relative z-10 container mx-auto px-4 max-w-4xl">
+            <p className="text-sm text-text-tertiary text-center leading-relaxed">
+              <strong className="text-text-secondary">Disclaimer:</strong> Program hosting gratis tersedia sesuai availability 
               dan partnership dengan venue. Jakarta Party Squad berhak menolak atau membatalkan 
               hosting tanpa pemberitahuan sebelumnya. Semua peserta wajib mematuhi aturan venue 
-              dan regulasi event. <strong>18+ only</strong>. Drink responsibly.
+              dan regulasi event. <strong className="text-secondary">18+ only</strong>. Drink responsibly.
             </p>
           </div>
         </section>

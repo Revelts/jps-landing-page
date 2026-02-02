@@ -14,12 +14,12 @@ interface EmptyStateProps {
 export function EmptyState({ type, query }: EmptyStateProps) {
   if (type === 'no-data') {
     return (
-      <Card className="text-center py-12 sm:py-16">
+      <Card variant="elevated" className="text-center py-12 sm:py-16">
         <div className="flex flex-col items-center space-y-4">
           {/* Icon */}
-          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-100 rounded-full flex items-center justify-center">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-surface/50 backdrop-blur-sm rounded-full flex items-center justify-center border border-secondary/20">
             <svg
-              className="w-8 h-8 sm:w-10 sm:h-10 text-gray-400"
+              className="w-8 h-8 sm:w-10 sm:h-10 text-text-tertiary"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -35,10 +35,10 @@ export function EmptyState({ type, query }: EmptyStateProps) {
 
           {/* Content */}
           <div className="space-y-2">
-            <Text size="lg" className="font-semibold text-black">
+            <Text size="lg" className="font-semibold text-text-primary">
               Tidak Ada Data
             </Text>
-            <Text size="base" color="secondary">
+            <Text size="base" color="secondary" className="text-text-secondary">
               Belum ada pengguna dalam daftar blacklist.
             </Text>
           </div>
@@ -49,12 +49,12 @@ export function EmptyState({ type, query }: EmptyStateProps) {
 
   // no-results
   return (
-    <Card className="text-center py-12 sm:py-16">
+    <Card variant="elevated" className="text-center py-12 sm:py-16">
       <div className="flex flex-col items-center space-y-4">
         {/* Icon */}
-        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-primary-50 rounded-full flex items-center justify-center">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-secondary/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-secondary/30">
           <svg
-            className="w-8 h-8 sm:w-10 sm:h-10 text-primary-600"
+            className="w-8 h-8 sm:w-10 sm:h-10 text-secondary"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -70,13 +70,13 @@ export function EmptyState({ type, query }: EmptyStateProps) {
 
         {/* Content */}
         <div className="space-y-2">
-          <Text size="lg" className="font-semibold text-black">
+          <Text size="lg" className="font-semibold text-text-primary">
             Tidak Ditemukan
           </Text>
-          <Text size="base" color="secondary">
+          <Text size="base" color="secondary" className="text-text-secondary">
             Pencarian &quot;{query}&quot; tidak ditemukan dalam blacklist.
           </Text>
-          <Text size="sm" color="muted" className="italic">
+          <Text size="sm" color="muted" className="italic text-text-tertiary">
             Coba gunakan kata kunci lain atau periksa nomor/username.
           </Text>
         </div>

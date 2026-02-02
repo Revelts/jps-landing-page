@@ -28,32 +28,35 @@ export function Card({
   ...props
 }: CardProps) {
   const baseStyles = cn(
-    // Background
-    'bg-white',
+    // Glassmorphism background
+    'bg-surface/50 backdrop-blur-md',
     
     // Border radius (fluid)
     'rounded-[var(--radius-lg)]',
     
-    // Transitions
-    'transition-all duration-200'
+    // Border with subtle glow
+    'border border-border-secondary/30',
+    
+    // Transitions - smooth and elegant
+    'transition-all duration-500 ease-out'
   );
 
   const variantStyles = {
     default: cn(
-      'shadow-sm',
-      hoverable && 'hover:shadow-md'
+      'shadow-card-premium',
+      hoverable && 'hover:shadow-card-hover hover:border-secondary/30 hover:-translate-y-1'
     ),
     bordered: cn(
-      'border border-gray-200',
-      hoverable && 'hover:border-gray-300'
+      'border-2 border-secondary/20',
+      hoverable && 'hover:border-secondary/40 hover:shadow-glow-sm'
     ),
     elevated: cn(
-      'shadow-lg',
-      hoverable && 'hover:shadow-xl'
+      'shadow-glass bg-surface/70',
+      hoverable && 'hover:shadow-card-hover hover:bg-surface/80 hover:-translate-y-2'
     ),
     flat: cn(
-      'border border-gray-100',
-      hoverable && 'hover:bg-gray-50'
+      'border border-border-primary bg-surface/30',
+      hoverable && 'hover:bg-surface/50 hover:border-secondary/20'
     ),
   };
 

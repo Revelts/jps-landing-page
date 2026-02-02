@@ -29,20 +29,28 @@ export default function PartnersPage() {
   return (
     <>
       {/* Page Hero */}
-      <Section className="bg-gradient-to-b from-primary-50 to-white pt-24 sm:pt-28">
-        <div className="text-center space-y-6 max-w-3xl mx-auto">
-          <Heading level={1} align="center">
+      <Section className="relative overflow-hidden pt-24 sm:pt-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-bg-primary via-bg-secondary to-bg-primary">
+          <div className="absolute inset-0 bg-gradient-to-tr from-secondary/10 via-transparent to-accent/10 animate-gradient-shift bg-[length:200%_200%]" />
+        </div>
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-glow-pulse" />
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
+        
+        <div className="relative z-10 text-center space-y-6 max-w-3xl mx-auto">
+          <Heading level={1} align="center" className="gradient-text tracking-wide">
             {partners.title}
           </Heading>
-          <Text size="lg" color="secondary" align="center">
+          <Text size="lg" color="secondary" align="center" className="text-text-secondary">
             {partners.description}
           </Text>
         </div>
       </Section>
 
       {/* Partners Grid */}
-      <Section>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
+      <Section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-secondary to-bg-primary" />
+        
+        <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
           {partners.items.map((partner, index) => (
             <Link
               key={index}
@@ -50,16 +58,16 @@ export default function PartnersPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Card hoverable className="h-full">
+              <Card hoverable className="h-full group">
                 <div className="space-y-4">
                   {/* Logo */}
-                  <div className="relative aspect-square bg-gray-50 rounded-xl overflow-hidden flex items-center justify-center p-4">
+                  <div className="relative aspect-square bg-surface/30 rounded-xl overflow-hidden flex items-center justify-center p-4 border border-secondary/10 group-hover:border-secondary/30 transition-all duration-500">
                     <div className="relative w-full h-full">
                       <Image
                         src={partner.logo}
                         alt={partner.name}
                         fill
-                        className="object-contain"
+                        className="object-contain grayscale group-hover:grayscale-0 transition-all duration-500 brightness-75 group-hover:brightness-100"
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       />
                     </div>
@@ -67,7 +75,7 @@ export default function PartnersPage() {
                   
                   {/* Name */}
                   <div className="text-center">
-                    <h3 className="font-semibold text-black text-sm sm:text-base">
+                    <h3 className="font-semibold text-text-primary text-sm sm:text-base group-hover:text-secondary transition-colors">
                       {partner.name}
                     </h3>
                   </div>
@@ -79,11 +87,13 @@ export default function PartnersPage() {
       </Section>
 
       {/* Closing Statement */}
-      <Section className="bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <Card className="text-center">
+      <Section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary to-bg-secondary" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <Card variant="elevated" className="text-center">
             <div className="space-y-6">
-              <Text size="lg" color="secondary" align="center" className="leading-relaxed">
+              <Text size="lg" color="secondary" align="center" className="leading-relaxed text-text-secondary">
                 {partners.closing}
               </Text>
             </div>
@@ -92,12 +102,14 @@ export default function PartnersPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="bg-gradient-to-b from-white to-primary-50">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <Heading level={2} align="center">
+      <Section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-secondary/50 to-bg-primary" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
+          <Heading level={2} align="center" className="gradient-text">
             Interested in Partnership?
           </Heading>
-          <Text size="lg" color="secondary" align="center">
+          <Text size="lg" color="secondary" align="center" className="text-text-secondary">
             Let's collaborate to create unforgettable experiences for your audience
           </Text>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

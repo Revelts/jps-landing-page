@@ -78,13 +78,13 @@ export function BlacklistSearch({ initialUsers }: BlacklistSearchProps) {
   return (
     <div className="space-y-6">
       {/* Search Card */}
-      <Card>
+      <Card variant="elevated">
         <div className="space-y-4">
           {/* Search Input */}
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg
-                className="h-5 w-5 text-gray-400"
+                className="h-5 w-5 text-secondary"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -102,13 +102,13 @@ export function BlacklistSearch({ initialUsers }: BlacklistSearchProps) {
               value={query}
               onChange={handleSearchChange}
               placeholder="Cari nomor HP atau Instagram username..."
-              className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-base text-black"
+              className="block w-full pl-10 pr-10 py-3 bg-surface/50 border border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-base"
               aria-label="Search blacklist"
             />
             {query && (
               <button
                 onClick={handleClearSearch}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-text-tertiary hover:text-secondary transition-all duration-300"
                 aria-label="Clear search"
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,36 +125,36 @@ export function BlacklistSearch({ initialUsers }: BlacklistSearchProps) {
 
           {/* Filter Tabs */}
           <div className="flex items-center space-x-2 overflow-x-auto pb-2">
-            <Text size="sm" color="muted" className="flex-shrink-0">
+            <Text size="sm" color="muted" className="flex-shrink-0 text-text-muted">
               Filter:
             </Text>
             <div className="flex space-x-2">
               <button
                 onClick={() => handleSearchByChange('all')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   searchBy === 'all'
-                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                    : 'bg-gray-100 text-black hover:bg-indigo-50 hover:text-indigo-700'
+                    ? 'bg-gradient-to-r from-secondary to-accent text-bg-primary shadow-glow'
+                    : 'bg-surface/50 text-text-secondary hover:bg-secondary/10 hover:text-secondary border border-secondary/20'
                 }`}
               >
                 Semua
               </button>
               <button
                 onClick={() => handleSearchByChange('phone')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   searchBy === 'phone'
-                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                    : 'bg-gray-100 text-black hover:bg-indigo-50 hover:text-indigo-700'
+                    ? 'bg-gradient-to-r from-secondary to-accent text-bg-primary shadow-glow'
+                    : 'bg-surface/50 text-text-secondary hover:bg-secondary/10 hover:text-secondary border border-secondary/20'
                 }`}
               >
                 Phone
               </button>
               <button
                 onClick={() => handleSearchByChange('instagram')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   searchBy === 'instagram'
-                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                    : 'bg-gray-100 text-black hover:bg-indigo-50 hover:text-indigo-700'
+                    ? 'bg-gradient-to-r from-secondary to-accent text-bg-primary shadow-glow'
+                    : 'bg-surface/50 text-text-secondary hover:bg-secondary/10 hover:text-secondary border border-secondary/20'
                 }`}
               >
                 Instagram
@@ -163,15 +163,15 @@ export function BlacklistSearch({ initialUsers }: BlacklistSearchProps) {
           </div>
 
           {/* Results Count */}
-          <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-            <Text size="sm" color="secondary">
+          <div className="flex items-center justify-between pt-2 border-t border-secondary/20">
+            <Text size="sm" color="secondary" className="text-text-secondary">
               {filteredUsers.length} dari {initialUsers.length} pengguna
               {debouncedQuery && ` untuk "${debouncedQuery}"`}
             </Text>
             {debouncedQuery && (
               <button
                 onClick={handleClearSearch}
-                className="text-sm text-indigo-600 hover:text-purple-700 font-medium transition-colors"
+                className="text-sm text-secondary hover:text-accent font-medium transition-all duration-300"
               >
                 Reset
               </button>

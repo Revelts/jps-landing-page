@@ -75,7 +75,7 @@ export default function RootLayout({
   const siteNavigationSchema = generateSiteNavigationSchema();
 
   return (
-    <html lang="id" className={inter.variable}>
+    <html lang="id" className={`${inter.variable} dark`}>
       <head>
         {/* Geo-targeting Meta Tags */}
         <meta name="geo.region" content="ID-JK" />
@@ -112,7 +112,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased bg-white text-black">
+      <body className="antialiased bg-bg-primary text-text-primary">
         {/* Google Tag Manager */}
         <GoogleTagManager />
         

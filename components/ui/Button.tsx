@@ -34,39 +34,58 @@ export function Button({
     // Layout
     'inline-flex items-center justify-center',
     'font-medium',
+    'relative overflow-hidden',
+    'letter-spacing-wide',
     
-    // Transitions
-    'transition-all duration-200',
+    // Transitions - smooth and elegant
+    'transition-all duration-400 ease-out',
     
     // Focus states (accessibility)
-    'focus:outline-none focus:ring-2 focus:ring-offset-2',
+    'focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:ring-offset-2 focus:ring-offset-bg-primary',
     
     // Disabled states
-    'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
+    'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
     
-    // Active state
+    // Active state - subtle
     'active:scale-[0.98]'
   );
 
   const variantStyles = {
     primary: cn(
-      'bg-primary hover:bg-primary-600 text-white',
-      'focus:ring-primary-500',
-      'shadow-md hover:shadow-lg'
+      // Gradient background with border
+      'bg-gradient-to-r from-secondary to-accent',
+      'text-bg-primary font-semibold',
+      'shadow-glow hover:shadow-glow-lg',
+      'hover:from-secondary/90 hover:to-accent/90',
+      'hover:-translate-y-0.5',
+      'focus:ring-secondary'
     ),
     secondary: cn(
-      'bg-secondary hover:bg-secondary-600 text-white',
-      'focus:ring-secondary-500',
-      'shadow-md hover:shadow-lg'
+      // Glassmorphism with gradient border
+      'bg-surface/30 backdrop-blur-md',
+      'text-text-primary',
+      'border-2 border-transparent',
+      'bg-clip-padding',
+      'before:absolute before:inset-0 before:-z-10',
+      'before:bg-gradient-to-r before:from-secondary before:to-accent',
+      'before:rounded-[inherit] before:p-[2px]',
+      'hover:bg-surface/50 hover:shadow-glow-sm',
+      'hover:-translate-y-0.5',
+      'focus:ring-secondary'
     ),
     outline: cn(
-      'border-2 border-primary text-primary',
-      'hover:bg-primary hover:text-white',
-      'focus:ring-primary-500'
+      // Gradient border effect
+      'bg-transparent',
+      'text-secondary',
+      'border-2 border-secondary/50',
+      'hover:border-secondary hover:bg-secondary/10',
+      'hover:shadow-glow-sm hover:-translate-y-0.5',
+      'focus:ring-secondary'
     ),
     ghost: cn(
-      'text-primary hover:bg-primary-50',
-      'focus:ring-primary-500'
+      'text-secondary bg-transparent',
+      'hover:bg-secondary/10 hover:text-secondary',
+      'focus:ring-secondary'
     ),
   };
 

@@ -69,10 +69,10 @@ export function Pagination({
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4">
       {/* Info Text */}
-      <Text size="sm" color="secondary">
-        Menampilkan <span className="font-semibold text-black">{startItem}</span> -{' '}
-        <span className="font-semibold text-black">{endItem}</span> dari{' '}
-        <span className="font-semibold text-black">{totalItems}</span> data
+      <Text size="sm" color="secondary" className="text-text-secondary">
+        Menampilkan <span className="font-semibold text-text-primary">{startItem}</span> -{' '}
+        <span className="font-semibold text-text-primary">{endItem}</span> dari{' '}
+        <span className="font-semibold text-secondary">{totalItems}</span> data
       </Text>
 
       {/* Pagination Controls */}
@@ -82,11 +82,11 @@ export function Pagination({
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
           className={`
-            px-3 py-2 rounded-lg text-sm font-medium transition-all min-h-[44px] min-w-[44px]
+            px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 min-h-[44px] min-w-[44px]
             ${
               currentPage === 1
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-white text-black border border-gray-300 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 active:bg-indigo-100'
+                ? 'bg-surface/30 text-text-muted cursor-not-allowed border border-secondary/10'
+                : 'bg-surface/50 text-text-primary border border-secondary/30 hover:bg-secondary/10 hover:border-secondary hover:text-secondary'
             }
           `}
           aria-label="Previous page"
@@ -101,7 +101,7 @@ export function Pagination({
           {pageNumbers.map((page, index) => {
             if (page === '...') {
               return (
-                <span key={`ellipsis-${index}`} className="px-3 py-2 text-gray-500">
+                <span key={`ellipsis-${index}`} className="px-3 py-2 text-text-muted">
                   ...
                 </span>
               );
@@ -115,11 +115,11 @@ export function Pagination({
                 key={pageNum}
                 onClick={() => onPageChange(pageNum)}
                 className={`
-                  min-w-[44px] min-h-[44px] px-3 py-2 rounded-lg text-sm font-medium transition-all
+                  min-w-[44px] min-h-[44px] px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300
                   ${
                     isActive
-                      ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                      : 'bg-white text-black border border-gray-300 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 active:bg-indigo-100'
+                      ? 'bg-gradient-to-r from-secondary to-accent text-bg-primary shadow-glow'
+                      : 'bg-surface/50 text-text-primary border border-secondary/30 hover:bg-secondary/10 hover:border-secondary hover:text-secondary'
                   }
                 `}
                 aria-label={`Page ${pageNum}`}
@@ -132,8 +132,8 @@ export function Pagination({
         </div>
 
         {/* Mobile: Current Page Display */}
-        <div className="flex sm:hidden items-center px-4 py-2 bg-gray-100 rounded-lg">
-          <Text size="sm" className="font-medium">
+        <div className="flex sm:hidden items-center px-4 py-2 bg-surface/50 backdrop-blur-sm rounded-lg border border-secondary/20">
+          <Text size="sm" className="font-medium text-text-primary">
             {currentPage} / {totalPages}
           </Text>
         </div>
@@ -143,11 +143,11 @@ export function Pagination({
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
           className={`
-            px-3 py-2 rounded-lg text-sm font-medium transition-all min-h-[44px] min-w-[44px]
+            px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 min-h-[44px] min-w-[44px]
             ${
               currentPage === totalPages
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-white text-black border border-gray-300 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 active:bg-indigo-100'
+                ? 'bg-surface/30 text-text-muted cursor-not-allowed border border-secondary/10'
+                : 'bg-surface/50 text-text-primary border border-secondary/30 hover:bg-secondary/10 hover:border-secondary hover:text-secondary'
             }
           `}
           aria-label="Next page"

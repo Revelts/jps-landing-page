@@ -45,12 +45,12 @@ export function Text({
   };
 
   const colorStyles = {
-    primary: 'text-primary',
-    secondary: 'text-gray-700',
-    tertiary: 'text-gray-800',
-    muted: 'text-gray-500',
-    white: 'text-white',
-    gray: 'text-black',
+    primary: 'text-secondary',
+    secondary: 'text-text-secondary',
+    tertiary: 'text-text-tertiary',
+    muted: 'text-text-muted',
+    white: 'text-text-primary',
+    gray: 'text-text-secondary',
   };
 
   const alignStyles = {

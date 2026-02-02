@@ -75,26 +75,33 @@ export default function InvoicePageClient() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-indigo-50 py-12">
-      <Container>
+    <div className="min-h-screen relative overflow-hidden py-12">
+      {/* Premium background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-bg-primary via-bg-secondary to-bg-primary">
+        <div className="absolute inset-0 bg-gradient-to-tr from-secondary/5 via-transparent to-accent/5 animate-gradient-shift bg-[length:200%_200%]" />
+      </div>
+      <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-glow-pulse" />
+      <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
+      
+      <Container className="relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-8">
-            <Heading level={1} align="center" className="mb-2">
+            <Heading level={1} align="center" className="mb-2 gradient-text tracking-wide">
               Invoice Generator
             </Heading>
-            <p className="text-gray-600">
+            <p className="text-text-secondary">
               Create professional invoices for Jakarta Party Squad events
             </p>
           </div>
 
           {/* Invoice Card */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+          <div className="glass-strong rounded-2xl shadow-glass border-2 border-secondary/20 p-8 md:p-12">
             {/* Invoice Header */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-6 border-b border-gray-200">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-6 border-b border-secondary/20">
               <div className="flex items-center gap-4 mb-4 md:mb-0">
                 {/* Logo */}
-                <div className="w-16 h-16 rounded-lg flex items-center justify-center shadow-lg" style={{ filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))' }}>
+                <div className="w-16 h-16 rounded-lg flex items-center justify-center shadow-glow border border-secondary/30">
                   <Image
                     src="/assets/images/logo_3.png"
                     alt="Jakarta Party Squad Logo"
@@ -104,8 +111,8 @@ export default function InvoicePageClient() {
                   />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900">INVOICE</h2>
-                  <p className="text-sm text-gray-500">Jakarta Party Squad</p>
+                  <h2 className="text-3xl font-bold text-text-primary tracking-wide">INVOICE</h2>
+                  <p className="text-sm text-text-tertiary">Jakarta Party Squad</p>
                 </div>
               </div>
 
@@ -113,17 +120,17 @@ export default function InvoicePageClient() {
               <div className="relative">
                 <button
                   onClick={() => setShowDatePicker(!showDatePicker)}
-                  className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:border-indigo-500 transition"
+                  className="flex items-center gap-2 px-4 py-2 border border-secondary/30 bg-surface/50 rounded-lg hover:border-secondary hover:shadow-glow-sm transition-all duration-300"
                 >
-                  <Calendar className="w-4 h-4 text-gray-500" />
-                  <span className="text-sm font-medium text-gray-700">
+                  <Calendar className="w-4 h-4 text-secondary" />
+                  <span className="text-sm font-medium text-text-primary">
                     {format(invoiceDate, 'dd MMM yyyy')}
                   </span>
                 </button>
 
                 {/* Simple Date Display (can be enhanced with react-datepicker) */}
                 {showDatePicker && (
-                  <div className="absolute right-0 mt-2 p-4 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                  <div className="absolute right-0 mt-2 p-4 glass-strong border border-secondary/30 rounded-lg shadow-glass z-10">
                     <input
                       type="date"
                       value={format(invoiceDate, 'yyyy-MM-dd')}
@@ -131,7 +138,7 @@ export default function InvoicePageClient() {
                         setInvoiceDate(new Date(e.target.value));
                         setShowDatePicker(false);
                       }}
-                      className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="px-3 py-2 bg-surface/50 border border-secondary/30 text-text-primary rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all"
                     />
                   </div>
                 )}
@@ -140,7 +147,7 @@ export default function InvoicePageClient() {
 
             {/* Items Table */}
             <div className="mb-8">
-              <div className="grid grid-cols-12 gap-4 mb-3 text-sm font-semibold text-gray-700">
+              <div className="grid grid-cols-12 gap-4 mb-3 text-sm font-semibold text-text-primary tracking-wide">
                 <div className="col-span-7">DETAILS</div>
                 <div className="col-span-3 text-right">COST</div>
                 <div className="col-span-2"></div>
@@ -151,7 +158,7 @@ export default function InvoicePageClient() {
                 {items.map((item) => (
                   <div
                     key={item.id}
-                    className="grid grid-cols-12 gap-4 items-center bg-gray-50 p-3 rounded-lg border border-gray-200 hover:border-indigo-300 transition"
+                    className="grid grid-cols-12 gap-4 items-center bg-surface/40 backdrop-blur-sm p-3 rounded-lg border border-secondary/20 hover:border-secondary/40 hover:shadow-glow-sm transition-all duration-300"
                   >
                     {/* Details Input */}
                     <div className="col-span-7">
@@ -160,7 +167,7 @@ export default function InvoicePageClient() {
                         value={item.details}
                         onChange={(e) => handleUpdateDetails(item.id, e.target.value)}
                         placeholder="e.g., DJ Performance - Saturday Night"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+                        className="w-full px-3 py-2 bg-surface/50 border border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm"
                       />
                     </div>
 
@@ -172,7 +179,7 @@ export default function InvoicePageClient() {
                         onChange={(e) => handleUpdateCost(item.id, Number(e.target.value))}
                         min="0"
                         placeholder="0"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm text-right"
+                        className="w-full px-3 py-2 bg-surface/50 border border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm text-right"
                       />
                     </div>
 
@@ -181,7 +188,7 @@ export default function InvoicePageClient() {
                       <button
                         onClick={() => handleRemoveRow(item.id)}
                         disabled={items.length === 1}
-                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition disabled:opacity-30 disabled:cursor-not-allowed"
+                        className="p-2 text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded-lg transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
                         title="Remove item"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -194,7 +201,7 @@ export default function InvoicePageClient() {
               {/* Add Row Button */}
               <button
                 onClick={handleAddRow}
-                className="mt-4 flex items-center gap-2 px-4 py-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition font-medium"
+                className="mt-4 flex items-center gap-2 px-4 py-2 text-secondary hover:bg-secondary/10 rounded-lg transition-all duration-300 font-medium border border-secondary/20 hover:border-secondary/40"
               >
                 <Plus className="w-4 h-4" />
                 Add Row
@@ -202,30 +209,30 @@ export default function InvoicePageClient() {
             </div>
 
             {/* Total Section */}
-            <div className="border-t border-gray-200 pt-6 mb-8">
+            <div className="border-t border-secondary/20 pt-6 mb-8">
               <div className="flex justify-end items-center gap-8">
-                <span className="text-lg font-semibold text-gray-700">TOTAL:</span>
-                <span className="text-3xl font-bold text-indigo-600">
+                <span className="text-lg font-semibold text-text-secondary tracking-wide">TOTAL:</span>
+                <span className="text-3xl font-bold gradient-text">
                   {formatCurrency(calculateTotal())}
                 </span>
               </div>
             </div>
 
             {/* Payment Info */}
-            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 mb-8">
-              <h3 className="text-sm font-semibold text-gray-700 mb-3">PAYMENT INFORMATION</h3>
-              <div className="space-y-2 text-sm text-gray-600">
+            <div className="bg-gradient-to-r from-secondary/10 to-accent/10 rounded-xl p-6 mb-8 border border-secondary/20">
+              <h3 className="text-sm font-semibold text-text-primary mb-3 tracking-wide">PAYMENT INFORMATION</h3>
+              <div className="space-y-2 text-sm text-text-secondary">
                 <div className="flex justify-between">
                   <span className="font-medium">Account Name:</span>
-                  <span className="font-semibold text-gray-900">WILHELMINA</span>
+                  <span className="font-semibold text-text-primary">WILHELMINA</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-medium">Bank:</span>
-                  <span className="font-semibold text-gray-900">BCA</span>
+                  <span className="font-semibold text-text-primary">BCA</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-medium">Account Number:</span>
-                  <span className="font-semibold text-indigo-600">2730116341</span>
+                  <span className="font-semibold text-secondary">2730116341</span>
                 </div>
               </div>
             </div>
@@ -233,7 +240,7 @@ export default function InvoicePageClient() {
             {/* Download Button */}
             <button
               onClick={() => setDownloadPDF(true)}
-              className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:shadow-xl transition-all duration-300 font-semibold text-lg"
+              className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-secondary to-accent text-bg-primary rounded-xl hover:shadow-glow-lg transition-all duration-400 font-bold text-lg hover:-translate-y-1"
             >
               <Download className="w-5 h-5" />
               Download PDF
@@ -241,7 +248,7 @@ export default function InvoicePageClient() {
           </div>
 
           {/* Footer */}
-          <div className="text-center mt-8 text-sm text-gray-500">
+          <div className="text-center mt-8 text-sm text-text-tertiary">
             <p>Jakarta Party Squad • Professional Event Services</p>
           </div>
         </div>
