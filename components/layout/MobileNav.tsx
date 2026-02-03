@@ -8,10 +8,10 @@
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import { Building2, Music, Waves, LucideIcon, Camera, FileText, Mail } from 'lucide-react';
+import { Building2, Music, Waves, LucideIcon, Camera, FileText, Mail, Ban, Receipt, Info, Users, Calendar, Handshake, Gift, Calculator, LogIn, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { NavigationItem } from '@/types';
-import { siteConfig } from '@/lib/config';
+import { useAuth } from '@/contexts/AuthContext';
 
 // Icon mapping
 const iconMap: Record<string, LucideIcon> = {
@@ -21,6 +21,12 @@ const iconMap: Record<string, LucideIcon> = {
   'gallery': Camera,
   'blog': FileText,
   'contact': Mail,
+  'info': Info,
+  'users': Users,
+  'calendar': Calendar,
+  'handshake': Handshake,
+  'gift': Gift,
+  'calculator': Calculator,
 };
 
 interface MobileNavProps {
@@ -31,7 +37,8 @@ interface MobileNavProps {
 
 export function MobileNav({ isOpen, onClose, navigation }: MobileNavProps) {
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
-  const { callToAction } = siteConfig;
+  const { user, loading, logout } = useAuth();
+  
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-50 lg:hidden" onClose={onClose}>
@@ -126,26 +133,78 @@ export function MobileNav({ isOpen, onClose, navigation }: MobileNavProps) {
                           )}
                         </div>
                       ))}
+
+                      {/* Dashboard Section (for logged in users only) */}
+                      {!loading && user && (
+                        <div>
+                          <button
+                            onClick={() => setExpandedItem(expandedItem === 'Dashboard' ? null : 'Dashboard')}
+                            className="w-full flex items-center justify-between px-4 py-3 text-base font-medium text-text-secondary hover:bg-secondary/10 hover:text-secondary rounded-lg transition-all duration-300 min-h-[44px]"
+                          >
+                            <span>Dashboard</span>
+                            <ChevronDownIcon
+                              className={`h-5 w-5 transition-transform duration-300 ${
+                                expandedItem === 'Dashboard' ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </button>
+                          {expandedItem === 'Dashboard' && (
+                            <div className="mt-1 ml-4 space-y-1 animate-fade-in">
+                              <Link
+                                href="/dashboard/blacklist"
+                                onClick={onClose}
+                                className="flex items-center gap-3 px-4 py-3 text-sm text-text-tertiary hover:bg-secondary/10 hover:text-secondary rounded-lg transition-all duration-300"
+                              >
+                                <Ban className="w-5 h-5 text-red-400" />
+                                <div>
+                                  <div className="font-medium">Blacklist</div>
+                                  <div className="text-xs text-text-muted">Manage blacklist entries</div>
+                                </div>
+                              </Link>
+                              {/* Invoice - Only for Admin */}
+                              {user.role === 'Admin' && (
+                                <Link
+                                  href="/dashboard/invoice"
+                                  onClick={onClose}
+                                  className="flex items-center gap-3 px-4 py-3 text-sm text-text-tertiary hover:bg-secondary/10 hover:text-secondary rounded-lg transition-all duration-300"
+                                >
+                                  <Receipt className="w-5 h-5 text-accent" />
+                                  <div>
+                                    <div className="font-medium">Invoice</div>
+                                    <div className="text-xs text-text-muted">Generate invoices</div>
+                                  </div>
+                                </Link>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </nav>
 
-                    {/* Footer CTA */}
-                    <div className="border-t border-secondary/20 p-4 space-y-3">
-                      <Link
-                        href={callToAction.href}
-                        className="block w-full text-center px-4 py-3 bg-gradient-to-r from-secondary to-accent text-bg-primary font-semibold rounded-full hover:shadow-glow-lg transition-all duration-400 min-h-[44px] flex items-center justify-center"
-                        onClick={onClose}
-                      >
-                        {callToAction.text}
-                      </Link>
-                      <Link
-                        href="https://calculator.jakartapartysquad.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full text-center px-4 py-3 border-2 border-secondary text-secondary font-medium rounded-full hover:bg-secondary/10 transition-all duration-300 min-h-[44px] flex items-center justify-center"
-                        onClick={onClose}
-                      >
-                        Party Calculator
-                      </Link>
+                    {/* Footer Auth */}
+                    <div className="border-t border-secondary/20 p-4">
+                      {!loading && (
+                        <>
+                          {user ? (
+                            <button
+                              onClick={() => logout()}
+                              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-red-500/20 hover:bg-red-500/30 text-red-300 rounded-full transition-all duration-300 min-h-[44px] border border-red-500/30"
+                            >
+                              <LogOut className="w-5 h-5" />
+                              <span className="font-medium">Logout</span>
+                            </button>
+                          ) : (
+                            <Link
+                              href="/login"
+                              onClick={onClose}
+                              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-gradient-to-r from-secondary to-accent text-bg-primary font-semibold rounded-full hover:shadow-glow-lg transition-all duration-400 min-h-[44px]"
+                            >
+                              <LogIn className="w-5 h-5" />
+                              <span>Login</span>
+                            </Link>
+                          )}
+                        </>
+                      )}
                     </div>
                   </div>
                 </Dialog.Panel>

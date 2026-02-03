@@ -11,7 +11,11 @@
     "build-types": "tsc --noEmit --pretty",
     "prepare": "husky install",
     "migrate": "tsx scripts/migrate.ts",
-    "db:init": "tsx scripts/migrate.ts"
+    "migrate:roles": "tsx --env-file=.env.local scripts/migrate-roles.ts",
+    "db:init": "tsx scripts/migrate.ts",
+    "seed:blacklist": "node -r dotenv/config scripts/seed-blacklist.ts dotenv_config_path=.env.local || tsx --env-file=.env.local scripts/seed-blacklist.ts",
+    "seed:blacklist:force": "FORCE_SEED=true node -r dotenv/config scripts/seed-blacklist.ts dotenv_config_path=.env.local || FORCE_SEED=true tsx --env-file=.env.local scripts/seed-blacklist.ts",
+    "set-role": "tsx --env-file=.env.local scripts/set-user-role.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",

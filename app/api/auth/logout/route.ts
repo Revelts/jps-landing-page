@@ -23,9 +23,20 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Clear cookie
-    const response = NextResponse.json({ success: true });
-    response.cookies.delete('auth_token');
+    // Clear auth cookie with all settings
+    const response = NextResponse.json({ 
+      success: true,
+      message: 'Logged out successfully' 
+    });
+    
+    // Delete auth_token cookie
+    response.cookies.set('auth_token', '', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 0, // Expire immediately
+      path: '/',
+    });
 
     return response;
   } catch (error) {

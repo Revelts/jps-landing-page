@@ -110,16 +110,34 @@
       "href": "/"
     },
     {
-      "name": "About Us",
-      "href": "/about"
-    },
-    {
-      "name": "Community",
-      "href": "/community"
-    },
-    {
-      "name": "Events",
-      "href": "/events"
+      "name": "Discover",
+      "href": "#",
+      "dropdown": [
+        {
+          "name": "About Us",
+          "href": "/about",
+          "description": "Learn about our story",
+          "icon": "info"
+        },
+        {
+          "name": "Community",
+          "href": "/community",
+          "description": "Join our squad",
+          "icon": "users"
+        },
+        {
+          "name": "Events",
+          "href": "/events",
+          "description": "Upcoming parties",
+          "icon": "calendar"
+        },
+        {
+          "name": "Partners",
+          "href": "/partners",
+          "description": "Our collaborations",
+          "icon": "handshake"
+        }
+      ]
     },
     {
       "name": "Nightlife",
@@ -146,10 +164,6 @@
       ]
     },
     {
-      "name": "Partners",
-      "href": "/partners"
-    },
-    {
       "name": "Resources",
       "href": "#",
       "dropdown": [
@@ -170,6 +184,18 @@
           "href": "/contact",
           "description": "Get in touch",
           "icon": "contact"
+        },
+        {
+          "name": "Hosting Gratis",
+          "href": "/hosting/gratis",
+          "description": "Free crowd hosting",
+          "icon": "gift"
+        },
+        {
+          "name": "Party Calculator",
+          "href": "https://calculator.jakartapartysquad.com",
+          "description": "Calculate party costs",
+          "icon": "calculator"
         }
       ]
     }

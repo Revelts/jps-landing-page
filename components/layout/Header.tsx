@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Bars3Icon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import { Building2, Music, Waves, LucideIcon, User, LogOut, Settings, Camera, FileText, Mail } from 'lucide-react';
+import { Building2, Music, Waves, LucideIcon, User, LogOut, Settings, Camera, FileText, Mail, Ban, Receipt, Info, Users, Calendar, Handshake, Gift, Calculator } from 'lucide-react';
 import { MobileNav } from './MobileNav';
 import { LoginModal } from '../auth/LoginModal';
 import { Container } from '../ui/Container';
@@ -25,6 +25,12 @@ const iconMap: Record<string, LucideIcon> = {
   'gallery': Camera,
   'blog': FileText,
   'contact': Mail,
+  'info': Info,
+  'users': Users,
+  'calendar': Calendar,
+  'handshake': Handshake,
+  'gift': Gift,
+  'calculator': Calculator,
 };
 
 export function Header() {
@@ -33,7 +39,7 @@ export function Header() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const { navigation, company, callToAction } = siteConfig;
+  const { navigation, company } = siteConfig;
   const { user, loading, logout } = useAuth();
 
   useEffect(() => {
@@ -126,12 +132,65 @@ export function Header() {
                   )}
                 </div>
               ))}
-              <Link
-                href={callToAction.href}
-                className="inline-flex items-center px-5 py-2 text-sm font-semibold text-bg-primary bg-gradient-to-r from-secondary to-accent rounded-full hover:shadow-glow-lg transition-all duration-400 min-h-[40px] hover:-translate-y-0.5"
-              >
-                {callToAction.text}
-              </Link>
+              
+              {/* Dashboard Dropdown (Only for logged-in users) */}
+              {!loading && user && (
+                <div
+                  className="relative"
+                  onMouseEnter={() => setOpenDropdown('Dashboard')}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <button
+                    className="inline-flex items-center gap-1 text-sm font-medium text-text-secondary hover:text-secondary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary/50 rounded px-3 py-2 hover:bg-secondary/5"
+                  >
+                    Dashboard
+                    <ChevronDownIcon className="h-4 w-4" />
+                  </button>
+                  {openDropdown === 'Dashboard' && (
+                    <div className="absolute top-full left-0 pt-2 z-50">
+                      <div className="w-64 bg-surface/90 backdrop-blur-xl rounded-xl shadow-glass border border-secondary/20 py-2">
+                        <Link
+                          href="/dashboard/blacklist"
+                          className="flex items-start gap-3 px-4 py-3 hover:bg-secondary/10 transition-all duration-300 group"
+                          onClick={() => setOpenDropdown(null)}
+                        >
+                          <div className="group-hover:scale-110 transition-transform duration-300 mt-0.5">
+                            <Ban className="w-6 h-6 text-red-400" />
+                          </div>
+                          <div>
+                            <div className="text-sm font-medium text-text-primary group-hover:text-secondary transition-colors">
+                              Blacklist
+                            </div>
+                            <div className="text-xs text-text-tertiary">
+                              Manage blacklist entries
+                            </div>
+                          </div>
+                        </Link>
+                        {/* Invoice - Only for Admin */}
+                        {user.role === 'Admin' && (
+                          <Link
+                            href="/dashboard/invoice"
+                            className="flex items-start gap-3 px-4 py-3 hover:bg-secondary/10 transition-all duration-300 group"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            <div className="group-hover:scale-110 transition-transform duration-300 mt-0.5">
+                              <Receipt className="w-6 h-6 text-accent" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium text-text-primary group-hover:text-secondary transition-colors">
+                                Invoice
+                              </div>
+                              <div className="text-xs text-text-tertiary">
+                                Generate invoices
+                              </div>
+                            </div>
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* User Menu / Login */}
               {!loading && (
@@ -163,10 +222,7 @@ export function Header() {
                               <span className="text-sm">Settings</span>
                             </Link>
                             <button
-                              onClick={() => {
-                                logout();
-                                setIsUserMenuOpen(false);
-                              }}
+                              onClick={() => logout()}
                               className="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-500/10 transition-all duration-300 text-text-secondary hover:text-red-400"
                             >
                               <LogOut className="h-4 w-4" />

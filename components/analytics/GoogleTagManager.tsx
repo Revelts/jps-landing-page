@@ -3,26 +3,35 @@
  * 
  * Handles GTM script injection for Next.js App Router
  * Includes both <head> script and <noscript> fallback
+ * Respects cookie consent
  */
 
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Script from 'next/script';
 import { getGTMConfig, getGTMHeadScript, getGTMNoScriptUrl, initDataLayer } from '@/lib/analytics/gtm';
+import { useCookieConsent } from '@/hooks/useCookieConsent';
 
 export function GoogleTagManager() {
   const config = getGTMConfig();
+  const { canTrack, isLoading } = useCookieConsent();
+  const [shouldLoad, setShouldLoad] = useState(false);
 
-  // Initialize dataLayer
+  // Initialize dataLayer only if consent is given
   useEffect(() => {
-    if (config.enabled && config.gtmId) {
+    if (config.enabled && config.gtmId && canTrack) {
       initDataLayer(config.dataLayerName);
+      setShouldLoad(true);
     }
-  }, [config]);
+  }, [config, canTrack]);
 
-  // Don't render if GTM is disabled or no ID provided
-  if (!config.enabled || !config.gtmId) {
+  // Don't render if GTM is disabled, no ID provided, still loading, or no consent
+  if (!config.enabled || !config.gtmId || isLoading || !canTrack) {
+    return null;
+  }
+
+  if (!shouldLoad) {
     return null;
   }
 

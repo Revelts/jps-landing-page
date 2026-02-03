@@ -7,6 +7,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { CookieConsent } from '@/components/layout/CookieConsent';
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager';
 import { ClickTracker } from '@/components/analytics/ClickTracker';
 import { AuthProvider } from '@/contexts/AuthContext';
@@ -124,6 +125,7 @@ export default function RootLayout({
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
+          <CookieConsent />
         </AuthProvider>
       </body>
     </html>

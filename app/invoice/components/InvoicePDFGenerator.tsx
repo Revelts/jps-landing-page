@@ -180,6 +180,7 @@ const InvoiceDocument = ({ items, total, date }: Omit<InvoicePDFGeneratorProps, 
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.logo}>
+            {/* Logo image for invoice header */}
             <Image
               src="/assets/images/logo_3.png"
               style={styles.logoImage}

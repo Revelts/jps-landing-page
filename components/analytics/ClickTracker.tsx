@@ -3,15 +3,23 @@
  * 
  * Automatically tracks all clicks on links and buttons
  * Works for internal navigation and external links
+ * Respects cookie consent
  */
 
 'use client';
 
 import { useEffect } from 'react';
 import { trackClick, trackSocialClick, trackNavigationClick } from '@/lib/analytics/dataLayer';
+import { useCookieConsent } from '@/hooks/useCookieConsent';
 
 export function ClickTracker() {
+  const { canTrack } = useCookieConsent();
+
   useEffect(() => {
+    // Don't track if no consent
+    if (!canTrack) {
+      return;
+    }
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
@@ -93,7 +101,7 @@ export function ClickTracker() {
     return () => {
       document.removeEventListener('click', handleClick, true);
     };
-  }, []);
+  }, [canTrack]);
 
   return null; // Tracking-only component
 }

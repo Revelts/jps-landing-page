@@ -52,6 +52,15 @@ export { sql };
 // Initialize database tables
 export async function initDB() {
   try {
+    // Create enum type for user roles
+    await sql`
+      DO $$ BEGIN
+        CREATE TYPE user_role AS ENUM ('Admin', 'Public Relation', 'Member');
+      EXCEPTION
+        WHEN duplicate_object THEN null;
+      END $$;
+    `;
+
     // Create users table with all columns including email verification
     await sql`
       CREATE TABLE IF NOT EXISTS users (
@@ -59,7 +68,7 @@ export async function initDB() {
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         name VARCHAR(255) NOT NULL,
-        role VARCHAR(50) DEFAULT 'user',
+        role user_role DEFAULT 'Member',
         email_verified BOOLEAN DEFAULT FALSE,
         verification_token VARCHAR(255),
         verification_token_expires TIMESTAMP,
@@ -93,6 +102,10 @@ export async function initDB() {
     await sql`
       CREATE INDEX IF NOT EXISTS idx_users_email_verified ON users(email_verified);
     `;
+    
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
+    `;
 
     // Create sessions table
     await sql`
@@ -116,6 +129,38 @@ export async function initDB() {
     
     await sql`
       CREATE INDEX IF NOT EXISTS idx_sessions_expires_at ON sessions(expires_at);
+    `;
+
+    // Create blacklist table
+    await sql`
+      CREATE TABLE IF NOT EXISTS blacklist (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255),
+        phone VARCHAR(50),
+        instagram VARCHAR(255),
+        reason TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        created_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+        updated_by INTEGER REFERENCES users(id) ON DELETE SET NULL
+      );
+    `;
+
+    // Create indexes for blacklist table
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_blacklist_phone ON blacklist(phone);
+    `;
+    
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_blacklist_instagram ON blacklist(instagram);
+    `;
+    
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_blacklist_name ON blacklist(name);
+    `;
+    
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_blacklist_created_at ON blacklist(created_at);
     `;
 
     console.log('✅ Database tables initialized with all columns and indexes');
