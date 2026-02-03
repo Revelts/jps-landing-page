@@ -110,6 +110,10 @@
       "href": "/"
     },
     {
+      "name": "Schedule",
+      "href": "/schedule"
+    },
+    {
       "name": "Discover",
       "href": "#",
       "dropdown": [

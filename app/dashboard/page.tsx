@@ -1,10 +1,12 @@
 /**
  * Dashboard Home Page
  * Overview page for authenticated users
+ * PROTECTED: Requires authentication
  */
 
 import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { authenticateUser } from '@/lib/auth-middleware';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
@@ -28,9 +30,15 @@ export default async function DashboardPage({
 }: {
   searchParams: { error?: string };
 }) {
-  // Get user info for role-based rendering
+  // Check authentication - redirect if not logged in
   const auth = await authenticateUser();
-  const userRole = auth.user?.role || 'Member';
+  
+  if (!auth.success || !auth.user) {
+    redirect('/login?redirect=/dashboard');
+  }
+  
+  // Get user role for rendering
+  const userRole = auth.user.role;
   const hasError = searchParams.error === 'unauthorized';
   return (
     <div className="min-h-screen relative overflow-hidden py-12">

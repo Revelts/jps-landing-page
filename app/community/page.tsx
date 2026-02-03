@@ -36,14 +36,14 @@ export default function CommunityPage() {
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-glow-pulse" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
         
-        <div className="relative z-10 text-center space-y-6 max-w-3xl mx-auto">
-          <Heading level={1} align="center" className="gradient-text tracking-wide">
+        <div className="relative z-10 text-center space-y-4 sm:space-y-6 max-w-3xl mx-auto px-4">
+          <Heading level={1} align="center" className="gradient-text tracking-wide text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
             {benefits.title}
           </Heading>
-          <Text size="lg" color="secondary" align="center" className="font-medium text-text-secondary">
+          <Text size="lg" color="secondary" align="center" className="font-medium text-text-secondary text-base sm:text-lg md:text-xl">
             {benefits.subtitle}
           </Text>
-          <Text size="base" color="secondary" align="center" className="text-text-tertiary">
+          <Text size="base" color="secondary" align="center" className="text-text-tertiary text-sm sm:text-base">
             {benefits.description}
           </Text>
         </div>
@@ -53,13 +53,13 @@ export default function CommunityPage() {
       <Section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-bg-secondary to-bg-primary" />
         
-        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 px-4">
           {benefits.items.map((benefit, index) => (
-            <Card key={index} hoverable variant="elevated" className="text-center">
-              <div className="space-y-4">
+            <Card key={index} hoverable variant="elevated" className="text-center" padding="lg">
+              <div className="space-y-4 sm:space-y-5">
                 {/* Icon */}
                 <div className="flex justify-center">
-                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 p-2 rounded-xl bg-surface/50 backdrop-blur-sm border border-secondary/20">
+                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 p-2 rounded-xl bg-surface/50 backdrop-blur-sm border border-secondary/20 shadow-glow-sm">
                     <Image
                       src={benefit.icon}
                       alt={benefit.name}
@@ -71,11 +71,11 @@ export default function CommunityPage() {
                 </div>
                 
                 {/* Content */}
-                <div className="space-y-2">
-                  <Heading level={3} className="text-xl sm:text-2xl gradient-text" align="center">
+                <div className="space-y-2 sm:space-y-3">
+                  <Heading level={3} className="text-lg sm:text-xl md:text-2xl gradient-text" align="center">
                     {benefit.name}
                   </Heading>
-                  <Text size="base" color="secondary" align="center" className="text-text-secondary">
+                  <Text size="base" color="secondary" align="center" className="text-text-secondary text-sm sm:text-base leading-relaxed max-w-md mx-auto px-2">
                     {benefit.description}
                   </Text>
                 </div>
@@ -91,22 +91,22 @@ export default function CommunityPage() {
         <div className="absolute inset-0 backdrop-blur-3xl bg-surface/30" />
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-secondary/30 rounded-full blur-3xl animate-glow-pulse" />
         
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <Card variant="elevated" className="text-center glass-strong">
-            <div className="space-y-6">
-              <Heading level={2} align="center" className="gradient-text">
+        <div className="relative z-10 max-w-4xl mx-auto px-4">
+          <Card variant="elevated" className="text-center glass-strong" padding="lg">
+            <div className="space-y-5 sm:space-y-6">
+              <Heading level={2} align="center" className="gradient-text text-2xl sm:text-3xl md:text-4xl">
                 Ready to Join the Squad?
               </Heading>
-              <Text size="lg" color="secondary" align="center" className="text-text-secondary">
+              <Text size="lg" color="secondary" align="center" className="text-text-secondary text-base sm:text-lg md:text-xl max-w-2xl mx-auto px-2">
                 Join over 2,000+ active members and become part of Jakarta's most vibrant nightlife community!
               </Text>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
                 <Link
                   href={mainHero.secondaryAction.href}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="primary" size="lg">
+                  <Button variant="primary" size="lg" className="w-full sm:w-auto">
                     Join WhatsApp Community
                   </Button>
                 </Link>
@@ -115,7 +115,7 @@ export default function CommunityPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="outline" size="lg">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
                     Partner with Us
                   </Button>
                 </Link>
@@ -130,11 +130,11 @@ export default function CommunityPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-bg-secondary/50 to-bg-primary" />
         
         <div className="relative z-10 space-y-8 sm:space-y-12">
-          <div className="text-center space-y-4">
-            <Heading level={2} align="center" className="gradient-text">
+          <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto px-4">
+            <Heading level={2} align="center" className="gradient-text text-2xl sm:text-3xl md:text-4xl">
               How to Get Started
             </Heading>
-            <Text size="base" color="secondary" align="center" className="text-text-secondary">
+            <Text size="base" color="secondary" align="center" className="text-text-secondary text-sm sm:text-base md:text-lg">
               Join our community in 3 simple steps
             </Text>
           </div>
@@ -157,15 +157,15 @@ export default function CommunityPage() {
                 description: 'Check out our event schedule and join your first party! Meet the community and start networking.',
               },
             ].map((item, index) => (
-              <Card key={index} variant="elevated" className="text-center">
-                <div className="space-y-4">
+              <Card key={index} variant="elevated" className="text-center" padding="lg">
+                <div className="space-y-4 sm:space-y-5">
                   <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-secondary to-accent text-bg-primary rounded-full text-2xl sm:text-3xl font-bold shadow-glow">
                     {item.step}
                   </div>
-                  <Heading level={3} className="text-xl sm:text-2xl gradient-text" align="center">
+                  <Heading level={3} className="text-lg sm:text-xl md:text-2xl gradient-text" align="center">
                     {item.title}
                   </Heading>
-                  <Text size="base" color="secondary" align="center" className="text-text-secondary">
+                  <Text size="base" color="secondary" align="center" className="text-text-secondary text-sm sm:text-base leading-relaxed max-w-xs mx-auto px-2">
                     {item.description}
                   </Text>
                 </div>

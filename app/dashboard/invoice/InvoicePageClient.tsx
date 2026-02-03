@@ -5,6 +5,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Container } from '@/components/ui/Container';
 import { Heading } from '@/components/ui/Heading';
 import { Trash2, Plus, Download, Calendar } from 'lucide-react';
 import { format } from 'date-fns';
@@ -12,7 +13,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
 // Dynamically import PDF generator (client-side only)
-const InvoicePDFGenerator = dynamic(() => import('../../invoice/components/InvoicePDFGenerator'), {
+const InvoicePDFGenerator = dynamic(() => import('./components/InvoicePDFGenerator'), {
   ssr: false,
 });
 
@@ -74,167 +75,206 @@ export default function InvoicePageClient() {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Page Header */}
-      <div>
-        <Heading level={1} className="text-3xl gradient-text">
-          Invoice Generator
-        </Heading>
-        <p className="text-text-secondary mt-1">
-          Create professional invoices for Jakarta Party Squad events
-        </p>
+    <div className="min-h-screen relative overflow-hidden py-8 sm:py-12 flex items-center justify-center">
+      {/* Premium background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-bg-primary via-bg-secondary to-bg-primary">
+        <div className="absolute inset-0 bg-gradient-to-tr from-secondary/5 via-transparent to-accent/5 animate-gradient-shift bg-[length:200%_200%]" />
       </div>
-
-      {/* Invoice Card */}
-      <div className="glass-strong rounded-2xl shadow-glass border-2 border-secondary/20 p-6 md:p-8">
-        {/* Invoice Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 pb-6 border-b border-secondary/20">
-          <div className="flex items-center gap-4 mb-4 md:mb-0">
-            {/* Logo */}
-            <div className="w-16 h-16 rounded-lg flex items-center justify-center shadow-glow border border-secondary/30">
-              <Image
-                src="/assets/images/logo_3.png"
-                alt="Jakarta Party Squad Logo"
-                width={64}
-                height={64}
-                className="object-contain"
-              />
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold text-text-primary tracking-wide">INVOICE</h2>
-              <p className="text-sm text-text-tertiary">Jakarta Party Squad</p>
-            </div>
-          </div>
-
-          {/* Date Picker */}
-          <div className="relative">
-            <button
-              onClick={() => setShowDatePicker(!showDatePicker)}
-              className="flex items-center gap-2 px-4 py-2 border border-secondary/30 bg-surface/50 rounded-lg hover:border-secondary hover:shadow-glow-sm transition-all duration-300"
+      <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-glow-pulse" />
+      <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
+      
+      <Container className="relative z-10 w-full">
+        <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+          {/* Back Navigation */}
+          <div className="mb-6">
+            <a
+              href="/dashboard"
+              className="inline-flex items-center gap-2 text-text-secondary hover:text-secondary transition-colors duration-200 group"
             >
-              <Calendar className="w-4 h-4 text-secondary" />
-              <span className="text-sm font-medium text-text-primary">
-                {format(invoiceDate, 'dd MMM yyyy')}
-              </span>
-            </button>
+              <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              <span className="text-sm font-medium">Back to Dashboard</span>
+            </a>
+          </div>
 
-            {showDatePicker && (
-              <div className="absolute right-0 mt-2 p-4 glass-strong border border-secondary/30 rounded-lg shadow-glass z-10">
-                <input
-                  type="date"
-                  value={format(invoiceDate, 'yyyy-MM-dd')}
-                  onChange={(e) => {
-                    setInvoiceDate(new Date(e.target.value));
-                    setShowDatePicker(false);
-                  }}
-                  className="px-3 py-2 bg-surface/50 border border-secondary/30 text-text-primary rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all"
-                />
+          {/* Page Header */}
+          <div className="text-center mb-10">
+            <Heading level={1} align="center" className="mb-3 gradient-text tracking-wide text-4xl sm:text-5xl">
+              Invoice Generator
+            </Heading>
+            <p className="text-text-secondary text-base mx-auto">
+              Create professional invoices for Jakarta Party Squad events
+            </p>
+          </div>
+
+          {/* Invoice Card */}
+          <div className="glass-strong rounded-2xl shadow-glass border-2 border-secondary/20 p-6 sm:p-8 lg:p-12 w-full">
+            {/* Invoice Header */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 pb-8 border-b-2 border-secondary/20 gap-4">
+              <div className="flex items-center gap-4 mb-4 md:mb-0">
+                {/* Logo */}
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-surface/50 flex items-center justify-center shadow-glow border-2 border-secondary/30">
+                  <Image
+                    src="/assets/images/logo_3.png"
+                    alt="Jakarta Party Squad Logo"
+                    width={80}
+                    height={80}
+                    className="object-contain p-2"
+                  />
+                </div>
+                <div>
+                  <h2 className="text-3xl sm:text-4xl font-bold text-text-primary tracking-wide">INVOICE</h2>
+                  <p className="text-sm sm:text-base text-text-tertiary mt-1">Jakarta Party Squad</p>
+                </div>
               </div>
-            )}
-          </div>
-        </div>
 
-        {/* Items Table */}
-        <div className="mb-8">
-          <div className="grid grid-cols-12 gap-4 mb-3 text-sm font-semibold text-text-primary tracking-wide">
-            <div className="col-span-7">DETAILS</div>
-            <div className="col-span-3 text-right">COST</div>
-            <div className="col-span-2"></div>
-          </div>
+              {/* Date Picker */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowDatePicker(!showDatePicker)}
+                  className="flex items-center gap-3 px-5 py-3 border-2 border-secondary/30 bg-surface/50 rounded-xl hover:border-secondary hover:shadow-glow-sm transition-all duration-300"
+                >
+                  <Calendar className="w-5 h-5 text-secondary" />
+                  <span className="text-sm sm:text-base font-semibold text-text-primary">
+                    {format(invoiceDate, 'dd MMM yyyy')}
+                  </span>
+                </button>
 
-          {/* Item Rows */}
-          <div className="space-y-3">
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="grid grid-cols-12 gap-4 items-center bg-surface/40 backdrop-blur-sm p-3 rounded-lg border border-secondary/20 hover:border-secondary/40 hover:shadow-glow-sm transition-all duration-300"
-              >
-                {/* Details Input */}
-                <div className="col-span-7">
-                  <input
-                    type="text"
-                    value={item.details}
-                    onChange={(e) => handleUpdateDetails(item.id, e.target.value)}
-                    placeholder="e.g., DJ Performance - Saturday Night"
-                    className="w-full px-3 py-2 bg-surface/50 border border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm"
-                  />
-                </div>
+                {/* Simple Date Display (can be enhanced with react-datepicker) */}
+                {showDatePicker && (
+                  <div className="absolute right-0 mt-2 p-4 glass-strong border-2 border-secondary/30 rounded-xl shadow-glass z-10">
+                    <input
+                      type="date"
+                      value={format(invoiceDate, 'yyyy-MM-dd')}
+                      onChange={(e) => {
+                        setInvoiceDate(new Date(e.target.value));
+                        setShowDatePicker(false);
+                      }}
+                      className="px-4 py-2.5 bg-surface/50 border-2 border-secondary/30 text-text-primary rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
 
-                {/* Cost Input */}
-                <div className="col-span-3">
-                  <input
-                    type="number"
-                    value={item.cost || ''}
-                    onChange={(e) => handleUpdateCost(item.id, Number(e.target.value))}
-                    min="0"
-                    placeholder="0"
-                    className="w-full px-3 py-2 bg-surface/50 border border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm text-right"
-                  />
-                </div>
+            {/* Items Table */}
+            <div className="mb-10 w-full">
+              <div className="grid grid-cols-12 gap-3 sm:gap-4 mb-4 pb-3 border-b border-secondary/20">
+                <div className="col-span-6 sm:col-span-7 text-xs sm:text-sm font-bold text-text-primary tracking-wider uppercase">Details</div>
+                <div className="col-span-4 sm:col-span-3 text-right text-xs sm:text-sm font-bold text-text-primary tracking-wider uppercase">Cost (IDR)</div>
+                <div className="col-span-2 text-center text-xs sm:text-sm font-bold text-text-primary tracking-wider uppercase hidden sm:block"></div>
+              </div>
 
-                {/* Delete Button */}
-                <div className="col-span-2 flex justify-end">
-                  <button
-                    onClick={() => handleRemoveRow(item.id)}
-                    disabled={items.length === 1}
-                    className="p-2 text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded-lg transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
-                    title="Remove item"
+              {/* Item Rows */}
+              <div className="space-y-3 w-full">
+                {items.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className="grid grid-cols-12 gap-2 sm:gap-4 items-center bg-surface/40 backdrop-blur-sm p-3 sm:p-4 rounded-xl border-2 border-secondary/20 hover:border-secondary/40 hover:shadow-glow-sm transition-all duration-300"
                   >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                    {/* Details Input */}
+                    <div className="col-span-12 sm:col-span-7">
+                      <input
+                        type="text"
+                        value={item.details}
+                        onChange={(e) => handleUpdateDetails(item.id, e.target.value)}
+                        placeholder={`Item ${index + 1} - e.g., DJ Performance, Venue Rental`}
+                        className="w-full px-4 py-3 bg-surface/50 border-2 border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm sm:text-base"
+                      />
+                    </div>
+
+                    {/* Cost Input */}
+                    <div className="col-span-10 sm:col-span-3">
+                      <input
+                        type="number"
+                        value={item.cost || ''}
+                        onChange={(e) => handleUpdateCost(item.id, Number(e.target.value))}
+                        min="0"
+                        placeholder="0"
+                        className="w-full px-4 py-3 bg-surface/50 border-2 border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-right font-semibold text-sm sm:text-base"
+                      />
+                    </div>
+
+                    {/* Delete Button */}
+                    <div className="col-span-2 flex justify-center sm:justify-end">
+                      <button
+                        onClick={() => handleRemoveRow(item.id)}
+                        disabled={items.length === 1}
+                        className="p-2.5 text-red-400 hover:bg-red-500/20 hover:text-red-300 rounded-lg transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed border-2 border-transparent hover:border-red-500/30"
+                        title="Remove item"
+                      >
+                        <Trash2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Add Row Button */}
+              <button
+                onClick={handleAddRow}
+                className="mt-5 flex items-center gap-2 px-5 py-3 text-secondary hover:bg-secondary/10 rounded-xl transition-all duration-300 font-semibold border-2 border-secondary/30 hover:border-secondary/50 hover:shadow-glow-sm"
+              >
+                <Plus className="w-5 h-5" />
+                Add Row
+              </button>
+            </div>
+
+            {/* Total Section */}
+            <div className="border-t-2 border-secondary/20 pt-8 mb-10 w-full">
+              <div className="flex flex-col sm:flex-row justify-between sm:justify-end items-center gap-4 sm:gap-12 bg-gradient-to-r from-secondary/5 to-accent/5 p-6 rounded-xl">
+                <span className="text-lg sm:text-xl font-bold text-text-secondary tracking-wider uppercase">Total:</span>
+                <span className="text-3xl sm:text-4xl lg:text-5xl font-black gradient-text text-center">
+                  {formatCurrency(calculateTotal())}
+                </span>
+              </div>
+            </div>
+
+            {/* Payment Info */}
+            <div className="bg-gradient-to-br from-secondary/10 via-accent/10 to-secondary/10 rounded-2xl p-6 sm:p-8 mb-8 border-2 border-secondary/20 shadow-glow w-full">
+              <h3 className="text-sm sm:text-base font-bold text-text-primary mb-5 tracking-wider uppercase flex items-center gap-2">
+                <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+                Payment Information
+              </h3>
+              <div className="space-y-3">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-2 border-b border-secondary/20 gap-1 sm:gap-2">
+                  <span className="font-medium text-text-secondary text-sm">Account Name:</span>
+                  <span className="font-bold text-text-primary text-base sm:text-lg">WILHELMINA</span>
+                </div>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-2 border-b border-secondary/20 gap-1 sm:gap-2">
+                  <span className="font-medium text-text-secondary text-sm">Bank:</span>
+                  <span className="font-bold text-text-primary text-base sm:text-lg">BCA</span>
+                </div>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-2 gap-1 sm:gap-2">
+                  <span className="font-medium text-text-secondary text-sm">Account Number:</span>
+                  <span className="font-bold text-secondary text-lg sm:text-xl tracking-wider">2730116341</span>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Download Button */}
+            <button
+              onClick={() => setDownloadPDF(true)}
+              className="w-full flex items-center justify-center gap-3 px-6 sm:px-8 py-4 sm:py-5 bg-gradient-to-r from-secondary to-accent text-white rounded-2xl hover:shadow-glow-lg transition-all duration-400 font-bold text-base sm:text-lg hover:-translate-y-1 border-2 border-secondary/30"
+            >
+              <Download className="w-5 h-5 sm:w-6 sm:h-6" />
+              Download PDF Invoice
+            </button>
           </div>
 
-          {/* Add Row Button */}
-          <button
-            onClick={handleAddRow}
-            className="mt-4 flex items-center gap-2 px-4 py-2 text-secondary hover:bg-secondary/10 rounded-lg transition-all duration-300 font-medium border border-secondary/20 hover:border-secondary/40"
-          >
-            <Plus className="w-4 h-4" />
-            Add Row
-          </button>
-        </div>
-
-        {/* Total Section */}
-        <div className="border-t border-secondary/20 pt-6 mb-8">
-          <div className="flex justify-end items-center gap-8">
-            <span className="text-lg font-semibold text-text-secondary tracking-wide">TOTAL:</span>
-            <span className="text-3xl font-bold gradient-text">
-              {formatCurrency(calculateTotal())}
-            </span>
+          {/* Footer */}
+          <div className="text-center mt-10 text-xs sm:text-sm text-text-tertiary">
+            <p className="flex items-center justify-center gap-2 flex-wrap">
+              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+              <span>Jakarta Party Squad • Professional Event Services</span>
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+            </p>
           </div>
         </div>
-
-        {/* Payment Info */}
-        <div className="bg-gradient-to-r from-secondary/10 to-accent/10 rounded-xl p-6 mb-8 border border-secondary/20">
-          <h3 className="text-sm font-semibold text-text-primary mb-3 tracking-wide">PAYMENT INFORMATION</h3>
-          <div className="space-y-2 text-sm text-text-secondary">
-            <div className="flex justify-between">
-              <span className="font-medium">Account Name:</span>
-              <span className="font-semibold text-text-primary">WILHELMINA</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="font-medium">Bank:</span>
-              <span className="font-semibold text-text-primary">BCA</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="font-medium">Account Number:</span>
-              <span className="font-semibold text-secondary">2730116341</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Download Button */}
-        <button
-          onClick={() => setDownloadPDF(true)}
-          className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-secondary to-accent text-bg-primary rounded-xl hover:shadow-glow-lg transition-all duration-400 font-bold text-lg hover:-translate-y-1"
-        >
-          <Download className="w-5 h-5" />
-          Download PDF
-        </button>
-      </div>
+      </Container>
 
       {/* PDF Generator (Hidden, only triggers download) */}
       {downloadPDF && (

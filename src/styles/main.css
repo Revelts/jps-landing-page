@@ -86,12 +86,21 @@
    ======================================== */
 
 @layer base {
+  /* ========================================
+     RESPONSIVE ENHANCEMENTS 2026
+     ======================================== */
+
   html {
     @apply antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
     /* Enable smooth scrolling */
     scroll-behavior: smooth;
+
+    /* Prevent horizontal scroll */
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   body {
@@ -101,10 +110,30 @@
     font-size: var(--text-base);
     line-height: 1.6;
 
+    /* Prevent horizontal scroll */
+    max-width: 100vw;
+    overflow-x: hidden;
+
     /* Subtle gradient overlay for depth */
     background-image:
       radial-gradient(ellipse at top, rgba(59, 206, 239, 0.05) 0%, transparent 50%),
       radial-gradient(ellipse at bottom, rgba(167, 139, 250, 0.05) 0%, transparent 50%);
+  }
+
+  /* Ensure all media respects container */
+  img,
+  video,
+  iframe,
+  embed {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Prevent code blocks from breaking layout */
+  pre,
+  code {
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   /* Premium Typography - Wide Letter Spacing for Headings */
@@ -115,6 +144,7 @@
     letter-spacing: 0.03em; /* Wide spacing for luxury feel */
     margin-bottom: var(--space-lg);
     color: var(--text-primary);
+    text-wrap: balance; /* Prevent orphans - modern CSS */
   }
 
   h2 {
@@ -124,6 +154,7 @@
     letter-spacing: 0.025em;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
+    text-wrap: balance;
   }
 
   h3 {
@@ -133,6 +164,7 @@
     letter-spacing: 0.02em;
     margin-bottom: var(--space-md);
     color: var(--text-primary);
+    text-wrap: balance;
   }
 
   h4 {
@@ -162,12 +194,19 @@
     color: var(--text-tertiary);
   }
 
-  /* Fluid Paragraph */
+  /* Fluid Paragraph - Optimized for readability */
   p {
     font-size: var(--text-base);
-    line-height: 1.625;
+    line-height: 1.75; /* Increased for better mobile reading */
     color: var(--text-secondary);
     margin-bottom: var(--space-md);
+    max-width: 65ch; /* Optimal line length (50-75 chars) */
+  }
+
+  /* Lists - Better readability */
+  ul,
+  ol {
+    max-width: 65ch;
   }
 
   /* Links - Cyber accent */
@@ -182,19 +221,46 @@
     text-shadow: 0 0 8px rgba(59, 206, 239, 0.3);
   }
 
-  /* Lists */
-  ul,
-  ol {
-    font-size: var(--text-base);
-    line-height: 1.625;
-    margin-bottom: var(--space-md);
-    color: var(--text-secondary);
+  /* Mobile typography safety - tiny screens */
+  @media (max-width: 374px) {
+    html {
+      font-size: 15px; /* Slightly larger base for tiny screens */
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 2.5rem);
+    }
+
+    /* Ensure touch targets remain large */
+    button,
+    a[role='button'] {
+      min-height: 44px;
+    }
+  }
+}
+
+/* ========================================
+   PERFORMANCE & ACCESSIBILITY
+   ======================================== */
+
+/* Reduce motion for accessibility & performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 
-  /* Ensure images are responsive by default */
-  img {
-    max-width: 100%;
-    height: auto;
+  /* Disable expensive blur effects */
+  .glass-strong,
+  .glass,
+  .glass-light {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(30, 41, 59, 0.95) !important;
   }
 }
 

@@ -24,12 +24,50 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const USER_CACHE_KEY = 'jps_user_cache';
+const AUTH_CHECK_KEY = 'jps_auth_checking';
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isChecking, setIsChecking] = useState(false);
+
+  // Load cached user from sessionStorage immediately
+  useEffect(() => {
+    try {
+      const cached = sessionStorage.getItem(USER_CACHE_KEY);
+      if (cached) {
+        const cachedUser = JSON.parse(cached);
+        setUser(cachedUser);
+        setLoading(false); // Show cached user immediately
+      }
+    } catch (error) {
+      console.error('Cache load error:', error);
+    }
+  }, []);
 
   // Memoize functions to prevent unnecessary re-renders
   const checkAuth = useCallback(async () => {
+    // Prevent multiple simultaneous calls
+    if (isChecking) {
+      console.log('Auth check already in progress, skipping...');
+      return;
+    }
+
+    // Check if we recently verified (within last 5 seconds)
+    const lastCheck = sessionStorage.getItem(AUTH_CHECK_KEY);
+    if (lastCheck) {
+      const lastCheckTime = parseInt(lastCheck, 10);
+      const now = Date.now();
+      if (now - lastCheckTime < 5000) {
+        console.log('Auth recently checked, using cache...');
+        setLoading(false);
+        return;
+      }
+    }
+
+    setIsChecking(true);
+    
     try {
       const response = await fetch('/api/auth/me', {
         cache: 'no-store',
@@ -37,16 +75,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
+        // Cache user info in sessionStorage
+        sessionStorage.setItem(USER_CACHE_KEY, JSON.stringify(data.user));
+        sessionStorage.setItem(AUTH_CHECK_KEY, Date.now().toString());
       } else {
         setUser(null);
+        sessionStorage.removeItem(USER_CACHE_KEY);
+        sessionStorage.removeItem(AUTH_CHECK_KEY);
       }
     } catch (error) {
       console.error('Check auth error:', error);
-      setUser(null);
+      // Don't clear user on network error - keep cached version
     } finally {
       setLoading(false);
+      setIsChecking(false);
     }
-  }, []);
+  }, [isChecking]);
 
   const login = useCallback(async (email: string, password: string) => {
     const response = await fetch('/api/auth/login', {
@@ -62,6 +106,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     setUser(data.user);
+    // Cache user info immediately after login
+    sessionStorage.setItem(USER_CACHE_KEY, JSON.stringify(data.user));
   }, []);
 
   const register = useCallback(async (email: string, password: string, name: string) => {
@@ -78,11 +124,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     setUser(data.user);
+    // Cache user info immediately after registration
+    sessionStorage.setItem(USER_CACHE_KEY, JSON.stringify(data.user));
   }, []);
 
   const logout = useCallback(async () => {
     try {
-      // Call logout API to clear server-side session
+      // Clear all auth-related cache immediately
+      sessionStorage.removeItem(USER_CACHE_KEY);
+      sessionStorage.removeItem(AUTH_CHECK_KEY);
+      
+      // Call logout API to clear server-side session (auth_token cookie)
       await fetch('/api/auth/logout', { 
         method: 'POST',
         credentials: 'include', // Include cookies
@@ -91,15 +143,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       // Clear client-side state
       setUser(null);
       
-      // Clear all cookies
-      document.cookie.split(";").forEach((c) => {
-        document.cookie = c
-          .replace(/^ +/, "")
-          .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-      });
-      
-      // Clear localStorage and sessionStorage
-      localStorage.clear();
+      // Only clear sessionStorage (keep cookies like consent, localStorage)
       sessionStorage.clear();
       
       // Force redirect to home with full page reload
@@ -108,14 +152,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.error('Logout error:', error);
       // Even if API fails, still clear client-side and redirect
       setUser(null);
+      sessionStorage.clear();
       window.location.href = '/';
     }
   }, []);
 
-  // Check authentication status on mount
+  // Check authentication status on mount - ONLY ONCE
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty deps - run only once on mount
 
   // Memoize context value to prevent unnecessary re-renders
   const value = useMemo(

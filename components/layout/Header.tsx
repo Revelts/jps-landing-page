@@ -78,6 +78,7 @@ export function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-4">
+              {/* Always render navigation items */}
               {navigation.map((item) => (
                 <div key={item.name} className="relative">
                   {item.dropdown ? (
@@ -186,6 +187,26 @@ export function Header() {
                             </div>
                           </Link>
                         )}
+                        {/* Weekly Schedule - Only for Admin */}
+                        {user.role === 'Admin' && (
+                          <Link
+                            href="/dashboard/weekly-schedule"
+                            className="flex items-start gap-3 px-4 py-3 hover:bg-secondary/10 transition-all duration-300 group"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            <div className="group-hover:scale-110 transition-transform duration-300 mt-0.5">
+                              <Calendar className="w-6 h-6 text-green-400" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium text-text-primary group-hover:text-secondary transition-colors">
+                                Weekly Schedule
+                              </div>
+                              <div className="text-xs text-text-tertiary">
+                                Manage event schedule
+                              </div>
+                            </div>
+                          </Link>
+                        )}
                       </div>
                     </div>
                   )}
@@ -193,9 +214,13 @@ export function Header() {
               )}
 
               {/* User Menu / Login */}
-              {!loading && (
-                <>
-                  {user ? (
+              {loading ? (
+                // Skeleton Loading - Shows immediately while checking auth
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface/30 border border-secondary/10">
+                  <div className="w-4 h-4 rounded-full bg-secondary/20 animate-pulse" />
+                  <div className="w-20 h-4 rounded bg-secondary/20 animate-pulse" />
+                </div>
+              ) : user ? (
                     <div
                       className="relative"
                       onMouseEnter={() => setIsUserMenuOpen(true)}
@@ -241,8 +266,6 @@ export function Header() {
                       Login
                     </button>
                   )}
-                </>
-              )}
             </nav>
 
             {/* Mobile Menu Button */}
