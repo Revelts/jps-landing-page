@@ -52,7 +52,7 @@ export { sql };
 // Initialize database tables
 export async function initDB() {
   try {
-    // Create users table
+    // Create users table with all columns including email verification
     await sql`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
@@ -60,9 +60,38 @@ export async function initDB() {
         password VARCHAR(255) NOT NULL,
         name VARCHAR(255) NOT NULL,
         role VARCHAR(50) DEFAULT 'user',
+        email_verified BOOLEAN DEFAULT FALSE,
+        verification_token VARCHAR(255),
+        verification_token_expires TIMESTAMP,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
+    `;
+
+    // Add email_verified column if table already exists without it
+    await sql`
+      ALTER TABLE users ADD COLUMN IF NOT EXISTS email_verified BOOLEAN DEFAULT FALSE;
+    `;
+    
+    await sql`
+      ALTER TABLE users ADD COLUMN IF NOT EXISTS verification_token VARCHAR(255);
+    `;
+    
+    await sql`
+      ALTER TABLE users ADD COLUMN IF NOT EXISTS verification_token_expires TIMESTAMP;
+    `;
+
+    // Create indexes for users table
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+    `;
+    
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_users_verification_token ON users(verification_token);
+    `;
+    
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_users_email_verified ON users(email_verified);
     `;
 
     // Create sessions table
@@ -76,7 +105,21 @@ export async function initDB() {
       );
     `;
 
-    console.log('✅ Database tables initialized');
+    // Create indexes for sessions table
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_sessions_token ON sessions(token);
+    `;
+    
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_sessions_user_id ON sessions(user_id);
+    `;
+    
+    await sql`
+      CREATE INDEX IF NOT EXISTS idx_sessions_expires_at ON sessions(expires_at);
+    `;
+
+    console.log('✅ Database tables initialized with all columns and indexes');
+    return { success: true, message: 'Database initialized successfully' };
   } catch (error) {
     console.error('❌ Error initializing database:', error);
     throw error;
