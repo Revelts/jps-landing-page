@@ -8,7 +8,7 @@
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import { Building2, Music, Waves, LucideIcon } from 'lucide-react';
+import { Building2, Music, Waves, LucideIcon, Camera, FileText, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { NavigationItem } from '@/types';
 import { siteConfig } from '@/lib/config';
@@ -18,6 +18,9 @@ const iconMap: Record<string, LucideIcon> = {
   'building': Building2,
   'music': Music,
   'waves': Waves,
+  'gallery': Camera,
+  'blog': FileText,
+  'contact': Mail,
 };
 
 interface MobileNavProps {

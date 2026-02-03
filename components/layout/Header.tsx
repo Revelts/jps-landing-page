@@ -9,24 +9,32 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Bars3Icon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import { Building2, Music, Waves, LucideIcon } from 'lucide-react';
+import { Building2, Music, Waves, LucideIcon, User, LogOut, Settings, Camera, FileText, Mail } from 'lucide-react';
 import { MobileNav } from './MobileNav';
+import { LoginModal } from '../auth/LoginModal';
 import { Container } from '../ui/Container';
 import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/contexts/AuthContext';
 
 // Icon mapping
 const iconMap: Record<string, LucideIcon> = {
   'building': Building2,
   'music': Music,
   'waves': Waves,
+  'gallery': Camera,
+  'blog': FileText,
+  'contact': Mail,
 };
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const { navigation, company, callToAction } = siteConfig;
+  const { user, loading, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,7 +71,7 @@ export function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-6">
+            <nav className="hidden lg:flex items-center space-x-4">
               {navigation.map((item) => (
                 <div key={item.name} className="relative">
                   {item.dropdown ? (
@@ -124,6 +132,61 @@ export function Header() {
               >
                 {callToAction.text}
               </Link>
+
+              {/* User Menu / Login */}
+              {!loading && (
+                <>
+                  {user ? (
+                    <div
+                      className="relative"
+                      onMouseEnter={() => setIsUserMenuOpen(true)}
+                      onMouseLeave={() => setIsUserMenuOpen(false)}
+                    >
+                      <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-text-secondary hover:text-secondary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary/50 rounded-full hover:bg-secondary/5 border border-secondary/20">
+                        <User className="h-4 w-4" />
+                        <span>{user.name}</span>
+                        <ChevronDownIcon className="h-4 w-4" />
+                      </button>
+                      {isUserMenuOpen && (
+                        <div className="absolute top-full right-0 pt-2 z-50">
+                          <div className="w-56 bg-surface/90 backdrop-blur-xl rounded-xl shadow-glass border border-secondary/20 py-2">
+                            <div className="px-4 py-3 border-b border-secondary/20">
+                              <p className="text-sm font-medium text-text-primary">{user.name}</p>
+                              <p className="text-xs text-text-tertiary truncate">{user.email}</p>
+                            </div>
+                            <Link
+                              href="/profile"
+                              className="flex items-center gap-3 px-4 py-3 hover:bg-secondary/10 transition-all duration-300 text-text-secondary hover:text-secondary"
+                              onClick={() => setIsUserMenuOpen(false)}
+                            >
+                              <Settings className="h-4 w-4" />
+                              <span className="text-sm">Settings</span>
+                            </Link>
+                            <button
+                              onClick={() => {
+                                logout();
+                                setIsUserMenuOpen(false);
+                              }}
+                              className="w-full flex items-center gap-3 px-4 py-3 hover:bg-red-500/10 transition-all duration-300 text-text-secondary hover:text-red-400"
+                            >
+                              <LogOut className="h-4 w-4" />
+                              <span className="text-sm">Logout</span>
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => setIsLoginModalOpen(true)}
+                      className="inline-flex items-center gap-2 px-5 py-2 text-sm font-semibold border-2 border-secondary text-secondary rounded-full hover:bg-secondary/10 transition-all duration-300 min-h-[40px] hover:-translate-y-0.5"
+                    >
+                      <User className="h-4 w-4" />
+                      Login
+                    </button>
+                  )}
+                </>
+              )}
             </nav>
 
             {/* Mobile Menu Button */}
@@ -147,6 +210,12 @@ export function Header() {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         navigation={navigation}
+      />
+
+      {/* Login Modal */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
       />
     </>
   );

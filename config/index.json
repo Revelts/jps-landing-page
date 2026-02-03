@@ -150,16 +150,28 @@
       "href": "/partners"
     },
     {
-      "name": "Gallery",
-      "href": "/gallery"
-    },
-    {
-      "name": "Blog",
-      "href": "/blog"
-    },
-    {
-      "name": "Contact",
-      "href": "/contact"
+      "name": "Resources",
+      "href": "#",
+      "dropdown": [
+        {
+          "name": "Gallery",
+          "href": "/gallery",
+          "description": "Event photos & moments",
+          "icon": "gallery"
+        },
+        {
+          "name": "Blog",
+          "href": "/blog",
+          "description": "Stories & insights",
+          "icon": "blog"
+        },
+        {
+          "name": "Contact",
+          "href": "/contact",
+          "description": "Get in touch",
+          "icon": "contact"
+        }
+      ]
     }
   ],
   "callToAction": {

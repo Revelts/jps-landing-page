@@ -9,6 +9,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager';
 import { ClickTracker } from '@/components/analytics/ClickTracker';
+import { AuthProvider } from '@/contexts/AuthContext';
 import { 
   generateMetadata as genMeta, 
   generateOrganizationSchema, 
@@ -119,9 +120,11 @@ export default function RootLayout({
         {/* Click Tracker - Auto-track all clicks */}
         <ClickTracker />
         
-        <Header />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
