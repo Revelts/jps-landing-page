@@ -85,6 +85,14 @@ export default function RootLayout({
         <meta name="geo.position" content="-6.2088;106.8456" />
         <meta name="ICBM" content="-6.2088, 106.8456" />
         
+        {/* RSS Feed - For blog subscribers and search engines */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Jakarta Party Squad Blog RSS Feed"
+          href="https://jakartapartysquad.com/feed.xml"
+        />
+        
         {/* Structured Data - Organization */}
         <script
           type="application/ld+json"

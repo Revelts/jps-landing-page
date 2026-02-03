@@ -1,6 +1,44 @@
+# Jakarta Party Squad - Robots.txt
+# Allow all search engines to index all pages
+
 User-agent: *
 Allow: /
 
-Sitemap: https://jakartapartysquad.com/sitemap.xml
+# Disallow admin and dashboard pages (private area)
+Disallow: /dashboard/
+Disallow: /api/admin/
+Disallow: /login
+Disallow: /verify-email
 
+# Disallow duplicate query parameters
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Sitemaps - Help search engines discover all pages
+Sitemap: https://jakartapartysquad.com/sitemap.xml
+Sitemap: https://jakartapartysquad.com/blog-sitemap.xml
+Sitemap: https://jakartapartysquad.com/feed.xml
+
+# Crawl-delay for specific bots (prevent overload)
+User-agent: GPTBot
+Crawl-delay: 2
+
+User-agent: ChatGPT-User
+Crawl-delay: 2
+
+# Allow social media crawlers (for OpenGraph)
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
 

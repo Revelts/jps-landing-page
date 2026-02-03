@@ -6,6 +6,7 @@ import { siteUrl, siteName } from './config';
 /**
  * Generate metadata for pages
  * Single Responsibility: Only handles metadata generation
+ * Includes full OpenGraph support for all social media (Facebook, Instagram, Twitter, WhatsApp, LinkedIn, etc.)
  */
 export function generateMetadata(config: MetadataConfig): Metadata {
   const {
@@ -37,6 +38,7 @@ export function generateMetadata(config: MetadataConfig): Metadata {
         'id-ID': siteUrl,
       },
     },
+    // OpenGraph for Facebook, WhatsApp, LinkedIn, and other platforms
     openGraph: {
       title: fullTitle,
       description,
@@ -48,23 +50,39 @@ export function generateMetadata(config: MetadataConfig): Metadata {
           width: 1200,
           height: 630,
           alt: title,
+          type: 'image/jpeg',
         },
         {
           url: `${siteUrl}/assets/images/logo_2_512.png`,
           width: 512,
           height: 512,
           alt: `${siteName} Logo`,
+          type: 'image/png',
         },
       ],
       locale: 'id_ID',
       type: 'website',
+      // Additional OG tags for better social media support
+      countryName: 'Indonesia',
     },
+    // Twitter Card (X)
     twitter: {
       card: 'summary_large_image',
       title: fullTitle,
       description,
       images: [ogImage],
       creator: '@jakartapartysquad',
+      site: '@jakartapartysquad',
+    },
+    // Additional meta tags for other platforms
+    other: {
+      // WhatsApp uses og: tags but these help with rich previews
+      'og:image:width': '1200',
+      'og:image:height': '630',
+      // Telegram
+      'telegram:channel': '@jakartapartysquad',
+      // Pinterest
+      'pinterest:description': description,
     },
     robots: {
       index: true,
@@ -358,5 +376,147 @@ export function generateFAQSchema(faqs: Array<{ question: string; answer: string
         text: faq.answer,
       },
     })),
+  };
+}
+
+/**
+ * Generate Article Schema for blog posts
+ */
+export function generateArticleSchema(article: {
+  title: string;
+  description: string;
+  image: string;
+  datePublished: string;
+  dateModified?: string;
+  author?: string;
+  slug: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${siteUrl}/blog/${article.slug}#article`,
+    headline: article.title,
+    description: article.description,
+    image: article.image,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified || article.datePublished,
+    author: {
+      '@type': 'Person',
+      name: article.author || 'Jakarta Party Squad',
+      url: siteUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: siteName,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/assets/images/logo_2_512.png`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteUrl}/blog/${article.slug}`,
+    },
+    isPartOf: {
+      '@id': `${siteUrl}/#website`,
+    },
+  };
+}
+
+/**
+ * Generate Blog-specific metadata with full social media support
+ */
+export function generateBlogMetadata(config: {
+  title: string;
+  description: string;
+  image?: string;
+  slug?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  tags?: string[];
+  category?: string;
+}): Metadata {
+  const {
+    title,
+    description,
+    image = `${siteUrl}/assets/images/header.jpg`,
+    slug,
+    publishedTime,
+    modifiedTime,
+    author,
+    tags,
+    category,
+  } = config;
+
+  const fullTitle = `${title} | Jakarta Party Squad`;
+  const pageUrl = slug ? `${siteUrl}/blog/${slug}` : `${siteUrl}/blog`;
+  const isArticle = !!slug;
+
+  return {
+    title,
+    description,
+    keywords: tags?.join(', ') || 'jakarta party, nightlife jakarta, club jakarta',
+    authors: author ? [{ name: author }] : [{ name: siteName }],
+    creator: author || siteName,
+    publisher: siteName,
+    
+    // OpenGraph for Facebook, WhatsApp, LinkedIn, Instagram, and other platforms
+    openGraph: {
+      title: fullTitle,
+      description,
+      url: pageUrl,
+      siteName,
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: title,
+          type: 'image/jpeg',
+        },
+      ],
+      locale: 'id_ID',
+      type: isArticle ? 'article' : 'website',
+      ...(isArticle && publishedTime && {
+        publishedTime,
+        modifiedTime: modifiedTime || publishedTime,
+        authors: author ? [author] : ['Jakarta Party Squad'],
+        section: category || 'Nightlife',
+        tags: tags || ['Jakarta', 'Party', 'Nightlife'],
+      }),
+      countryName: 'Indonesia',
+    },
+    
+    // Twitter Card (X)
+    twitter: {
+      card: 'summary_large_image',
+      title: fullTitle,
+      description,
+      images: [image],
+      creator: '@jakartapartysquad',
+      site: '@jakartapartysquad',
+    },
+    
+    // Additional meta tags for WhatsApp and other platforms
+    other: {
+      'og:image:width': '1200',
+      'og:image:height': '630',
+      'og:image:alt': title,
+      ...(isArticle && publishedTime && {
+        'article:published_time': publishedTime,
+        'article:modified_time': modifiedTime || publishedTime,
+        'article:author': author || 'Jakarta Party Squad',
+        'article:section': category || 'Nightlife',
+        ...(tags && tags.length > 0 && {
+          'article:tag': tags.join(', '),
+        }),
+      }),
+    },
+    
+    alternates: {
+      canonical: pageUrl,
+    },
   };
 }
