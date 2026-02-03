@@ -6,6 +6,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { sendEmail, emailTemplates, generateVerificationToken } from '@/lib/email';
 
+// Mark as dynamic route
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json();

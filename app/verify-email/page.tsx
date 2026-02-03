@@ -4,13 +4,13 @@
  */
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { CheckCircle2, XCircle, Loader2 } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 
-export default function VerifyEmailPage() {
+function VerifyEmailContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
@@ -136,5 +136,32 @@ export default function VerifyEmailPage() {
         </div>
       </Container>
     </main>
+  );
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-gradient-to-br from-bg-primary via-bg-secondary to-bg-tertiary flex items-center justify-center py-12 px-4">
+          <Container>
+            <div className="max-w-md mx-auto">
+              <div className="bg-surface/80 backdrop-blur-xl rounded-3xl border border-secondary/20 shadow-glass p-8 sm:p-12">
+                <div className="flex justify-center mb-6">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-r from-secondary/20 to-accent/20 flex items-center justify-center">
+                    <Loader2 className="w-10 h-10 text-secondary animate-spin" />
+                  </div>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-bold text-center mb-4 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+                  Loading...
+                </h1>
+              </div>
+            </div>
+          </Container>
+        </main>
+      }
+    >
+      <VerifyEmailContent />
+    </Suspense>
   );
 }

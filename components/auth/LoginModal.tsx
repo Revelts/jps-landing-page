@@ -94,7 +94,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
       } else {
         setError(data.error || 'Gagal mengirim email');
       }
-    } catch (err: any) {
+    } catch {
       setError('Terjadi kesalahan saat mengirim email');
     } finally {
       setIsResending(false);

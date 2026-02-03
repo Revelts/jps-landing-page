@@ -6,6 +6,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 import { verifyPassword, generateToken, isValidEmail } from '@/lib/auth';
 
+// Mark as dynamic route (uses cookies)
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json();

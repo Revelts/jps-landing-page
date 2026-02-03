@@ -7,6 +7,9 @@ import { query } from '@/lib/db';
 import { hashPassword, isValidEmail, isValidPassword } from '@/lib/auth';
 import { sendEmail, emailTemplates, generateVerificationToken } from '@/lib/email';
 
+// Mark as dynamic route
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const { email, password, name } = await request.json();

@@ -31,7 +31,7 @@ function getLogoBase64(): string {
     const logoPath = path.join(process.cwd(), 'public', 'assets', 'images', 'logo_2.png');
     const logoBuffer = fs.readFileSync(logoPath);
     return logoBuffer.toString('base64');
-  } catch (error) {
+  } catch {
     console.warn('⚠️  Could not read logo file, using fallback');
     return '';
   }
@@ -81,7 +81,7 @@ export async function sendEmail({
             content_id: 'logo',
           },
         ];
-      } catch (error) {
+      } catch {
         console.warn('⚠️  Could not attach logo, email will use fallback');
       }
     }

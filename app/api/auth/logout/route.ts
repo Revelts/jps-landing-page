@@ -3,6 +3,9 @@
  * POST /api/auth/logout
  */
 import { NextRequest, NextResponse } from 'next/server';
+
+// Mark as dynamic route (uses cookies)
+export const dynamic = 'force-dynamic';
 import { query } from '@/lib/db';
 import { verifyToken } from '@/lib/auth';
 

@@ -31,7 +31,7 @@ export function generateToken(userId: number, email: string, role: string = 'use
 export function verifyToken(token: string): any {
   try {
     return jwt.verify(token, JWT_SECRET);
-  } catch (error) {
+  } catch {
     return null;
   }
 }
