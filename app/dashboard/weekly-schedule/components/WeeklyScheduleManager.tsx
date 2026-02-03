@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Container } from '@/components/ui/Container';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -141,7 +141,7 @@ export default function WeeklyScheduleManager({ user }: WeeklyScheduleManagerPro
 
     try {
       // Prepare data for API (remove temporary fields)
-      const eventsData = events.map(({ id, genreInput, ...event }) => event);
+      const eventsData = events.map(({ id: _id, genreInput: _genreInput, ...event }) => event);
 
       const response = await fetch('/api/admin/schedule', {
         method: 'POST',

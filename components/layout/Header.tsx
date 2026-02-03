@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Bars3Icon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import { Building2, Music, Waves, LucideIcon, User, LogOut, Settings, Camera, FileText, Mail, Ban, Receipt, Info, Users, Calendar, Handshake, Gift, Calculator } from 'lucide-react';
+import { Building2, Music, Waves, LucideIcon, User, LogOut, Settings, Camera, FileText, Mail, Ban, Receipt, Info, Users, Calendar, Handshake, Gift, Calculator, PenLine } from 'lucide-react';
 import { MobileNav } from './MobileNav';
 import { LoginModal } from '../auth/LoginModal';
 import { Container } from '../ui/Container';
@@ -183,6 +183,26 @@ export function Header() {
                               </div>
                               <div className="text-xs text-text-tertiary">
                                 Generate invoices
+                              </div>
+                            </div>
+                          </Link>
+                        )}
+                        {/* Blog Editor - Only for Admin */}
+                        {user.role === 'Admin' && (
+                          <Link
+                            href="/dashboard/blog"
+                            className="flex items-start gap-3 px-4 py-3 hover:bg-secondary/10 transition-all duration-300 group"
+                            onClick={() => setOpenDropdown(null)}
+                          >
+                            <div className="group-hover:scale-110 transition-transform duration-300 mt-0.5">
+                              <PenLine className="w-6 h-6 text-purple-400" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium text-text-primary group-hover:text-secondary transition-colors">
+                                Blog Editor
+                              </div>
+                              <div className="text-xs text-text-tertiary">
+                                Create and manage posts
                               </div>
                             </div>
                           </Link>

@@ -1,8 +1,9 @@
 /**
  * Database Connection
- * PostgreSQL connection using Neon Serverless
- * Optimized for Vercel Edge Functions and serverless environments
+ * PostgreSQL connection using pg.Client for serverless environments
+ * Creates fresh connections per request to avoid caching issues
  */
+import { Client } from 'pg';
 import { neon } from '@neondatabase/serverless';
 
 // Get database URL with fallback support for multiple Neon env variable names
@@ -22,26 +23,30 @@ const getDatabaseUrl = () => {
   return databaseUrl;
 };
 
-// Get SQL client (supports tagged templates)
+// Get SQL client for tagged templates (keep for backward compatibility)
 const sql = neon(getDatabaseUrl());
 
-// Query function compatible with existing code using parameterized queries
-// For conventional queries with $1, $2 placeholders, use neon's query method
+// Query function using fresh pg.Client connections (serverless-friendly)
+// Creates new connection per query to avoid caching/stale data issues
 export async function query(text: string, params?: any[]) {
+  const client = new Client({ connectionString: getDatabaseUrl() });
+  
   try {
-    // Always use sql.query() for both parameterized and non-parameterized queries
-    // This ensures consistent behavior and proper TypeScript typing
-    const result = await (sql as any).query(text, params || []);
+    await client.connect();
+    const result = await client.query(text, params || []);
     
-    // Ensure we return the proper structure with rows array
-    return {
-      rows: result.rows || result || []
-    };
+    // pg returns { rows: [...], rowCount, ... }
+    const rows = result.rows || [];
+    
+    return { rows };
   } catch (error) {
-    console.error('Database query error:', error);
-    console.error('Query:', text);
-    console.error('Params:', params);
+    console.error('❌ Database query error:', error);
+    console.error('   Query:', text);
+    console.error('   Params:', params);
     throw error;
+  } finally {
+    // Always close connection
+    await client.end().catch(() => {});
   }
 }
 

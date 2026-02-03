@@ -181,6 +181,7 @@ const InvoiceDocument = ({ items, total, date }: Omit<InvoicePDFGeneratorProps, 
         <View style={styles.header}>
           <View style={styles.logo}>
             {/* Logo image for invoice header */}
+            {/* eslint-disable-next-line jsx-a11y/alt-text */}
             <Image
               src="/assets/images/logo_3.png"
               style={styles.logoImage}

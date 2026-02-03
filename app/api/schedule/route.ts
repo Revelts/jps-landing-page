@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 // GET: Fetch schedule events for public display
 export async function GET(request: NextRequest) {
   try {
@@ -38,7 +41,7 @@ export async function GET(request: NextRequest) {
     const result = await query(sql, params);
 
     // Transform data for frontend
-    const events = result.rows.map((row) => ({
+    const events = result.rows.map((row: any) => ({
       id: row.id,
       date: row.event_date, // Already formatted as YYYY-MM-DD by SQL
       venue: row.venue_name,
