@@ -30,6 +30,7 @@ export default function InvoicePageClient() {
   const [invoiceDate, setInvoiceDate] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [downloadPDF, setDownloadPDF] = useState(false);
+  const [recipient, setRecipient] = useState<string>('');
 
   // Add new row
   const handleAddRow = () => {
@@ -158,6 +159,23 @@ export default function InvoicePageClient() {
               </div>
             </div>
 
+            {/* Recipient Section */}
+            <div className="mb-8 bg-gradient-to-br from-secondary/10 via-accent/10 to-secondary/10 rounded-2xl p-6 sm:p-8 border-2 border-secondary/20 shadow-glow">
+              <h3 className="text-sm sm:text-base font-bold text-text-primary mb-4 tracking-wider uppercase flex items-center gap-2">
+                <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                Kepada / Recipient
+              </h3>
+              <input
+                type="text"
+                value={recipient}
+                onChange={(e) => setRecipient(e.target.value)}
+                placeholder="Nama penerima invoice / Client name"
+                className="w-full px-4 py-3 bg-surface/50 border-2 border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm sm:text-base"
+              />
+            </div>
+
             {/* Items Table */}
             <div className="mb-10 w-full">
               <div className="grid grid-cols-12 gap-3 sm:gap-4 mb-4 pb-3 border-b border-secondary/20">
@@ -282,6 +300,7 @@ export default function InvoicePageClient() {
           items={items}
           total={calculateTotal()}
           date={invoiceDate}
+          recipient={recipient}
           onComplete={() => setDownloadPDF(false)}
         />
       )}

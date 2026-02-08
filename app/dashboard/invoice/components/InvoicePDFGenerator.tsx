@@ -18,14 +18,15 @@ interface InvoicePDFGeneratorProps {
   items: InvoiceItem[];
   total: number;
   date: Date;
+  recipient: string;
   onComplete: () => void;
 }
 
-// PDF Styles
+// PDF Styles - Dark Theme
 const styles = StyleSheet.create({
   page: {
     padding: 40,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#1a1a1a',
     fontFamily: 'Helvetica',
   },
   header: {
@@ -33,8 +34,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 30,
-    borderBottom: 2,
+    borderBottomWidth: 2,
     borderBottomColor: '#6366f1',
+    borderBottomStyle: 'solid',
     paddingBottom: 20,
   },
   logo: {
@@ -53,29 +55,29 @@ const styles = StyleSheet.create({
   invoiceTitle: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#1f2937',
+    color: '#ffffff',
     marginBottom: 4,
   },
   subtitle: {
     fontSize: 10,
-    color: '#6b7280',
+    color: '#9ca3af',
   },
   dateSection: {
     alignItems: 'flex-end',
   },
   dateLabel: {
     fontSize: 10,
-    color: '#6b7280',
+    color: '#9ca3af',
     marginBottom: 4,
   },
   dateValue: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#1f2937',
+    color: '#e5e7eb',
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#f3f4f6',
+    backgroundColor: '#2d2d2d',
     padding: 12,
     marginBottom: 10,
     borderRadius: 4,
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
   tableHeaderText: {
     fontSize: 11,
     fontWeight: 'bold',
-    color: '#374151',
+    color: '#e5e7eb',
     textTransform: 'uppercase',
   },
   detailsColumn: {
@@ -96,18 +98,20 @@ const styles = StyleSheet.create({
   tableRow: {
     flexDirection: 'row',
     padding: 10,
-    borderBottom: 1,
-    borderBottomColor: '#e5e7eb',
+    borderBottomWidth: 1,
+    borderBottomColor: '#404040',
+    borderBottomStyle: 'solid',
   },
   tableRowText: {
     fontSize: 10,
-    color: '#374151',
+    color: '#d1d5db',
   },
   totalSection: {
     marginTop: 20,
     paddingTop: 20,
-    borderTop: 2,
+    borderTopWidth: 2,
     borderTopColor: '#6366f1',
+    borderTopStyle: 'solid',
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -115,24 +119,27 @@ const styles = StyleSheet.create({
   totalLabel: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#374151',
+    color: '#e5e7eb',
     marginRight: 30,
   },
   totalValue: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#6366f1',
+    color: '#818cf8',
   },
   paymentSection: {
     marginTop: 30,
     padding: 20,
-    backgroundColor: '#f0f9ff',
+    backgroundColor: '#2d2d2d',
     borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#404040',
+    borderStyle: 'solid',
   },
   paymentTitle: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#374151',
+    color: '#e5e7eb',
     marginBottom: 12,
     textTransform: 'uppercase',
   },
@@ -143,12 +150,12 @@ const styles = StyleSheet.create({
   },
   paymentLabel: {
     fontSize: 10,
-    color: '#6b7280',
+    color: '#9ca3af',
   },
   paymentValue: {
     fontSize: 10,
     fontWeight: 'bold',
-    color: '#1f2937',
+    color: '#ffffff',
   },
   footer: {
     position: 'absolute',
@@ -157,15 +164,37 @@ const styles = StyleSheet.create({
     right: 40,
     textAlign: 'center',
     fontSize: 9,
-    color: '#9ca3af',
-    borderTop: 1,
-    borderTopColor: '#e5e7eb',
+    color: '#6b7280',
+    borderTopWidth: 1,
+    borderTopColor: '#404040',
+    borderTopStyle: 'solid',
     paddingTop: 15,
+  },
+  recipientSection: {
+    marginBottom: 20,
+    padding: 15,
+    backgroundColor: '#2d2d2d',
+    borderRadius: 8,
+    borderLeftWidth: 4,
+    borderLeftColor: '#6366f1',
+    borderLeftStyle: 'solid',
+  },
+  recipientLabel: {
+    fontSize: 10,
+    color: '#9ca3af',
+    marginBottom: 6,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+  },
+  recipientValue: {
+    fontSize: 13,
+    color: '#ffffff',
+    fontWeight: 'bold',
   },
 });
 
 // PDF Document Component
-const InvoiceDocument = ({ items, total, date }: Omit<InvoicePDFGeneratorProps, 'onComplete'>) => {
+const InvoiceDocument = ({ items, total, date, recipient }: Omit<InvoicePDFGeneratorProps, 'onComplete'>) => {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('id-ID', {
       style: 'currency',
@@ -196,6 +225,14 @@ const InvoiceDocument = ({ items, total, date }: Omit<InvoicePDFGeneratorProps, 
             <Text style={styles.dateValue}>{format(date, 'dd MMM yyyy')}</Text>
           </View>
         </View>
+
+        {/* Recipient Section */}
+        {recipient && (
+          <View style={styles.recipientSection}>
+            <Text style={styles.recipientLabel}>Kepada / Recipient:</Text>
+            <Text style={styles.recipientValue}>{recipient}</Text>
+          </View>
+        )}
 
         {/* Table Header */}
         <View style={styles.tableHeader}>
@@ -249,13 +286,13 @@ const InvoiceDocument = ({ items, total, date }: Omit<InvoicePDFGeneratorProps, 
 };
 
 // Main Generator Component
-export default function InvoicePDFGenerator({ items, total, date, onComplete }: InvoicePDFGeneratorProps) {
+export default function InvoicePDFGenerator({ items, total, date, recipient, onComplete }: InvoicePDFGeneratorProps) {
   useEffect(() => {
     const generatePDF = async () => {
       try {
         // Generate PDF blob
         const blob = await pdf(
-          <InvoiceDocument items={items} total={total} date={date} />
+          <InvoiceDocument items={items} total={total} date={date} recipient={recipient} />
         ).toBlob();
 
         // Create download link
@@ -284,7 +321,7 @@ export default function InvoicePDFGenerator({ items, total, date, onComplete }: 
     };
 
     generatePDF();
-  }, [items, total, date, onComplete]);
+  }, [items, total, date, recipient, onComplete]);
 
   return null; // No UI needed, just triggers download
 }
