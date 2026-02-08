@@ -53,22 +53,37 @@ interface PageProps {
 // Generate metadata for SEO with full OpenGraph support for all social media
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    // Use direct database query instead of API fetch during build
+    // This prevents ECONNREFUSED errors when server isn't running
+    const result = await Promise.race([
+      query(`
+        SELECT 
+          bp.id,
+          bp.title,
+          bp.slug,
+          bp.excerpt,
+          bp.featured_image,
+          bp.published_at,
+          bp.updated_at,
+          COALESCE(u.name, 'Jakarta Party Squad') as author_name
+        FROM blog_posts bp
+        LEFT JOIN users u ON bp.author_id = u.id
+        WHERE bp.slug = $1 AND bp.status = 'published'
+        LIMIT 1
+      `, [params.slug]),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Query timeout')), 5000)
+      ) as Promise<any>
+    ]);
     
-    // Use next.revalidate instead of no-store for ISR
-    const response = await fetch(`${baseUrl}/api/blog/${params.slug}`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-    });
-    
-    if (!response.ok) {
+    if (!result.rows || result.rows.length === 0) {
       return generateBlogMetadata({
         title: 'Post Not Found',
         description: 'The blog post you are looking for could not be found.',
       });
     }
 
-    const data = await response.json();
-    const post = data.data;
+    const post = result.rows[0];
 
     return generateBlogMetadata({
       title: post.title,
@@ -78,8 +93,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       publishedTime: post.published_at,
       modifiedTime: post.updated_at,
       author: post.author_name || 'Jakarta Party Squad',
-      tags: post.tags || undefined, // Optional: added in migration 007
-      category: post.category || undefined, // Optional: added in migration 007
     });
   } catch (_error) {
     return generateBlogMetadata({
@@ -90,18 +103,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogDetailPage({ params }: PageProps) {
-  // Fetch post data for structured data (with ISR caching)
+  // Fetch post data for structured data (with direct database query)
   let articleSchema = null;
   
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/blog/${params.slug}`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-    });
+    const result = await Promise.race([
+      query(`
+        SELECT 
+          bp.id,
+          bp.title,
+          bp.slug,
+          bp.excerpt,
+          bp.featured_image,
+          bp.published_at,
+          bp.updated_at,
+          COALESCE(u.name, 'Jakarta Party Squad') as author_name
+        FROM blog_posts bp
+        LEFT JOIN users u ON bp.author_id = u.id
+        WHERE bp.slug = $1 AND bp.status = 'published'
+        LIMIT 1
+      `, [params.slug]),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Query timeout')), 5000)
+      ) as Promise<any>
+    ]);
     
-    if (response.ok) {
-      const data = await response.json();
-      const post = data.data;
+    if (result.rows && result.rows.length > 0) {
+      const post = result.rows[0];
       
       articleSchema = generateArticleSchema({
         title: post.title,
@@ -109,7 +137,7 @@ export default async function BlogDetailPage({ params }: PageProps) {
         image: post.featured_image || 'https://jakartapartysquad.com/assets/images/header.jpg',
         datePublished: post.published_at,
         dateModified: post.updated_at,
-        author: post.author_name || 'Jakarta Party Squad', // Use author_name from API
+        author: post.author_name || 'Jakarta Party Squad',
         slug: params.slug,
       });
     }
