@@ -23,6 +23,12 @@ interface InvoiceItem {
   cost: number;
 }
 
+interface PaymentInfo {
+  accountName: string;
+  bank: string;
+  accountNumber: string;
+}
+
 export default function InvoicePageClient() {
   const [items, setItems] = useState<InvoiceItem[]>([
     { id: 1, details: '', cost: 0 },
@@ -31,6 +37,11 @@ export default function InvoicePageClient() {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [downloadPDF, setDownloadPDF] = useState(false);
   const [recipient, setRecipient] = useState<string>('');
+  const [paymentInfo, setPaymentInfo] = useState<PaymentInfo>({
+    accountName: 'WILHELMINA',
+    bank: 'BCA',
+    accountNumber: '2730116341',
+  });
 
   // Add new row
   const handleAddRow = () => {
@@ -257,18 +268,36 @@ export default function InvoicePageClient() {
                 </svg>
                 Payment Information
               </h3>
-              <div className="space-y-3">
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-2 border-b border-secondary/20 gap-1 sm:gap-2">
-                  <span className="font-medium text-text-secondary text-sm">Account Name:</span>
-                  <span className="font-bold text-text-primary text-base sm:text-lg">WILHELMINA</span>
+              <div className="space-y-4">
+                <div className="flex flex-col gap-2">
+                  <label className="font-medium text-text-secondary text-sm">Account Name:</label>
+                  <input
+                    type="text"
+                    value={paymentInfo.accountName}
+                    onChange={(e) => setPaymentInfo({ ...paymentInfo, accountName: e.target.value })}
+                    placeholder="e.g., WILHELMINA"
+                    className="w-full px-4 py-3 bg-surface/50 border-2 border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm sm:text-base font-semibold"
+                  />
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-2 border-b border-secondary/20 gap-1 sm:gap-2">
-                  <span className="font-medium text-text-secondary text-sm">Bank:</span>
-                  <span className="font-bold text-text-primary text-base sm:text-lg">BCA</span>
+                <div className="flex flex-col gap-2">
+                  <label className="font-medium text-text-secondary text-sm">Bank:</label>
+                  <input
+                    type="text"
+                    value={paymentInfo.bank}
+                    onChange={(e) => setPaymentInfo({ ...paymentInfo, bank: e.target.value })}
+                    placeholder="e.g., BCA, Mandiri, BNI"
+                    className="w-full px-4 py-3 bg-surface/50 border-2 border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm sm:text-base font-semibold"
+                  />
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-2 gap-1 sm:gap-2">
-                  <span className="font-medium text-text-secondary text-sm">Account Number:</span>
-                  <span className="font-bold text-secondary text-lg sm:text-xl tracking-wider">2730116341</span>
+                <div className="flex flex-col gap-2">
+                  <label className="font-medium text-text-secondary text-sm">Account Number:</label>
+                  <input
+                    type="text"
+                    value={paymentInfo.accountNumber}
+                    onChange={(e) => setPaymentInfo({ ...paymentInfo, accountNumber: e.target.value })}
+                    placeholder="e.g., 2730116341"
+                    className="w-full px-4 py-3 bg-surface/50 border-2 border-secondary/30 text-text-primary placeholder:text-text-muted rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm sm:text-base font-semibold tracking-wider"
+                  />
                 </div>
               </div>
             </div>
@@ -285,11 +314,11 @@ export default function InvoicePageClient() {
 
           {/* Footer */}
           <div className="text-center mt-10 text-xs sm:text-sm text-text-tertiary">
-            <p className="flex items-center justify-center gap-2 flex-wrap">
+            <div className="flex items-center justify-center gap-2">
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-              <span>Jakarta Party Squad • Professional Event Services</span>
+              <span className="whitespace-nowrap">Jakarta Party Squad • Professional Event Services</span>
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-            </p>
+            </div>
           </div>
         </div>
       </Container>
@@ -301,6 +330,7 @@ export default function InvoicePageClient() {
           total={calculateTotal()}
           date={invoiceDate}
           recipient={recipient}
+          paymentInfo={paymentInfo}
           onComplete={() => setDownloadPDF(false)}
         />
       )}

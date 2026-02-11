@@ -14,11 +14,18 @@ interface InvoiceItem {
   cost: number;
 }
 
+interface PaymentInfo {
+  accountName: string;
+  bank: string;
+  accountNumber: string;
+}
+
 interface InvoicePDFGeneratorProps {
   items: InvoiceItem[];
   total: number;
   date: Date;
   recipient: string;
+  paymentInfo: PaymentInfo;
   onComplete: () => void;
 }
 
@@ -194,7 +201,7 @@ const styles = StyleSheet.create({
 });
 
 // PDF Document Component
-const InvoiceDocument = ({ items, total, date, recipient }: Omit<InvoicePDFGeneratorProps, 'onComplete'>) => {
+const InvoiceDocument = ({ items, total, date, recipient, paymentInfo }: Omit<InvoicePDFGeneratorProps, 'onComplete'>) => {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('id-ID', {
       style: 'currency',
@@ -263,15 +270,15 @@ const InvoiceDocument = ({ items, total, date, recipient }: Omit<InvoicePDFGener
           <Text style={styles.paymentTitle}>Payment Information</Text>
           <View style={styles.paymentRow}>
             <Text style={styles.paymentLabel}>Account Name:</Text>
-            <Text style={styles.paymentValue}>WILHELMINA</Text>
+            <Text style={styles.paymentValue}>{paymentInfo.accountName}</Text>
           </View>
           <View style={styles.paymentRow}>
             <Text style={styles.paymentLabel}>Bank:</Text>
-            <Text style={styles.paymentValue}>BCA</Text>
+            <Text style={styles.paymentValue}>{paymentInfo.bank}</Text>
           </View>
           <View style={styles.paymentRow}>
             <Text style={styles.paymentLabel}>Account Number:</Text>
-            <Text style={styles.paymentValue}>2730116341</Text>
+            <Text style={styles.paymentValue}>{paymentInfo.accountNumber}</Text>
           </View>
         </View>
 
@@ -286,13 +293,13 @@ const InvoiceDocument = ({ items, total, date, recipient }: Omit<InvoicePDFGener
 };
 
 // Main Generator Component
-export default function InvoicePDFGenerator({ items, total, date, recipient, onComplete }: InvoicePDFGeneratorProps) {
+export default function InvoicePDFGenerator({ items, total, date, recipient, paymentInfo, onComplete }: InvoicePDFGeneratorProps) {
   useEffect(() => {
     const generatePDF = async () => {
       try {
         // Generate PDF blob
         const blob = await pdf(
-          <InvoiceDocument items={items} total={total} date={date} recipient={recipient} />
+          <InvoiceDocument items={items} total={total} date={date} recipient={recipient} paymentInfo={paymentInfo} />
         ).toBlob();
 
         // Create download link
@@ -321,7 +328,7 @@ export default function InvoicePDFGenerator({ items, total, date, recipient, onC
     };
 
     generatePDF();
-  }, [items, total, date, recipient, onComplete]);
+  }, [items, total, date, recipient, paymentInfo, onComplete]);
 
   return null; // No UI needed, just triggers download
 }
