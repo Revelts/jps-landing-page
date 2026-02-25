@@ -10,9 +10,9 @@ export const metadata: Metadata = generateBlogMetadata({
 
 /**
  * SEO Optimization: Use ISR instead of force-dynamic
- * Revalidate every 30 minutes to show fresh content while maintaining cache
+ * Reduced revalidate time for faster content updates
  */
-export const revalidate = 1800; // Revalidate every 30 minutes
+export const revalidate = 300; // Revalidate every 5 minutes (was 30 minutes)
 
 export default function BlogPage() {
   return <BlogList />;

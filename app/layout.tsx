@@ -11,6 +11,7 @@ import { CookieConsent } from '@/components/layout/CookieConsent';
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager';
 import { ClickTracker } from '@/components/analytics/ClickTracker';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { GoogleMapsProvider } from '@/components/maps/GoogleMapsProvider';
 import { 
   generateMetadata as genMeta, 
   generateOrganizationSchema, 
@@ -130,10 +131,12 @@ export default function RootLayout({
         <ClickTracker />
         
         <AuthProvider>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-          <CookieConsent />
+          <GoogleMapsProvider>
+            <Header />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+            <CookieConsent />
+          </GoogleMapsProvider>
         </AuthProvider>
       </body>
     </html>

@@ -48,45 +48,65 @@ export default function BlogEditor({ user }: BlogEditorProps) {
   };
 
   const handleSubmit = async (publishNow = false) => {
+    console.log('🚀 Blog Editor - handleSubmit called', { publishNow });
     setMessage(null);
 
     // Validation
     if (!title.trim()) {
+      console.error('❌ Validation failed: Title is required');
       setMessage({ type: 'error', text: 'Title is required' });
       return;
     }
     if (!slug.trim()) {
+      console.error('❌ Validation failed: Slug is required');
       setMessage({ type: 'error', text: 'Slug is required' });
       return;
     }
     if (!content.trim() || content === '<p></p>') {
+      console.error('❌ Validation failed: Content is required', { content });
       setMessage({ type: 'error', text: 'Content is required' });
       return;
     }
 
+    console.log('✅ Validation passed, preparing to submit');
     setIsSubmitting(true);
 
     try {
+      const payload = {
+        title: title.trim(),
+        slug: slug.trim(),
+        content,
+        excerpt: excerpt.trim() || null,
+        featured_image: featuredImage.trim() || null,
+        status: publishNow ? 'published' : status,
+      };
+      
+      console.log('📤 Sending request to /api/admin/blog', payload);
+      
       const response = await fetch('/api/admin/blog', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title: title.trim(),
-          slug: slug.trim(),
-          content,
-          excerpt: excerpt.trim() || null,
-          featured_image: featuredImage.trim() || null,
-          status: publishNow ? 'published' : status,
-        }),
+        body: JSON.stringify(payload),
+      });
+
+      console.log('📥 Response received', { 
+        status: response.status, 
+        statusText: response.statusText,
+        ok: response.ok 
       });
 
       const data = await response.json();
+      console.log('📦 Response data:', data);
 
       if (data.success) {
+        console.log('✅ Blog post created successfully');
         setMessage({
           type: 'success',
           text: `Blog post ${publishNow ? 'published' : 'saved'} successfully!`,
         });
+        
+        // Scroll to top to show success message
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         
         // Reset form
         setTitle('');
@@ -98,14 +118,16 @@ export default function BlogEditor({ user }: BlogEditorProps) {
 
         setTimeout(() => setMessage(null), 5000);
       } else {
+        console.error('❌ API returned error:', data.message);
         setMessage({ type: 'error', text: data.message || 'Failed to save blog post' });
         setTimeout(() => setMessage(null), 5000);
       }
     } catch (error) {
-      console.error('Submit error:', error);
+      console.error('❌ Submit error:', error);
       setMessage({ type: 'error', text: 'Network error. Please try again.' });
       setTimeout(() => setMessage(null), 5000);
     } finally {
+      console.log('🏁 handleSubmit finished');
       setIsSubmitting(false);
     }
   };
@@ -137,23 +159,46 @@ export default function BlogEditor({ user }: BlogEditorProps) {
         </p>
       </div>
 
-      {/* Message */}
+      {/* Message - Sticky for better visibility */}
       {message && (
-        <Card
-          className={`mb-6 p-4 border-2 ${
-            message.type === 'success'
-              ? 'border-green-500/50 bg-green-500/10'
-              : 'border-red-500/50 bg-red-500/10'
-          }`}
-        >
-          <p
-            className={`text-center font-semibold ${
-              message.type === 'success' ? 'text-green-400' : 'text-red-400'
+        <div className="sticky top-0 z-50 mb-6 animate-fade-in">
+          <Card
+            className={`p-4 border-2 shadow-2xl ${
+              message.type === 'success'
+                ? 'border-green-500/50 bg-green-500/10 shadow-green-500/20'
+                : 'border-red-500/50 bg-red-500/10 shadow-red-500/20'
             }`}
           >
-            {message.text}
-          </p>
-        </Card>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                {message.type === 'success' ? (
+                  <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                ) : (
+                  <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                )}
+                <p
+                  className={`font-semibold text-base ${
+                    message.type === 'success' ? 'text-green-400' : 'text-red-400'
+                  }`}
+                >
+                  {message.text}
+                </p>
+              </div>
+              <button
+                onClick={() => setMessage(null)}
+                className="text-text-tertiary hover:text-text-primary transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </Card>
+        </div>
       )}
 
       {/* Layout: Editor + Preview */}
@@ -249,6 +294,20 @@ export default function BlogEditor({ user }: BlogEditorProps) {
                   <option value="published">Published</option>
                 </select>
               </div>
+
+              {/* Debug Panel - Development Only */}
+              {process.env.NODE_ENV === 'development' && (
+                <div className="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                  <p className="text-xs font-semibold text-yellow-400 mb-2">🔧 Debug Info:</p>
+                  <div className="text-xs space-y-1 text-yellow-300/80 font-mono">
+                    <p>Title: {title ? `"${title.slice(0, 30)}${title.length > 30 ? '...' : ''}"` : '(empty)'}</p>
+                    <p>Slug: {slug ? `"${slug}"` : '(empty)'}</p>
+                    <p>Content Length: {content.length} chars</p>
+                    <p>Content Valid: {content.trim() && content !== '<p></p>' ? '✅' : '❌'}</p>
+                    <p>Can Submit: {title.trim() && slug.trim() && content.trim() && content !== '<p></p>' ? '✅ YES' : '❌ NO'}</p>
+                  </div>
+                </div>
+              )}
             </div>
           </Card>
 

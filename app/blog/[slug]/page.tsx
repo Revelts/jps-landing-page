@@ -6,10 +6,10 @@ import { query } from '@/lib/db';
 /**
  * SEO Optimization: Use ISR (Incremental Static Regeneration)
  * - Pre-render pages at build time
- * - Revalidate every 1 hour to show fresh content
+ * - Reduced revalidate time for faster content updates
  * - Much better for SEO than force-dynamic
  */
-export const revalidate = 3600; // Revalidate every 1 hour
+export const revalidate = 300; // Revalidate every 5 minutes (was 1 hour)
 
 /**
  * Generate static params for popular blog posts

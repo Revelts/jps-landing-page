@@ -29,7 +29,11 @@ export default function BlogList() {
         setLoading(true);
         setError(null);
 
-        const response = await fetch('/api/blog');
+        // Add cache-busting timestamp to force fresh data
+        const timestamp = new Date().getTime();
+        const response = await fetch(`/api/blog?_t=${timestamp}`, {
+          cache: 'no-store', // Disable browser cache
+        });
         const data = await response.json();
 
         if (data.success) {

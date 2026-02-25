@@ -34,7 +34,11 @@ export default function BlogDetail({ slug }: BlogDetailProps) {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(`/api/blog/${slug}`);
+        // Add cache-busting timestamp to force fresh data
+        const timestamp = new Date().getTime();
+        const response = await fetch(`/api/blog/${slug}?_t=${timestamp}`, {
+          cache: 'no-store', // Disable browser cache
+        });
         const data = await response.json();
 
         if (data.success) {

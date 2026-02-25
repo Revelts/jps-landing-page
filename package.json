@@ -21,6 +21,7 @@
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@neondatabase/serverless": "^1.0.2",
+    "@react-google-maps/api": "^2.20.8",
     "@react-pdf/renderer": "^4.3.2",
     "@sendgrid/mail": "^8.1.6",
     "@tiptap/extension-image": "^3.18.0",

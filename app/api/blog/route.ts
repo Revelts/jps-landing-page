@@ -3,9 +3,10 @@ import { query } from '@/lib/db';
 
 /**
  * API Route must be dynamic because it uses searchParams
- * But we add cache headers for ISR behavior
+ * Reduced cache time for faster content updates
  */
 export const dynamic = 'force-dynamic';
+export const revalidate = 0; // Always get fresh data
 
 // GET: Fetch published blog posts for public display
 export async function GET(request: NextRequest) {
@@ -50,8 +51,8 @@ export async function GET(request: NextRequest) {
       },
       {
         headers: {
-          // Add cache headers for ISR
-          'Cache-Control': 'public, max-age=1800, s-maxage=1800, stale-while-revalidate=86400',
+          // Reduced cache time - revalidate every 5 minutes instead of 30
+          'Cache-Control': 'public, max-age=300, s-maxage=300, stale-while-revalidate=600',
         },
       }
     );

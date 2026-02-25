@@ -3,9 +3,10 @@ import { query } from '@/lib/db';
 
 /**
  * API Route for blog detail
- * Uses cache headers for ISR-like behavior
+ * Reduced cache time for faster content updates
  */
 export const dynamic = 'force-dynamic';
+export const revalidate = 0; // Always get fresh data
 
 // GET: Fetch single blog post by slug with full metadata for SEO
 export async function GET(
@@ -53,8 +54,8 @@ export async function GET(
       },
       {
         headers: {
-          // Add cache headers for ISR
-          'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
+          // Reduced cache time - revalidate every 5 minutes instead of 1 hour
+          'Cache-Control': 'public, max-age=300, s-maxage=300, stale-while-revalidate=600',
         },
       }
     );

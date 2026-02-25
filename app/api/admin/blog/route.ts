@@ -63,18 +63,25 @@ export async function GET(request: NextRequest) {
 
 // POST: Create new blog post (Admin only)
 export async function POST(request: NextRequest) {
+  console.log('📝 [API] POST /api/admin/blog - Request received');
+  
   try {
+    console.log('🔐 [API] Authenticating user...');
     const auth = await authenticateUser();
     
     if (!auth.success || !auth.user) {
+      console.error('❌ [API] Authentication failed');
       return NextResponse.json(
         { success: false, message: 'Unauthorized' },
         { status: 401 }
       );
     }
 
+    console.log('✅ [API] User authenticated:', { id: auth.user.id, name: auth.user.name, role: auth.user.role });
+
     // Admin only
     if (auth.user.role !== 'Admin') {
+      console.error('❌ [API] Access denied - not admin');
       return NextResponse.json(
         { success: false, message: 'Access denied. Admin only.' },
         { status: 403 }
@@ -84,14 +91,29 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { title, slug, content, excerpt, featured_image, status } = body;
 
+    console.log('📦 [API] Request body received:', { 
+      title: title?.slice(0, 30), 
+      slug, 
+      contentLength: content?.length,
+      excerpt: excerpt?.slice(0, 30),
+      featured_image: featured_image?.slice(0, 50),
+      status 
+    });
+
     // Validate input
     if (!title || !slug || !content) {
+      console.error('❌ [API] Validation failed - missing required fields', { 
+        hasTitle: !!title, 
+        hasSlug: !!slug, 
+        hasContent: !!content 
+      });
       return NextResponse.json(
         { success: false, message: 'Title, slug, and content are required' },
         { status: 400 }
       );
     }
 
+    console.log('🔍 [API] Checking if slug exists...');
     // Check if slug already exists
     const checkSlug = await query(
       'SELECT id FROM blog_posts WHERE slug = $1',
@@ -99,12 +121,15 @@ export async function POST(request: NextRequest) {
     );
 
     if (checkSlug.rows.length > 0) {
+      console.error('❌ [API] Slug already exists:', slug);
       return NextResponse.json(
         { success: false, message: 'Slug already exists. Please use a unique slug.' },
         { status: 400 }
       );
     }
 
+    console.log('✅ [API] Slug is unique, inserting blog post...');
+    
     // Insert blog post
     const sql = `
       INSERT INTO blog_posts (
@@ -133,15 +158,18 @@ export async function POST(request: NextRequest) {
       auth.user.id,
     ];
 
+    console.log('💾 [API] Executing INSERT query...');
     const result = await query(sql, params);
 
+    console.log('✅ [API] Blog post created successfully:', { id: result.rows[0].id });
+    
     return NextResponse.json({
       success: true,
       message: 'Blog post created successfully',
       data: result.rows[0],
     });
   } catch (error) {
-    console.error('Create blog post error:', error);
+    console.error('❌ [API] Create blog post error:', error);
     return NextResponse.json(
       { success: false, message: 'Failed to create blog post' },
       { status: 500 }
